@@ -1,0 +1,144 @@
+<template>
+  <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100" v-if="user.user">
+    <!-- Card principal -->
+    <div class="bg-white shadow rounded p-6 mx-auto" style="width: 300px;">
+      <!-- Título del card -->
+      <h2 class="text-xl font-bold text-center mb-4">
+        Crear código de referido
+      </h2>
+      <!-- Contenedor de elementos con separación vertical -->
+      <div class="space-y-4">
+        <!-- Campo de texto para el código de referido -->
+        <div class="mt-5">
+          <label for="referred_code" class="block text-gray-700 mb-1">
+            Código de referido
+          </label>
+          <div class="relative">
+            <input
+                id="referred_code"
+                type="text"
+                v-model="referred.referred_code"
+                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
+                placeholder="Ingrese su código de referido"
+            />
+            <!-- Ícono (ejemplo de SVG para mdi-ticket) -->
+            <svg
+                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+            >
+              <path
+                  d="M21 3H3C1.897 3 1 3.897 1 5v14c0 1.103.897 2 2 2h18c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM3 19V5h18l.002 14H3z"
+              />
+            </svg>
+          </div>
+        </div>
+        <!-- Mensaje del servidor (visible condicionalmente) -->
+        <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
+        <!-- Botón para crear el código de referido -->
+        <div>
+          <button
+              @click="createReferred"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded focus:outline-none"
+          >
+            Crear
+          </button>
+        </div>
+        <!-- Botón para ir al perfil -->
+        <div class="my-5">
+          <NuxtLink
+              to="/perfil"
+              class="w-full block bg-green-500 hover:bg-green-600 text-white py-2 rounded text-center"
+          >
+            Perfil
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+
+    <!-- Texto informativo debajo de la card -->
+    <div class="flex justify-center mt-5 mb-5 w-full">
+      <div class="w-1/2 text-center">
+        Cuando alguien vincula tu código de referido obtienes 5 oros. También obtienes el 10% de oro de las compras con esta moneda en la tienda por parte de tus referidos.
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { useUserStore } from '../stores/user'
+import { useSettingsStore } from '../stores/settings'
+import { useServerMessageStore } from "../stores/serverMessage";
+import Cookies from "js-cookie";
+
+export default {
+  middleware: 'auth',
+
+  head: {
+    title: 'Crear tu código de referidos - Mad Fénix Games',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Crear tu código de referidos en Mad Fénix Games.'
+      }
+    ]
+  },
+  data(){
+    return {
+      user: useUserStore(),
+      settings: useSettingsStore(),
+      serverMessage: useServerMessageStore(),
+      api: null,
+      referred: {
+        referred_code: '',
+      },
+    }
+  },
+
+  computed: {
+  },
+
+  mounted() {
+    this.setUserCookies();
+
+    const { $api } = useNuxtApp();
+    this.api = $api;
+  },
+
+  methods: {
+    afterCreateReferred(response){
+      this.$router.push('/perfil')
+    },
+
+    createReferred(){
+      this.api('/api/profile/setUserProfileReferredCode', {
+        method: 'POST',
+        body: this.referred
+      })
+        .then((response) => this.afterCreateReferred(response))
+        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage(error))
+    },
+
+    setUserCookies() {
+      let token = Cookies.get('token')
+      if (token) {
+        this.user.setToken(token);
+
+        //let user = document.cookie.match(new RegExp('(^| )user=([^;]+)'))
+        let user = Cookies.get('user')
+
+        if (user) {
+          this.user.updateUser(user);
+        } else {
+          console.log('test')
+          try {
+            this.user.fetchUser();
+          } catch (error) {
+          }
+        }
+      }
+    },
+  }
+}
+</script>

@@ -1,11 +1,11 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <!-- Tarjeta con ancho fijo de 300px, fondo blanco, sombra y bordes redondeados -->
+    <!-- Tarjeta contenedora con ancho fijo de 300px, fondo blanco, sombra y bordes redondeados -->
     <div class="bg-white shadow rounded p-6 mx-auto" style="width: 300px;">
       <!-- Título de la tarjeta -->
-      <h2 class="text-2xl font-bold text-center mb-4">Login</h2>
+      <h2 class="text-2xl font-bold text-center mb-4">Recordar password</h2>
 
-      <!-- Contenedor para los elementos del formulario con separación vertical -->
+      <!-- Contenedor de elementos con espaciado vertical -->
       <div class="space-y-4">
         <!-- Campo para Email -->
         <div class="mt-5">
@@ -14,11 +14,11 @@
             <input
                 id="email"
                 type="text"
-                v-model="signInData.email"
+                v-model="forgotData.email"
                 placeholder="Ingresa tu email"
                 class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
             />
-            <!-- Ícono de email (SVG de ejemplo para mdi-email) -->
+            <!-- Ícono de email (ejemplo con SVG similar a mdi-email) -->
             <svg
                 class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
                 fill="currentColor"
@@ -29,56 +29,27 @@
           </div>
         </div>
 
-        <!-- Campo para Password -->
-        <div>
-          <label for="password" class="block text-gray-700 mb-1">Password</label>
-          <div class="relative">
-            <input
-                id="password"
-                type="password"
-                v-model="signInData.password"
-                placeholder="Ingresa tu contraseña"
-                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
-            />
-            <!-- Ícono de candado (SVG de ejemplo para mdi-lock) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path d="M17,8h-1V6c0-2.757-2.243-5-5-5S6,3.243,6,6v2H5C3.897,8,3,8.897,3,10v10c0,1.103,0.897,2,2,2h12c1.103,0,2-0.897,2-2V10 C19,8.897,18.103,8,17,8z M8,6c0-1.654,1.346-3,3-3s3,1.346,3,3v2H8V6z"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Mensaje del servidor (visible condicionalmente) -->
+        <!-- Mensaje del servidor (se muestra si existe) -->
         <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
 
-        <!-- Botón "Entrar" -->
+        <!-- Botón "Enviar" -->
         <div>
           <button
-              @click="login"
+              @click="forgot"
               class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded focus:outline-none"
           >
-            Entrar
+            Enviar
           </button>
         </div>
 
-        <!-- Enlace para "¿Has olvidado el password?" -->
-        <div class="mt-5 flex justify-center">
-          <NuxtLink to="/recordar-password" class="text-blue-500 hover:underline">
-            ¿Has olvidado el password?
-          </NuxtLink>
-        </div>
-
-        <!-- Botón "Registro" -->
+        <!-- Botón "Volver" (navegación a /login) -->
         <div class="my-5">
-          <NuxtLink
-              to="/registro"
+          <nuxt-link
+              to="/login"
               class="block bg-green-500 hover:bg-green-600 text-white py-2 rounded text-center"
           >
-            Registro
-          </NuxtLink>
+            Volver
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -93,12 +64,12 @@ import Cookies from "js-cookie";
 
 export default {
   head: {
-    title: 'Login - Mad Fénix Games',
+    title: 'Recordar password - Mad Fénix Games',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Login en Mad Fénix Games.'
+        content: 'Recordar password en Mad Fénix Games.'
       }
     ]
   },
@@ -108,10 +79,8 @@ export default {
       settings: useSettingsStore(),
       serverMessage: useServerMessageStore(),
       api: null,
-      signInData: {
+      forgotData: {
         email: '',
-        password: '',
-        device_name: 'website',
       },
     }
   },
@@ -127,18 +96,12 @@ export default {
   },
 
   methods: {
-    afterLogin(response){
-      this.user.setToken(response.token)
-      this.user.fetchUser()
-      this.$router.push('/sala-de-espera')
-    },
-
-    login(){
-      this.api('/api/login', {
+    forgot(){
+      this.api('/api/forgotSendResetLinkEmail', {
         method: 'POST',
-        body: this.signInData
+        body: this.forgotData
       })
-        .then((response) => (response.token) ? this.afterLogin(response) : this.serverMessage.setServerMessage(response))
+        .then((response) => (response === 'Reset link sent') ? this.$router.push('/recordar-password-fin') : this.serverMessage.setServerMessage(response))
         .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
     },
 

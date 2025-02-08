@@ -1,7 +1,22 @@
 <template>
-    <div>
-      En construcción
+  <div class="min-h-screen flex items-center justify-center bg-gray-100" v-if="user.user">
+    <!-- Card con ancho fijo, fondo blanco, sombra y bordes redondeados -->
+    <div class="bg-white shadow rounded p-6 mx-auto" style="width: 600px;">
+      <!-- Título del card -->
+      <h2 class="text-2xl font-bold text-center mb-4">
+        Día a día
+      </h2>
+      <!-- Contenedor para el botón -->
+      <div class="flex justify-center">
+        <NuxtLink
+            to="/registro"
+            class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded"
+        >
+          Registro gratuito
+        </NuxtLink>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -12,12 +27,12 @@ import Cookies from "js-cookie";
 
 export default {
   head: {
-    title: 'Sobre nosotros - Mad Fénix Games',
+    title: 'Día a día - Mad Fénix Games',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Sobre nosotros en Mad Fénix Games.'
+        content: 'Día a día en Mad Fénix Games.'
       }
     ]
   },

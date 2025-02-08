@@ -533,6 +533,11 @@
   resolved "https://registry.yarnpkg.com/@ioredis/commands/-/commands-1.2.0.tgz#6d61b3097470af1fdbbe622795b8921d42018e11"
   integrity sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==
 
+"@ipaat/vue3-tailwind3-cookie-comply@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@ipaat/vue3-tailwind3-cookie-comply/-/vue3-tailwind3-cookie-comply-1.1.2.tgz#178d7908dda5c331458c5caa5c2662add9ac8133"
+  integrity sha512-+41hJAzyqx8vC6cyHFSbw9ZQtvC47HkEeDJBFCVaPU23J5BOxjQoL5qLBoMW4kY1jBRAfp7568msAJqQqyrtpQ==
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
