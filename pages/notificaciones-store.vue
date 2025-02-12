@@ -1,0 +1,111 @@
+<template>
+  <div class="min-h-screen flex items-center justify-center bg-green-600 p-4" v-if="user.user">
+    <audio id="audioNotification">
+      <source src="/img/streams/notificationSong.ogg" type="audio/ogg">
+    </audio>
+    <div v-if="items">
+      <div>
+        <img src="/img/streams/fenix_feliz.png" class="w-[500px]" />
+      </div>
+      <div v-for="item in items">
+        <div v-html="item" class="text-5xl font-bold text-white" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { useUserStore } from '../stores/user'
+import { useSettingsStore } from '../stores/settings'
+import { useServerMessageStore } from "../stores/serverMessage";
+import Cookies from "js-cookie";
+
+definePageMeta({
+  layout: 'blank',
+})
+
+export default {
+  middleware: 'auth',
+
+  head: {
+    title: 'Notificaciones - Mad Fénix Games',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Notificaciones en Mad Fénix Games.'
+      }
+    ]
+  },
+  data() {
+    return {
+      user: useUserStore(),
+      settings: useSettingsStore(),
+      serverMessage: useServerMessageStore(),
+      api: null,
+      items: null,
+      itemsInterval : null,
+      itemsIntervalRemove : null,
+    }
+  },
+
+  computed: {
+  },
+
+  mounted() {
+    this.setUserCookies();
+
+    const { $api } = useNuxtApp();
+    this.api = $api;
+    this.fetch();
+
+    let thisObject = this;
+
+    window.addEventListener('keyup', function(ev) {
+      thisObject.fetch()
+    });
+  },
+
+  methods: {
+    removeItems() {
+      this.items = null;
+      window.document.getElementById("audioNotification").stop()
+    },
+
+    fetch() {
+      this.api('/api/store/getLastProductOrders', {
+        method: 'GET'
+      })
+          .then((response) => {
+            if (response.length > 0) {
+              this.items = response
+              window.document.getElementById("audioNotification").play()
+            }
+          })
+          .catch((error) => (error.message) ? this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+      this.itemsInterval = setTimeout(this.fetch, 60000);
+      this.itemsIntervalRemove = setTimeout(this.removeItems, 15000);
+    },
+
+    setUserCookies() {
+      let token = Cookies.get('token')
+      if (token) {
+        this.user.setToken(token);
+
+        //let user = document.cookie.match(new RegExp('(^| )user=([^;]+)'))
+        let user = Cookies.get('user')
+
+        if (user) {
+          this.user.updateUser(user);
+        } else {
+          console.log('test')
+          try {
+            this.user.fetchUser();
+          } catch (error) {
+          }
+        }
+      }
+    },
+  }
+}
+</script>
