@@ -35,3 +35,11 @@ body {
   font-weight: 500;
   font-style: normal;
 }
+
+.text-outline {
+  text-shadow:
+          -4px -4px 0 black,
+          4px -4px 0 black,
+          -4px  4px 0 black,
+          4px  4px 0 black;
+}

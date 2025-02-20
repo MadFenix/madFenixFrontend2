@@ -7,8 +7,8 @@
       <div>
         <img src="/img/streams/fenix_feliz.png" class="w-[500px]" />
       </div>
-      <div v-for="item in items">
-        <div v-html="item" class="text-5xl font-bold text-white" />
+      <div v-for="item in items" class="w-[800px]">
+        <div v-html="item" class="text-5xl font-bold text-white" style="text-shadow: -4px -4px 0 black, 4px -4px 0 black, -4px  4px 0 black, 4px  4px 0 black;" />
       </div>
     </div>
   </div>
