@@ -27,16 +27,6 @@ definePageMeta({
 export default {
   middleware: 'auth',
 
-  head: {
-    title: 'Notificaciones - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Notificaciones en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -53,6 +43,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Notificaciones - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Notificaciones en Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

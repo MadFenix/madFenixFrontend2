@@ -97,16 +97,6 @@ import { useServerMessageStore } from "../stores/serverMessage";
 import Cookies from "js-cookie";
 
 export default {
-  head: {
-    title: 'Recordar password - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Recordar password en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -126,6 +116,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Recordar password - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Recordar password en Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

@@ -71,16 +71,6 @@ import Cookies from "js-cookie";
 export default {
   middleware: 'auth',
 
-  head: {
-    title: 'Canjear cupón de plumas - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Canjear cupóon de plumas en Mad Fénix Games.'
-      }
-    ]
-  },
   data(){
     return {
       user: useUserStore(),
@@ -97,6 +87,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Canjear cupón de plumas - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Canjear cupóon de plumas en Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

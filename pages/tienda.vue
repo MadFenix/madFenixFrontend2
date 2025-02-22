@@ -97,23 +97,6 @@ import Cookies from "js-cookie";
 export default {
   middleware: 'auth',
 
-  head: {
-    title: 'Tienda - Mad Fénix',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Tienda en Mad Fénix.'
-      }
-    ],
-    script: [
-      {
-        async: true,
-        src: "https://js.stripe.com/v3/buy-button.js",
-      }
-    ]
-  },
-
   data(){
     return {
       user: useUserStore(),
@@ -125,6 +108,22 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Tienda - Mad Fénix',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Tienda en Mad Fénix.'
+        }
+      ],
+      script: [
+        {
+          async: true,
+          src: "https://js.stripe.com/v3/buy-button.js",
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

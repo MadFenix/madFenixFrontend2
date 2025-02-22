@@ -37,16 +37,6 @@ import Cookies from "js-cookie";
 export default {
   middleware: 'auth',
 
-  head: {
-    title: 'Vincular cartera de Hedera - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Vincular cartera de Hedera en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -61,6 +51,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Vincular cartera de Hedera - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Vincular cartera de Hedera en Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

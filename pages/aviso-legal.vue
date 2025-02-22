@@ -42,16 +42,6 @@ import { useServerMessageStore } from "../stores/serverMessage";
 import Cookies from "js-cookie";
 
 export default {
-  head: {
-    title: 'Aviso legal - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Aviso legal de Mad Fénix Games.'
-      }
-    ]
-  },
   data(){
     return {
       user: useUserStore(),
@@ -65,6 +55,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Aviso legal - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Aviso legal de Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

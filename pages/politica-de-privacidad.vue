@@ -59,16 +59,6 @@ import { useServerMessageStore } from "../stores/serverMessage";
 import Cookies from "js-cookie";
 
 export default {
-  head: {
-    title: 'Política de privacidad - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Política de privacidad en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -85,6 +75,16 @@ export default {
     },
 
     mounted() {
+      useHead({
+        title: 'Política de privacidad - Mad Fénix Games',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Política de privacidad en Mad Fénix Games.'
+          }
+        ]
+      });
       this.setUserCookies();
     },
 

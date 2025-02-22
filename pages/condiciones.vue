@@ -67,16 +67,6 @@ import { useServerMessageStore } from "../stores/serverMessage";
 import Cookies from "js-cookie";
 
 export default {
-  head: {
-    title: 'Términos y condiciones - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Términos y condiciones en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -87,6 +77,16 @@ export default {
   },
 
     mounted() {
+      useHead({
+        title: 'Términos y condiciones - Mad Fénix Games',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Términos y condiciones en Mad Fénix Games.'
+          }
+        ]
+      });
       this.setUserCookies();
     },
 

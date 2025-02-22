@@ -92,16 +92,6 @@ import { useServerMessageStore } from "../stores/serverMessage";
 import Cookies from "js-cookie";
 
 export default {
-  head: {
-    title: 'Login - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Login en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -120,6 +110,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Login - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Login en Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

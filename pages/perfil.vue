@@ -219,16 +219,6 @@ import Cookies from "js-cookie";
 export default {
   middleware: 'auth',
 
-  head: {
-    title: 'Perfil - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Perfil en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -240,6 +230,17 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Perfil - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Perfil en Mad Fénix Games.'
+        }
+      ]
+    });
+
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

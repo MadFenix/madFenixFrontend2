@@ -9,6 +9,18 @@ module.exports = {
     theme: {
         extend: {
             // Tus personalizaciones de tema aquí
+            colors: {
+                madfenix: {
+                    gris: '#161616',
+                    azul: '#326B8A',
+                    verde: '#517A31',
+                    rojo: '#7A313B',
+                    naranja: '#FC9208',
+                    blanco: '#EBEBEB',
+                },
+                white: '#EBEBEB',
+                black: '#161616',
+            },
         },
     },
     plugins: [

@@ -12,11 +12,11 @@
             >
               <img src="/img/logo-white.png" title="Mad Fénix" alt="Mad Fénix" class="w-12" />
               <span
-                  class="text-white transition duration-200 ease-in-out group-hover:text-dark-300"
+                  class="text-white transition duration-200 ease-in-out"
               >Mad</span
               >
               <span
-                  class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white"
+                  class="transition duration-200 ease-in-out text-white group-hover:text-madfenix-naranja"
               >Fénix</span
               >
             </nuxt-link>
@@ -27,10 +27,10 @@
                 class="hidden text-3xl font-black md:block lg:hidden group"
             >
                 <span
-                    class="text-white transition duration-200 ease-in-out group-hover:text-dark-300"
+                    class="text-white transition duration-200 ease-in-out"
                 >M</span
                 ><span
-                class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white"
+                class="transition duration-200 ease-in-out text-white group-hover:text-madfenix-naranja"
             >F</span
             >
             </a>
@@ -38,7 +38,7 @@
 
           <!-- Main menu for large screens -->
           <div
-              class="hidden md:flex justify-between items-center md:space-x-0.5 lg:space-x-2 text-xl md:text-base font-medium text-dark-300"
+              class="hidden md:flex justify-between items-center md:space-x-0.5 lg:space-x-2 text-xl md:text-base font-medium text-white"
           >
             <nuxt-link to="/"
                        class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700"
@@ -113,13 +113,13 @@
             x-transition:leave-end="opacity-0 -translate-y-full"
             -->
             <div
-                class="fixed bottom-0 left-0 z-50 w-full flex items-center justify-center bg-gradient-to-tr from-dark-800 to-dark-900"
+                class="fixed bottom-0 left-0 z-50 w-full flex items-center justify-center bg-gradient-to-tr"
             >
               <div
-                  class="flex  grid grid-cols-4 items-center w-full mx-auto text-xl"
+                  class="flex grid grid-cols-4 items-center w-full mx-auto text-xl"
               >
                 <nuxt-link to="/"
-                           class="block p-4 font-medium rounded-full text-dark-300 hover:text-white hover:bg-dark-700 sm:inline-block"
+                           class="block p-4 font-medium rounded-full text-white hover:text-white hover:bg-dark-700 sm:inline-block"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-auto">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -127,7 +127,7 @@
                 </nuxt-link>
 
                 <nuxt-link :to="item.path" v-for="(item, key) in items" :key="key"
-                           class="block border-l-2 border-dark-600 p-4 font-medium text-dark-300 hover:text-white hover:bg-dark-700 sm:inline-block"
+                           class="block border-l-2 border-dark-600 p-4 font-medium text-white hover:text-white hover:bg-dark-700 sm:inline-block"
                 >
                   <svg v-if="item.text == 'Perfil'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-auto">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
@@ -156,11 +156,11 @@
         <div class="flex flex-col lg:mx-auto">
           <div class="flex items-center">
             <a href="/" class="text-2xl font-black lg:block group font-ancient-god">
-              <span class="text-white transition duration-200 ease-in-out group-hover:text-dark-300">Mad</span>
-              <span class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white">Fénix</span>
+              <span class="text-white transition duration-200 ease-in-out">Mad</span>
+              <span class="transition duration-200 ease-in-out text-white group-hover:text-madfenix-naranja">Fénix</span>
             </a>
           </div>
-          <div class="mt-6 text-lg md:mt-8 text-dark-300">
+          <div class="mt-6 text-lg md:mt-8 text-white">
             © 2024 Mad Fénix.
             <br>
             Todos los derechos reservados.
@@ -170,56 +170,56 @@
         <!-- Contact information -->
         <div class="lg:mx-auto">
           <h6 class="text-xl font-semibold text-white">Ponte en contacto</h6>
-          <p class="mt-2 text-lg text-dark-300">
+          <p class="mt-2 text-lg text-white">
             C/ Sant Valentí 14 1er,
             <br>Sant Joan de Vilatorrada, Barcelona 08250
           </p>
-          <p class="text-lg text-dark-300">iam@valentigamez.com</p>
+          <p class="text-lg text-white">iam@valentigamez.com</p>
         </div>
 
         <!-- Site links -->
         <div class="lg:mx-auto">
           <h6 class="text-xl font-semibold text-white">Estudio</h6>
           <ul class="mt-2 space-y-1 text-lg">
-            <li class="font-medium text-dark-300 hover:text-white">
+            <li class="font-medium text-white hover:text-white">
               <nuxt-link to="/">
                 Home
               </nuxt-link>
             </li>
-            <li v-if="user.user" v-for="(item, key) in items" :key="key" class="font-medium text-dark-300 hover:text-white">
+            <li v-if="user.user" v-for="(item, key) in items" :key="key" class="font-medium text-white hover:text-white">
               <nuxt-link :to="item.path" v-html="item.text" />
             </li>
-            <li v-if="user.user" class="font-medium text-dark-300 hover:text-white">
+            <li v-if="user.user" class="font-medium text-white hover:text-white">
               <a @click="logout()" >
                 Logout
               </a>
             </li>
-            <li v-if="!user.user" class="font-medium text-dark-300 hover:text-white">
+            <li v-if="!user.user" class="font-medium text-white hover:text-white">
               <nuxt-link to="/login" >
                 Login
               </nuxt-link>
             </li>
-            <li v-if="!user.user" class="font-medium text-dark-300 hover:text-white">
+            <li v-if="!user.user" class="font-medium text-white hover:text-white">
               <nuxt-link to="/registro" >
                 Registro
               </nuxt-link>
             </li>
-            <li class="font-medium text-dark-300 hover:text-white">
+            <li class="font-medium text-white hover:text-white">
               <nuxt-link to="/aviso-legal" >
                 Aviso legal
               </nuxt-link>
             </li>
-            <li class="font-medium text-dark-300 hover:text-white">
+            <li class="font-medium text-white hover:text-white">
               <nuxt-link to="/condiciones" >
                 Términos y condiciones
               </nuxt-link>
             </li>
-            <li class="font-medium text-dark-300 hover:text-white">
+            <li class="font-medium text-white hover:text-white">
               <nuxt-link to="/politica-de-cookies" >
                 Política de cookies
               </nuxt-link>
             </li>
-            <li class="font-medium text-dark-300 hover:text-white">
+            <li class="font-medium text-white hover:text-white">
               <nuxt-link to="/politica-de-privacidad" >
                 Política de privacidad
               </nuxt-link>
@@ -232,14 +232,14 @@
           <h6 class="text-xl font-semibold text-white">
             Síguenos
           </h6>
-          <p class="mt-2 text-lg text-dark-300">
+          <p class="mt-2 text-lg text-white">
             Renacer te vuelve más fuerte.
           </p>
           <div class="w-full mt-4 lg:mt-6">
             <!-- Social links container -->
             <div class="flex justify-start space-x-4">
               <!-- Instagram -->
-              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-dark-300" href="https://www.instagram.com/madfenixgames" target="_blank">
+              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-white" href="https://www.instagram.com/madfenixgames" target="_blank">
                 <!-- TablerIcon name: brand-instagram -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -250,7 +250,7 @@
               </a>
 
               <!-- Facebook -->
-              <!--<a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-dark-300" href="#" target="_blank">
+              <!--<a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-white" href="#" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
@@ -258,7 +258,7 @@
               </a>-->
 
               <!-- Twitter -->
-              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-dark-300" href="https://twitter.com/madfenixgames" target="_blank">
+              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-white" href="https://twitter.com/madfenixgames" target="_blank">
                 <!-- TablerIcon name: brand-twitter -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -299,16 +299,6 @@ export default {
     VueCookieComply
   },
 
-  head: {
-    title: 'Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Mad Fénix Games.'
-      }
-    ]
-  },
   data(){
     return {
       mobileNavOpen: false,

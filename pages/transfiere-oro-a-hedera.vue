@@ -105,16 +105,6 @@ import Cookies from "js-cookie";
 export default {
   middleware: 'auth',
 
-  head: {
-    title: 'Transferir oro a Hedera - Mad Fénix Games',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Transferir oro a Hedera en Mad Fénix Games.'
-      }
-    ]
-  },
   data() {
     return {
       user: useUserStore(),
@@ -132,6 +122,16 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Transferir oro a Hedera - Mad Fénix Games',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Transferir oro a Hedera en Mad Fénix Games.'
+        }
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();

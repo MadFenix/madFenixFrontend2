@@ -594,53 +594,6 @@ import { useServerMessageStore } from "../stores/serverMessage";
 import Cookies from "js-cookie";
 
 export default {
-
-  head: {
-    title: 'Dragones Custodio - Mad Fénix',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Los Dragones Custodio son la colección matriz de Mad Fénix. Tienes las mayores utilidades dentro del ecosistema.'
-      },
-      {
-        hid: 'og:url',
-        name: 'og:url',
-        content: 'https://madfenix.com/dragones-custodio'
-      },
-      {
-        hid: 'og:site_name',
-        name: 'og:site_name',
-        content: 'Dragones Custodio - Mad Fénix'
-      },
-      {
-        hid: 'og:image',
-        name: 'og:image',
-        content: 'https://madfenix.com/img/dragones-custodio/dragon_rey_1_cascada.jpg'
-      },
-      {
-        hid: 'og:image:width',
-        name: 'og:image:width',
-        content: '1067'
-      },
-      {
-        hid: 'og:image:height',
-        name: 'og:image:height',
-        content: '405'
-      },
-      {
-        hid: 'og:image:type',
-        name: 'og:image:type',
-        content: 'image/jpg'
-      },
-      {
-        hid: 'twitter:site',
-        name: 'twitter:site',
-        content: '@MadFenixGames'
-      },
-    ]
-  },
-
   data() {
     return {
       user: useUserStore(),
@@ -654,6 +607,51 @@ export default {
   },
 
   mounted() {
+    useHead({
+      title: 'Dragones Custodio - Mad Fénix',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Los Dragones Custodio son la colección matriz de Mad Fénix. Tienes las mayores utilidades dentro del ecosistema.'
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: 'https://madfenix.com/dragones-custodio'
+        },
+        {
+          hid: 'og:site_name',
+          name: 'og:site_name',
+          content: 'Dragones Custodio - Mad Fénix'
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: 'https://madfenix.com/img/dragones-custodio/dragon_rey_1_cascada.jpg'
+        },
+        {
+          hid: 'og:image:width',
+          name: 'og:image:width',
+          content: '1067'
+        },
+        {
+          hid: 'og:image:height',
+          name: 'og:image:height',
+          content: '405'
+        },
+        {
+          hid: 'og:image:type',
+          name: 'og:image:type',
+          content: 'image/jpg'
+        },
+        {
+          hid: 'twitter:site',
+          name: 'twitter:site',
+          content: '@MadFenixGames'
+        },
+      ]
+    });
     this.setUserCookies();
 
     const { $api } = useNuxtApp();
