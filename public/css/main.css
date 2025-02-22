@@ -4,6 +4,46 @@ body {
   background: #161616 0% 0% no-repeat padding-box;
 }
 
+#video-logomadfenix, #image-logomadfenix {
+    width: 100vw;
+    max-height: 80vh;
+    object-fit: cover;
+}
+
+#title-nuestra-mision {
+    opacity: 1;
+    color: #868585;
+}
+#container-nuestra-mision {
+    max-width: 50vw;
+    font-weight: 600;
+    /* UI Properties */
+    background: #4F5155 0% 0% no-repeat padding-box;
+    border-radius: 35px 0px;
+    opacity: 1;
+}
+@media screen and (max-width: 768px) {
+    #container-nuestra-mision {
+        max-width: 100vw;
+    }
+}
+
+#container-nuestros-juegos {
+    background: transparent url('/img/home/feather-back-3.png') no-repeat top left;
+}
+
+#container-dragones-custodio {
+    background: transparent url('/img/home/feather-back.png') no-repeat top left;
+}
+
+.container-movemos-comunidades-modulos {
+    font-weight: 600;
+    /* UI Properties */
+    background: #4F5155 0% 0% no-repeat padding-box;
+    border-radius: 35px 0px;
+    opacity: 1;
+}
+
 .font-ancient-god {
 }
 
@@ -23,6 +63,23 @@ body {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    font-family: "Orbitron", serif;
+    font-optical-sizing: auto;
+    font-weight: bold !important;
+    font-style: normal;
+    font-size: 52px !important;
+}
+h3, h4, h5, h6 {
+    font-size: 22px !important;
+}
+@media screen and (max-width: 768px) {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 32px !important;
+    }
 }
 
 .text-outline {

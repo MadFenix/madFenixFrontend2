@@ -13,6 +13,9 @@ export default defineNuxtConfig({
         { hid: 'description', name: 'description', content: 'Estudio de videojuegos indie Mad Fénix.' }
       ],
       link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: true },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins&family=Ubuntu:wght@300;400&display=swap' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'stylesheet', href: '/css/main.css' },
       ],
@@ -25,15 +28,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt'
   ],
-  buildModules: [
-    '@nuxtjs/google-fonts'
-  ],
-  googleFonts: {
-    families: {
-      Orbitron: true,
-      Poppins: true,
-    }
-  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true }
 })

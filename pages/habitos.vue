@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user.user" class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div v-if="user.user && perfil" class="min-h-screen flex items-center justify-center bg-gray-100">
     <!-- Tarjeta centrada con ancho fijo de 500px -->
     <div class="bg-white shadow rounded p-6 mx-auto" style="width: 500px;">
       <!-- Título de la tarjeta -->
