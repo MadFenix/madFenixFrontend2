@@ -209,12 +209,6 @@
   </div>
 </template>
 
-<style>
-#container-header{
-  background: transparent url('/img/home/feather-back-2.png')  no-repeat top right;
-}
-</style>
-
 <script>
 import { useUserStore } from '../stores/user'
 import { useSettingsStore } from '../stores/settings'
@@ -286,6 +280,7 @@ export default {
     });
     document.getElementById('video-logomadfenix').play();
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -294,6 +289,10 @@ export default {
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/home/feather-back-2.png') no-repeat top right";
+    },
+
     setUserCookies() {
       let token = Cookies.get('token')
       if (token) {
@@ -303,7 +302,7 @@ export default {
         let user = Cookies.get('user')
 
         if (user) {
-          this.user.updateUser(user);
+          this.user.updateUser(JSON.parse(user));
         } else {
           console.log('test')
           try {

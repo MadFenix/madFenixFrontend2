@@ -80,7 +80,7 @@ export default {
         let user = Cookies.get('user')
 
         if (user) {
-          this.user.updateUser(user);
+          this.user.updateUser(JSON.parse(user));
         } else {
           console.log('test')
           try {

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <header id="container-header">
+  <div id="container-global">
+    <header>
       <nav
           class="flex items-center px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex items-center justify-between w-full">

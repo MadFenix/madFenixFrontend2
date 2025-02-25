@@ -1,87 +1,117 @@
 <template>
-    <div v-if="user.user">
-      <!-- Case Study Hero -->
-      <section class="px-4 py-12 md:py-16 sm:px-6 lg:px-8" v-if="user.user">
-        <div class="max-w-screen-xl mx-auto">
-          <!-- Hero text -->
-          <div class="w-full max-w-3xl mx-auto text-center lg:max-w-5xl">
-            <p
-              class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium tracking-wide text-white rounded-r-full rounded-tl-full bg-gradient-to-r from-dark-600 to-dark-700"
-            >
-              Perfil
-            </p>
-            <h1
-              class="mt-4 text-4xl font-extrabold text-white md:mt-5 sm:text-5xl md:text-6xl"
-              v-html="user.user.name"
-            />
-            <div class="w-full mx-auto lg:w-4/5">
-              <p class="text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4" v-html="user.user.email" />
+    <div v-if="user.user && perfil">
+      <div class="md:grid md:grid-cols-3 md:items-center border-y-2 border-madfenix-naranja bg-madfenix-gris">
+        <div class="col-span-1">
+          <img src="/img/perfil/tiefling_bard.png" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" />
+        </div>
+
+        <div class="text-right col-span-1 px-6">
+          <div v-html="'@' + user.user.name" class="text-5xl font-black text-madfenix-naranja my-3" />
+          <div v-html="user.user.email" class="text-xl text-white my-3" />
+          <div class="flex space-x-3 justify-end my-3">
+            <div v-if="perfil && perfil.user_twitch" class="flex items-center space-x-3 text-white text-center">
+              <a @click="desconectarTwitch()" class="cursor-pointer">
+                <img src="/img/perfil/twitch_account.svg" class="Desconectar Twitch">
+              </a>
+              <span v-html="perfil.user_twitch" />
+            </div>
+            <div v-else>
+              <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.id" class="cursor-pointer">
+                <img src="/img/perfil/twitch_account.svg" class="Conectar Twitch">
+              </a>
+            </div>
+
+            <div>
+              <a @click="logout()" class="cursor-pointer">
+                <img src="/img/perfil/logout.svg" class="Logout">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1 px-6">
+          <div v-if="perfil && perfil.hedera_wallet" class="my-4 w-full text-white text-center">
+            Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
+          </div>
+          <div v-else-if="perfil && perfil.hedera_wallet_check" class="my-4">
+            <nuxt-link to="/vincular-wallet-hedera-2"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+              Vincular cartera de hedera
+            </nuxt-link>
+          </div>
+          <div v-else class="my-4">
+            <nuxt-link to="/vincular-wallet-hedera"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+              Vincular cartera de hedera
+            </nuxt-link>
+          </div>
+
+          <div v-if="perfil && perfil.referred_code_from" class="my-4 w-full text-white text-center">
+            Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
+          </div>
+          <div v-else class="my-4">
+            <nuxt-link to="/vincular-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+              Vincular código de referido
+            </nuxt-link>
+          </div>
+
+          <div v-if="perfil && perfil.referred_code" class="my-4 w-full text-white text-center">
+            Tu código de referido: <span v-html="perfil.referred_code" />.&nbsp;
+          </div>
+          <div v-else class="my-4">
+            <nuxt-link to="/crear-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+              Crear código de referido
+            </nuxt-link>
+          </div>
+
+          <div v-if="perfil && perfil.user_steam" class="my-4 w-full text-white text-center hidden">
+            Conectad@ con <span v-html="perfil.user_steam" />.&nbsp;
+            <a @click="desconectarSteam()" class="text-white underline font-semibold hover:no-underline">
+              Desconectar Steam
+            </a>
+          </div>
+          <div v-else class="my-4 hidden">
+            <a @click="conectarSteam()" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+              Conectar Steam
+            </a>
+          </div>
+
+          <div class="my-4">
+            <nuxt-link to="/eliminar-cuenta" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+              Eliminar cuenta
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+
+      <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
+        <!-- CTA card -->
+        <div class="relative rounded-3xl bg-madfenix-gris">
+          <!-- Right background diagonal -->
+          <svg class="absolute inset-y-0 top-0 z-50 w-1/4 h-full right-1/4 text-madfenix-gris" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
+            <polygon points="0,0 100,0 0,100"></polygon>
+          </svg>
+          <div class="absolute inset-y-0 z-40 w-1/2 h-full left-1/2 bg-dark-800 rounded-r-3xl"></div>
+
+          <!-- CTA content -->
+          <div class="relative z-30 flex flex-col items-center justify-center pl-4 mx-auto text-center sm:pl-16 lg:flex-row lg:text-left">
+            <div class="max-w-lg text-2xl font-bold sm:text-4xl lg:w-1/2">
+              <h5 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                Oro: <span v-if="perfil" v-html="perfil.oro" /><span v-else>...</span>
+              </h5>
+            </div>
+            <div class="grow flex justify-center max-w-lg mt-10 bg-madfenix-azul py-16 lg:py-20 lg:w-1/2 lg:mt-0 lg:justify-end">
+              <div>
+                <nuxt-link to="/canjear-cupon-oro" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+                  Canjea un cupón
+                </nuxt-link>
+                <br>
+                <nuxt-link to="/transfiere-oro-a-hedera" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
+                  Transfiere Oro
+                </nuxt-link>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <div v-if="perfil && perfil.hedera_wallet" class="my-4 w-full text-white text-center">
-        Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
-      </div>
-      <div v-else-if="perfil && perfil.hedera_wallet_check" class="my-4">
-        <nuxt-link to="/vincular-wallet-hedera-2"  class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-           Vincular cartera de hedera
-        </nuxt-link>
-      </div>
-      <div v-else class="my-4">
-        <nuxt-link to="/vincular-wallet-hedera"  class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-           Vincular cartera de hedera
-        </nuxt-link>
-      </div>
-
-      <div v-if="perfil && perfil.referred_code_from" class="my-4 w-full text-white text-center">
-        Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
-      </div>
-      <div v-else class="my-4">
-        <nuxt-link to="/vincular-codigo-referido"  class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-           Vincular código de referido
-        </nuxt-link>
-      </div>
-
-      <div v-if="perfil && perfil.referred_code" class="my-4 w-full text-white text-center">
-        Tu código de referido: <span v-html="perfil.referred_code" />.&nbsp;
-      </div>
-      <div v-else class="my-4">
-        <nuxt-link to="/crear-codigo-referido"  class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-          Crear código de referido
-        </nuxt-link>
-      </div>
-
-      <div v-if="perfil && perfil.user_twitch" class="my-4 w-full text-white text-center">
-        Conectad@ con <span v-html="perfil.user_twitch" />.&nbsp;
-        <a @click="desconectarTwitch()" class="text-white underline font-semibold hover:no-underline">
-          Desconectar Twitch
-        </a>
-      </div>
-      <div v-else class="my-4">
-        <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.id" class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-          Conectar Twitch
-        </a>
-      </div>
-
-      <div v-if="perfil && perfil.user_steam" class="my-4 w-full text-white text-center hidden">
-        Conectad@ con <span v-html="perfil.user_steam" />.&nbsp;
-        <a @click="desconectarSteam()" class="text-white underline font-semibold hover:no-underline">
-          Desconectar Steam
-        </a>
-      </div>
-      <div v-else class="my-4 hidden">
-        <a @click="conectarSteam()" class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-          Conectar Steam
-        </a>
-      </div>
-
-      <div class="my-4">
-        <a @click="logout()" class="flex items-center w-2/3 md:w-1/3 m-auto justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-          Logout
-        </a>
-      </div>
 
       <!-- Buscamos creadores section -->
       <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
@@ -102,43 +132,12 @@
             </div>
             <div class="flex justify-center max-w-lg mt-10 lg:w-1/2 lg:mt-0 lg:justify-end">
               <div>
-                <nuxt-link to="/canjear-cupon" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
+                <nuxt-link to="/canjear-cupon" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
                   Canjea un cupón
                 </nuxt-link>
                 <br>
-                <nuxt-link to="/transfiere-plumas-a-hedera" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
+                <nuxt-link to="/transfiere-plumas-a-hedera" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
                   Transfiere Plumas
-                </nuxt-link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
-        <!-- CTA card -->
-        <div class="relative py-16 rounded-3xl bg-dark-700 lg:py-20">
-          <!-- Right background diagonal -->
-          <svg class="absolute inset-y-0 top-0 z-20 w-1/4 h-full right-1/4 text-dark-700" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
-            <polygon points="0,0 100,0 0,100"></polygon>
-          </svg>
-          <div class="absolute inset-y-0 z-10 w-1/2 h-full left-1/2 bg-dark-800 rounded-r-3xl"></div>
-
-          <!-- CTA content -->
-          <div class="relative z-30 flex flex-col items-center justify-center px-4 mx-auto text-center sm:px-16 lg:flex-row lg:text-left">
-            <div class="max-w-lg text-2xl font-bold sm:text-4xl lg:w-1/2">
-              <h5 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                Oro: <span v-if="perfil" v-html="perfil.oro" /><span v-else>...</span>
-              </h5>
-            </div>
-            <div class="flex justify-center max-w-lg mt-10 lg:w-1/2 lg:mt-0 lg:justify-end">
-              <div>
-                <nuxt-link to="/canjear-cupon-oro" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-                  Canjea un cupón
-                </nuxt-link>
-                <br>
-                <nuxt-link to="/transfiere-oro-a-hedera" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-                  Transfiere Oro
                 </nuxt-link>
               </div>
             </div>
@@ -166,7 +165,7 @@
               </div>
               <div class="flex justify-center max-w-lg mt-10 lg:w-1/2 lg:mt-0 lg:justify-end">
                 <div>
-                  <nuxt-link :to="'/transfiere-item-a-hedera/?item_identification_id=' + nft.id + '&nft_token_id=' + nft.nft.token_props + '.' + nft.nft.token_realm + '.' + nft.nft.token_number" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
+                  <nuxt-link :to="'/transfiere-item-a-hedera/?item_identification_id=' + nft.id + '&nft_token_id=' + nft.nft.token_props + '.' + nft.nft.token_realm + '.' + nft.nft.token_number" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-14 duration-250 hover:text-madfenix-blanco">
                     Transfiere el Ítem
                   </nuxt-link>
                 </div>
@@ -200,12 +199,6 @@
             </div>
           </div>
         </section>
-      </div>
-
-      <div class="flex items-center py-5 text-white justify-center">
-        <nuxt-link to="/eliminar-cuenta" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
-          Eliminar cuenta
-        </nuxt-link>
       </div>
     </div>
 </template>
@@ -242,6 +235,7 @@ export default {
     });
 
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -252,6 +246,10 @@ export default {
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
+
     afterLogout(){
       Cookies.remove('token')
       Cookies.remove('user')
@@ -282,11 +280,15 @@ export default {
     },
 
     desconectarTwitch() {
-      this.api('/api/twitch/disconnectTwitch', {
-        method: 'POST'
-      })
-        .then((response) => this.getPerfil())
-        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+      let confirmDisconnect = confirm('¿Estás seguro que quieres desconectar tu cuenta de Twitch?');
+
+      if (confirmDisconnect) {
+        this.api('/api/twitch/disconnectTwitch', {
+          method: 'POST'
+        })
+            .then((response) => this.getPerfil())
+            .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+      }
     },
 
     desconectarSteam() {
@@ -309,7 +311,7 @@ export default {
         let user = Cookies.get('user')
 
         if (user) {
-          this.user.updateUser(user);
+          this.user.updateUser(JSON.parse(user));
         } else {
           console.log('test')
           try {

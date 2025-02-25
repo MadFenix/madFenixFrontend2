@@ -4,6 +4,10 @@ body {
   background: #161616 0% 0% no-repeat padding-box;
 }
 
+.btn-madfenix {
+    border-radius: 25px 0px;
+}
+
 #video-logomadfenix, #image-logomadfenix {
     width: 100vw;
     max-height: 80vh;
