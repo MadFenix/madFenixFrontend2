@@ -86,9 +86,13 @@ export default {
         ]
       });
       this.setUserCookies();
+    this.setBackground();
     },
 
     methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
 
       setUserCookies() {
         let token = Cookies.get('token')

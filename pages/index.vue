@@ -10,10 +10,10 @@
     </section>
 
     <section class="relative px-4 py-12 md:py-16 sm:px-6 lg:px-8 z-20">
-      <h2 class="sm:mt-[50px] md:mt-[150px] lg:mt-[300px] text-madfenix-gris" id="title-nuestra-mision">
+      <h2 class="sm:mt-[50px] md:mt-[150px] lg:mt-[300px] text-madfenix-naranja" id="title-nuestra-mision">
         Nuestra misión
       </h2>
-      <div id="container-nuestra-mision" class="p-8 text-madfenix-gris">
+      <div id="container-nuestra-mision" class="p-8 text-madfenix-blanco bg-madfenix-gris">
         Mad Fénix crea experiencias de juego donde las relaciones genuinas entre jugadores, creadores y comunidades son el motor de cada partida.<br>Con torneos como nuestra liga web3, convertimos el gaming en un espacio de conexión, competición y colaboración.
       </div>
     </section>
@@ -170,7 +170,7 @@
             </div>
             <!-- Hero buttons -->
             <div class="z-30 mt-10 sm:flex sm:justify-center lg:justify-start">
-              <a class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-madfenix-gris focus:outline-none hover:bg-dark-900" href="/dragones-custodio#utilidades">
+              <a class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-gris rounded-full h-14 duration-250 text-madfenix-naranja hover:text-madfenix-blanco focus:outline-none hover:bg-dark-900" href="/dragones-custodio#utilidades">
                 Ver utilidades
               </a>
             </div>
@@ -185,20 +185,20 @@
           Desde ligas a premios personalizados en nuestro pase de temporada.
         </p>
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div class="mt-3 p-8 text-white container-movemos-comunidades-modulos">
-            <h3 class="mb-3 w-full text-center">Ligas</h3>
+          <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
+            <h3 class="mb-3 w-full text-center text-madfenix-naranja">Ligas</h3>
             <p>
               Organizamos ligas gamificadas donde creadores de contenido presiden los equipos. Cada uno tiene un sponsor.
             </p>
           </div>
-          <div class="mt-3 p-8 text-white container-movemos-comunidades-modulos">
-            <h3 class="mb-3 w-full text-center">Plumas Fénix</h3>
+          <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
+            <h3 class="mb-3 w-full text-center text-madfenix-naranja">Plumas Fénix</h3>
             <p>
               Son un reclamo para nuestro ecosistema ya que pueden dar ventaja a equipos de la liga, participaciones en sorteos, etc.
             </p>
           </div>
-          <div class="mt-3 p-8 text-white container-movemos-comunidades-modulos">
-            <h3 class="mb-3 w-full text-center">Pase de Temporada</h3>
+          <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
+            <h3 class="mb-3 w-full text-center text-madfenix-naranja">Pase de Temporada</h3>
             <p>
               Nuestros jugadores ganan premios con cada nivel superado. Podemos agregar ventajas de proyectos amigos.
             </p>

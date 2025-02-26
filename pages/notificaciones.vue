@@ -1,22 +1,25 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4" v-if="user.user">
-    <!-- Tarjeta contenedora con ancho fijo de 500px -->
-    <div class="bg-white shadow rounded p-6 mx-auto" style="width: 500px;">
-      <h2 class="text-2xl font-bold text-center mb-4">Notificaciones</h2>
+  <div>
+    <!-- Título de la tarjeta -->
+    <h2 class="leading-10 text-xl font-bold text-center mb-4 bg-madfenix-naranja py-6 h-[100px] flex items-center justify-center">Notificaciones</h2>
 
-      <!-- Se itera sobre cada evento con separación vertical -->
-      <div class="space-y-5">
-        <div v-for="calendarEvent in events" :key="calendarEvent.id" class="mt-5">
-          <!-- Tarjeta individual de notificación con fondo primario (por ejemplo, azul) y texto blanco -->
-          <div class="bg-blue-500 text-white rounded shadow">
-            <!-- Encabezado de la notificación -->
-            <div class="px-4 py-2">
-              <div class="text-xl font-bold" v-html="calendarEvent.description"></div>
-              <div class="text-sm" v-html="(new Date(calendarEvent.reservated_at)).toString()"></div>
-            </div>
-            <!-- Contenedor para los detalles -->
-            <div class="px-4 py-2">
-              <span v-html="calendarEvent.details"></span>
+    <div class="p-5 sm:p-20" v-if="user.user">
+      <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+        <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+
+        <div class="p-6 py-[170px] relative z-50">
+          <div v-for="calendarEvent in events" :key="calendarEvent.id" class="mt-5">
+            <!-- Tarjeta individual de notificación con fondo primario (por ejemplo, azul) y texto blanco -->
+            <div class="bg-blue-500 text-white rounded shadow">
+              <!-- Encabezado de la notificación -->
+              <div class="px-4 py-2">
+                <div class="text-xl font-bold" v-html="calendarEvent.description"></div>
+                <div class="text-sm" v-html="(new Date(calendarEvent.reservated_at)).toString()"></div>
+              </div>
+              <!-- Contenedor para los detalles -->
+              <div class="px-4 py-2">
+                <span v-html="calendarEvent.details"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -60,6 +63,7 @@ export default {
       ]
     });
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -67,6 +71,9 @@ export default {
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
     fetch() {
       this.api('/api/event', {
         method: 'GET'

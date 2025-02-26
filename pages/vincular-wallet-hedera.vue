@@ -1,54 +1,53 @@
 <template>
-  <div class="min-h-screen bg-gray-100 p-4 flex items-center justify-center" v-if="user.user">
-    <!-- Tarjeta con ancho fijo de 300px, fondo blanco, sombra y bordes redondeados -->
-    <div class="bg-white shadow rounded p-6 mx-auto" style="width: 300px;">
-      <!-- Título de la tarjeta -->
-      <h2 class="text-xl font-bold text-center mb-4">Vincular cartera de Hedera</h2>
+  <div>
+    <!-- Título de la tarjeta -->
+    <h2 class="leading-10 text-xl font-bold text-center mb-4 bg-madfenix-naranja py-6 h-[100px] flex items-center justify-center">Vincular cartera de Hedera</h2>
 
-      <!-- Contenedor para los elementos con separación vertical -->
-      <div class="space-y-5">
-        <!-- Texto informativo -->
-        <div class="mt-5 text-center text-gray-700">
-          Tu account ID de Hedera<br /><b>(Sin el checksum)</b>
-        </div>
+    <div class="mt-12 h-[100px] px-4 text-center text-xl sm:text-3xl flex items-center justify-center text-madfenix-blanco">
+      Introduce tu account ID de Hedera (Sin el checksum)
+    </div>
 
-        <!-- Campo de entrada: Account ID de Hedera -->
-        <div class="mt-5">
-          <label for="account" class="block text-gray-700 mb-1">Tu account ID de Hedera</label>
-          <div class="relative">
-            <input
-                id="account"
-                type="text"
-                v-model="account.account"
-                placeholder="Ingresa tu account ID"
-                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
-            />
-            <!-- Ícono de ticket (simulación de mdi-ticket) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path d="M22,12l-4-4V9H2v6h16v1L22,12z" />
-            </svg>
+    <div class="p-5 sm:p-20" v-if="user.user">
+      <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+        <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+
+        <div class="p-6 py-[170px] relative z-50">
+          <!-- Campo de entrada: Account ID de Hedera -->
+          <div class="mt-5">
+            <div class="relative">
+              <input
+                  id="account"
+                  type="text"
+                  v-model="account.account"
+                  placeholder="Account ID de Hedera"
+                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+              />
+            </div>
           </div>
+
+          <!-- Mensaje del servidor (si existe) -->
+          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-madfenix-rojo"></div>
         </div>
+      </div>
+      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+        <div class="flex justify-center">
+          <!-- Botón: Perfil -->
+          <div class="contenedor-boton-left-formularios">
+            <nuxt-link to="/perfil" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+              Volver al Perfil
+            </nuxt-link>
+          </div>
 
-        <!-- Mensaje del servidor (si existe) -->
-        <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
+          <div class="w-2 sm:w-12">
+            &nbsp;
+          </div>
 
-        <!-- Botón: Siguiente paso -->
-        <div>
-          <button @click="linkWallet" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded focus:outline-none">
-            Siguiente paso
-          </button>
-        </div>
-
-        <!-- Botón: Perfil -->
-        <div class="my-5">
-          <nuxt-link to="/perfil" class="block bg-green-500 hover:bg-green-600 text-white py-2 rounded text-center">
-            Perfil
-          </nuxt-link>
+          <!-- Botón: Siguiente paso -->
+          <div class="contenedor-boton-right-formularios">
+            <button @click="linkWallet" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+              Siguiente Paso
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -91,12 +90,17 @@ export default {
       ]
     });
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
+
     afterLinkWallet(response){
       this.$router.push('/vincular-wallet-hedera-2')
     },

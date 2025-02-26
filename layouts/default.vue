@@ -52,7 +52,7 @@
             />
 
             <a v-if="user.user" @click="logout()"
-               class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700"
+               class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700 cursor-pointer"
             >
               Logout
             </a>
@@ -116,7 +116,7 @@
                 class="fixed bottom-0 left-0 z-50 w-full flex items-center justify-center bg-gradient-to-tr"
             >
               <div
-                  class="flex grid grid-cols-4 items-center w-full mx-auto text-xl"
+                  class="flex grid grid-cols-4 items-center w-full bg-madfenix-gris mx-auto text-xl"
               >
                 <nuxt-link to="/"
                            class="block p-4 font-medium rounded-full text-white hover:text-white hover:bg-dark-700 sm:inline-block"
@@ -150,18 +150,18 @@
       </nav>
     </header>
     <slot />
-    <footer class="px-4 py-12 md:py-16 bg-dark-900 sm:px-6 lg:px-8">
+    <footer class="px-4 py-12 md:py-16 bg-madfenix-gris sm:px-6 lg:px-8">
       <div class="grid gap-8 mx-auto lg:max-w-screen-xl sm:max-w-3xl md:grid-cols-3 md:gap-y-12 lg:grid-cols-4">
         <!-- Logo and copyright text -->
         <div class="flex flex-col lg:mx-auto">
           <div class="flex items-center">
             <a href="/" class="text-2xl font-black lg:block group font-ancient-god">
               <span class="text-white transition duration-200 ease-in-out">Mad</span>
-              <span class="transition duration-200 ease-in-out text-white group-hover:text-madfenix-naranja">Fénix</span>
+              <span class="transition duration-200 ease-in-out text-white group-hover:text-madfenix-naranja"> Fénix</span>
             </a>
           </div>
           <div class="mt-6 text-lg md:mt-8 text-white">
-            © 2024 Mad Fénix.
+            © 2025 Mad Fénix.
             <br>
             Todos los derechos reservados.
           </div>
@@ -169,7 +169,7 @@
 
         <!-- Contact information -->
         <div class="lg:mx-auto">
-          <h6 class="text-xl font-semibold text-white">Ponte en contacto</h6>
+          <h6 class="text-xl font-semibold text-madfenix-naranja">Ponte en contacto</h6>
           <p class="mt-2 text-lg text-white">
             C/ Sant Valentí 14 1er,
             <br>Sant Joan de Vilatorrada, Barcelona 08250
@@ -179,7 +179,7 @@
 
         <!-- Site links -->
         <div class="lg:mx-auto">
-          <h6 class="text-xl font-semibold text-white">Estudio</h6>
+          <h6 class="text-xl font-semibold text-madfenix-naranja">Estudio</h6>
           <ul class="mt-2 space-y-1 text-lg">
             <li class="font-medium text-white hover:text-white">
               <nuxt-link to="/">
@@ -190,7 +190,7 @@
               <nuxt-link :to="item.path" v-html="item.text" />
             </li>
             <li v-if="user.user" class="font-medium text-white hover:text-white">
-              <a @click="logout()" >
+              <a @click="logout()" class="cursor-pointer" >
                 Logout
               </a>
             </li>
@@ -229,7 +229,7 @@
 
         <!-- Social links -->
         <div class="sm:col-span-3 lg:col-span-1 lg:mx-auto">
-          <h6 class="text-xl font-semibold text-white">
+          <h6 class="text-xl font-semibold text-madfenix-naranja">
             Síguenos
           </h6>
           <p class="mt-2 text-lg text-white">
@@ -239,7 +239,7 @@
             <!-- Social links container -->
             <div class="flex justify-start space-x-4">
               <!-- Instagram -->
-              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-white" href="https://www.instagram.com/madfenixgames" target="_blank">
+              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-madfenix-naranja border-2 border-madfenix-gris hover:border-madfenix-naranja" href="https://www.instagram.com/madfenixgames" target="_blank">
                 <!-- TablerIcon name: brand-instagram -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -249,16 +249,22 @@
                 </svg>
               </a>
 
-              <!-- Facebook -->
-              <!--<a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-white" href="#" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
+              <!-- Youtube -->
+              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-madfenix-naranja border-2 border-madfenix-gris hover:border-madfenix-naranja" href="https://youtube.com/@madfenixgames" target="_blank">
+                <svg viewBox="0 -3 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" fill="#FC9208">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>youtube [#168]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-300.000000, -7442.000000)" fill="#FC9208"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289" id="youtube-[#168]"> </path> </g> </g> </g> </g>
                 </svg>
-              </a>-->
+              </a>
+
+              <!-- Youtube -->
+              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-madfenix-naranja border-2 border-madfenix-gris hover:border-madfenix-naranja" href="https://twitch.tv/elfenixvalenti" target="_blank">
+                <svg viewBox="-0.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" fill="#FC9208">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>twitch [#182]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-141.000000, -7399.000000)" fill="#FC9208"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M97,7249 L99,7249 L99,7244 L97,7244 L97,7249 Z M92,7249 L94,7249 L94,7244 L92,7244 L92,7249 Z M102,7250.307 L102,7241 L88,7241 L88,7253 L92,7253 L92,7255.953 L94.56,7253 L99.34,7253 L102,7250.307 Z M98.907,7256 L94.993,7256 L92.387,7259 L90,7259 L90,7256 L85,7256 L85,7242.48 L86.3,7239 L104,7239 L104,7251.173 L98.907,7256 Z" id="twitch-[#182]"> </path> </g> </g> </g> </g>
+                </svg>
+              </a>
 
               <!-- Twitter -->
-              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 hover:bg-white text-white" href="https://twitter.com/madfenixgames" target="_blank">
+              <a class="flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-madfenix-naranja border-2 border-madfenix-gris hover:border-madfenix-naranja" href="https://twitter.com/madfenixgames" target="_blank">
                 <!-- TablerIcon name: brand-twitter -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

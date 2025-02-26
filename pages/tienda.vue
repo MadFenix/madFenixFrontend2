@@ -125,6 +125,7 @@ export default {
       ]
     });
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -135,6 +136,9 @@ export default {
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
     afterLogout(){
       Cookies.remove('token')
       Cookies.remove('user')

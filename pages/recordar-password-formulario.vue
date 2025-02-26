@@ -1,89 +1,91 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <!-- Tarjeta con ancho fijo de 300px, fondo blanco, sombra y bordes redondeados -->
-    <div class="bg-white shadow rounded p-6 mx-auto" style="width: 300px;">
-      <!-- Título de la tarjeta -->
-      <h2 class="text-2xl font-bold text-center mb-4">Modificar password</h2>
+  <div>
+    <!-- Título de la tarjeta -->
+    <h2 class="leading-10 text-xl font-bold text-center mb-4 bg-madfenix-naranja py-6 h-[100px] flex items-center justify-center">Modificar Password</h2>
 
-      <!-- Contenedor con separación vertical para los campos -->
-      <div class="space-y-4">
-        <!-- Campo Email -->
-        <div class="mt-5">
-          <label for="email" class="block text-gray-700 mb-1">Email</label>
-          <div class="relative">
-            <input
-                id="email"
-                type="text"
-                v-model="forgotData.email"
-                placeholder="Ingresa tu email"
-                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
-            />
-            <!-- Ícono de email (ejemplo de SVG para mdi-email) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path d="M12,12c2.21,0,4-1.79,4-4s-1.79-4-4-4-4,1.79-4,4S9.79,12,12,12z M12,14c-2.67,0-8,1.34-8,4v2h16v-2 C20,15.34,14.67,14,12,14z"/>
-            </svg>
+    <div class="p-5 sm:p-20" v-if="user.user">
+      <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+        <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+
+        <div class="p-6 py-[170px] relative z-50">
+          <!-- Campo Email -->
+          <div class="mt-5">
+            <label for="email" class="block text-gray-700 mb-1">Email</label>
+            <div class="relative">
+              <input
+                  id="email"
+                  type="text"
+                  v-model="forgotData.email"
+                  placeholder="Ingresa tu email"
+                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+              />
+              <!-- Ícono de email (ejemplo de SVG para mdi-email) -->
+              <svg
+                  class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+              >
+                <path d="M12,12c2.21,0,4-1.79,4-4s-1.79-4-4-4-4,1.79-4,4S9.79,12,12,12z M12,14c-2.67,0-8,1.34-8,4v2h16v-2 C20,15.34,14.67,14,12,14z"/>
+              </svg>
+            </div>
           </div>
-        </div>
 
-        <!-- Campo Password -->
-        <div>
-          <label for="password" class="block text-gray-700 mb-1">Password</label>
-          <div class="relative">
-            <input
-                id="password"
-                type="password"
-                v-model="forgotData.password"
-                placeholder="Ingresa tu password"
-                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
-            />
-            <!-- Ícono de candado (ejemplo de SVG para mdi-lock) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path d="M17,8h-1V6c0-2.757-2.243-5-5-5S6,3.243,6,6v2H5C3.897,8,3,8.897,3,10v10c0,1.103,0.897,2,2,2h12 c1.103,0,2-0.897,2-2V10C19,8.897,18.103,8,17,8z M8,6c0-1.654,1.346-3,3-3s3,1.346,3,3v2H8V6z"/>
-            </svg>
+          <!-- Campo Password -->
+          <div>
+            <label for="password" class="block text-gray-700 mb-1">Password</label>
+            <div class="relative">
+              <input
+                  id="password"
+                  type="password"
+                  v-model="forgotData.password"
+                  placeholder="Ingresa tu password"
+                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+              />
+              <!-- Ícono de candado (ejemplo de SVG para mdi-lock) -->
+              <svg
+                  class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+              >
+                <path d="M17,8h-1V6c0-2.757-2.243-5-5-5S6,3.243,6,6v2H5C3.897,8,3,8.897,3,10v10c0,1.103,0.897,2,2,2h12 c1.103,0,2-0.897,2-2V10C19,8.897,18.103,8,17,8z M8,6c0-1.654,1.346-3,3-3s3,1.346,3,3v2H8V6z"/>
+              </svg>
+            </div>
           </div>
-        </div>
 
-        <!-- Campo Confirmación Password -->
-        <div>
-          <label for="password_confirmation" class="block text-gray-700 mb-1">Confirmación password</label>
-          <div class="relative">
-            <input
-                id="password_confirmation"
-                type="password"
-                v-model="forgotData.password_confirmation"
-                placeholder="Confirma tu password"
-                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
-            />
-            <!-- Ícono de candado (reutilizando el SVG anterior) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path d="M17,8h-1V6c0-2.757-2.243-5-5-5S6,3.243,6,6v2H5C3.897,8,3,8.897,3,10v10c0,1.103,0.897,2,2,2h12 c1.103,0,2-0.897,2-2V10C19,8.897,18.103,8,17,8z M8,6c0-1.654,1.346-3,3-3s3,1.346,3,3v2H8V6z"/>
-            </svg>
+          <!-- Campo Confirmación Password -->
+          <div>
+            <label for="password_confirmation" class="block text-gray-700 mb-1">Confirmación password</label>
+            <div class="relative">
+              <input
+                  id="password_confirmation"
+                  type="password"
+                  v-model="forgotData.password_confirmation"
+                  placeholder="Confirma tu password"
+                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+              />
+              <!-- Ícono de candado (reutilizando el SVG anterior) -->
+              <svg
+                  class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+              >
+                <path d="M17,8h-1V6c0-2.757-2.243-5-5-5S6,3.243,6,6v2H5C3.897,8,3,8.897,3,10v10c0,1.103,0.897,2,2,2h12 c1.103,0,2-0.897,2-2V10C19,8.897,18.103,8,17,8z M8,6c0-1.654,1.346-3,3-3s3,1.346,3,3v2H8V6z"/>
+              </svg>
+            </div>
           </div>
-        </div>
 
-        <!-- Mensaje del servidor (si existe) -->
-        <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
+          <!-- Mensaje del servidor (si existe) -->
+          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
 
-        <!-- Botón "Enviar" -->
-        <div>
-          <button
-              @click="forgot"
-              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded focus:outline-none"
-          >
-            Enviar
-          </button>
+          <!-- Botón "Enviar" -->
+          <div>
+            <button
+                @click="forgot"
+                class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2"
+            >
+              Enviar
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -127,12 +129,16 @@ export default {
       ]
     });
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
     forgot(){
       (this.$router.currentRoute.query.token) ? this.forgotData.token = this.$router.currentRoute.query.token : this.$router.push('/login')
       this.api('/api/forgotReset', {

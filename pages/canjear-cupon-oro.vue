@@ -1,61 +1,61 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100" v-if="user.user">
-    <!-- Card con ancho fijo, sombra y bordes redondeados -->
-    <div class="bg-white shadow rounded p-6 mx-auto" style="width: 300px;">
-      <!-- Título del card -->
-      <h2 class="text-xl font-bold text-center mb-4">
-        Canjear cupón para oro
-      </h2>
+  <div>
+    <!-- Título de la tarjeta -->
+    <h2 class="leading-10 text-xl font-bold text-center mb-4 bg-madfenix-naranja py-6 h-[100px] flex items-center justify-center">Canjear Cupón para Oro</h2>
 
-      <!-- Contenedor de elementos con separación vertical -->
-      <div class="space-y-4">
-        <!-- Campo de texto con ícono -->
-        <div class="mt-5">
-          <label for="coupon" class="block text-gray-700 mb-1">
-            Cupón
-          </label>
-          <div class="relative">
-            <input
-                id="coupon"
-                type="text"
-                v-model="couponData.coupon"
-                class="w-full border border-gray-300 rounded py-2 pl-10 pr-3 focus:outline-none focus:border-blue-500"
-                placeholder="Ingrese su cupón"
-            />
-            <!-- Ícono (ejemplo de SVG para mdi-ticket) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path
-                  d="M21 3H3C1.897 3 1 3.897 1 5v14c0 1.103.897 2 2 2h18c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM3 19V5h18l.002 14H3z"
+    <div class="p-5 sm:p-20" v-if="user.user">
+      <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+        <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+
+        <div class="p-6 py-[170px] relative z-50">
+          <!-- Campo de texto con ícono -->
+          <div class="mt-5">
+            <label for="coupon" class="block text-gray-700 mb-1">
+              Cupón
+            </label>
+            <div class="relative">
+              <input
+                  id="coupon"
+                  type="text"
+                  v-model="couponData.coupon"
+                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+                  placeholder="Ingrese su cupón"
               />
-            </svg>
+              <!-- Ícono (ejemplo de SVG para mdi-ticket) -->
+              <svg
+                  class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+              >
+                <path
+                    d="M21 3H3C1.897 3 1 3.897 1 5v14c0 1.103.897 2 2 2h18c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM3 19V5h18l.002 14H3z"
+                />
+              </svg>
+            </div>
           </div>
-        </div>
 
-        <!-- Mensaje del servidor (visible condicionalmente) -->
-        <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
+          <!-- Mensaje del servidor (visible condicionalmente) -->
+          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
 
-        <!-- Botón para canjear el cupón -->
-        <div>
-          <button
-              @click="useCoupon"
-              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded focus:outline-none"
-          >
-            Canjear
-          </button>
-        </div>
+          <!-- Botón para canjear el cupón -->
+          <div>
+            <button
+                @click="useCoupon"
+                class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2"
+            >
+              Canjear
+            </button>
+          </div>
 
-        <!-- Botón para ir al perfil (utilizando router-link) -->
-        <div class="my-5">
-          <NuxtLink
-              to="/perfil"
-              class="w-full block bg-green-500 hover:bg-green-600 text-white py-2 rounded text-center"
-          >
-            Perfil
-          </NuxtLink>
+          <!-- Botón para ir al perfil (utilizando router-link) -->
+          <div class="my-5">
+            <NuxtLink
+                to="/perfil"
+                class="w-full flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2"
+            >
+              Perfil
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -98,12 +98,16 @@ export default {
       ]
     });
     this.setUserCookies();
+    this.setBackground();
 
     const { $api } = useNuxtApp();
     this.api = $api;
   },
 
   methods: {
+    setBackground () {
+      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+    },
     afterUseCoupon(response){
       this.$router.push('/perfil')
     },
