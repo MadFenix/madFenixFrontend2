@@ -16,7 +16,7 @@
               <span v-html="perfil.user_twitch" />
             </div>
             <div v-else>
-              <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.id" class="cursor-pointer">
+              <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.user.id" class="cursor-pointer">
                 <img src="/img/perfil/twitch_account.svg" alt="Conectar Twitch" title="Conectar Twitch" class="w-[50px] lg:w-[70px]">
               </a>
             </div>

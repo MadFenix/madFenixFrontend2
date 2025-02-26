@@ -12,8 +12,7 @@
         <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
 
         <!-- Campo de entrada para Email -->
-        <div class="p-6 py-[170px] relative z-50">
-          <label for="email" class="block text-gray-700 mb-1">Email</label>
+        <div class="p-6 py-[120px] relative z-50">
           <div class="relative">
             <input
                 id="email"
@@ -22,56 +21,45 @@
                 placeholder="Ingresa tu email"
                 class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
             />
-            <!-- Ícono de email (SVG de ejemplo) -->
-            <svg
-                class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-            >
-              <path d="M20,4H4C2.897,4,2,4.897,2,6v12c0,1.103,0.897,2,2,2h16c1.103,0,2-0.897,2-2V6C22,4.897,21.103,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"/>
-            </svg>
           </div>
 
           <!-- Campo de entrada para Password -->
-          <div>
-            <label for="password" class="block text-gray-700 mb-1">Password</label>
+          <div class="mt-3">
             <div class="relative">
               <input
                   id="password"
                   type="password"
                   v-model="deleteAccount.password"
                   placeholder="Ingresa tu contraseña"
-                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+                  class="w-full text-madfenix-blanco text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
               />
-              <!-- Ícono de candado (SVG de ejemplo) -->
-              <svg
-                  class="w-5 h-5 absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-              >
-                <path d="M17,8h-1V6c0-2.757-2.243-5-5-5S6,3.243,6,6v2H5C3.897,8,3,8.897,3,10v10c0,1.103,0.897,2,2,2h12c1.103,0,2-0.897,2-2V10C19,8.897,18.103,8,17,8z M8,6c0-1.654,1.346-3,3-3s3,1.346,3,3v2H8V6z"/>
-              </svg>
             </div>
           </div>
           <!-- Mensaje del servidor (se muestra condicionalmente) -->
-          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-red-500"></div>
-          <!-- Botón para eliminar cuenta -->
-          <div>
+          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-madfenix-rojo"></div>
+        </div>
+      </div>
+      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+        <div class="flex justify-center">
+          <!-- Botón: Perfil -->
+          <div class="contenedor-boton-left-formularios">
+            <nuxt-link to="/perfil" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+              Volver al Perfil
+            </nuxt-link>
+          </div>
+
+          <div class="w-2 sm:w-12">
+            &nbsp;
+          </div>
+
+          <!-- Botón: Siguiente paso -->
+          <div class="contenedor-boton-right-formularios">
             <button
                 @click="deleteAccountAction"
                 class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2"
             >
-              Eliminar cuenta
+              Eliminar Cuenta
             </button>
-          </div>
-          <!-- Botón para ir al perfil -->
-          <div class="my-5">
-            <NuxtLink
-                to="/perfil"
-                class="w-full flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2"
-            >
-              Perfil
-            </NuxtLink>
           </div>
         </div>
       </div>

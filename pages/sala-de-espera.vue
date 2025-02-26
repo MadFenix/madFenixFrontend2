@@ -7,9 +7,9 @@
       <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
         <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
 
-        <div class="p-6 py-[170px] relative z-50">
+        <div class="p-6 py-[120px] relative z-50">
           <!-- Mensaje principal -->
-          <p class="mt-5 text-gray-700 text-center">
+          <p class="mt-5 text-madfenix-blanco text-center">
             En breves momentos serás redirigido hacia el perfil.
           </p>
 
@@ -19,14 +19,24 @@
             <p class="text-sm text-gray-600">¿Ha pasado más de 5 segundos?</p>
             <div class="flex-1"></div>
           </div>
+        </div>
+      </div>
+      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+        <div class="flex justify-center">
+          <!-- Botón: Perfil -->
+          <div class="contenedor-boton-left-formularios"></div>
 
-          <!-- Botón para ir al perfil -->
-          <div class="my-5">
+          <div class="w-2 sm:w-12">
+            &nbsp;
+          </div>
+
+          <!-- Botón: Siguiente paso -->
+          <div class="contenedor-boton-right-formularios">
             <nuxt-link
                 to="/perfil"
                 class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2"
             >
-              Ir al perfil
+              Ir al Perfil
             </nuxt-link>
           </div>
         </div>

@@ -4,6 +4,10 @@ body {
   background: #161616 0% 0% no-repeat padding-box;
 }
 
+aside {
+    z-index: 50;
+}
+
 .btn-madfenix {
     border-radius: 25px 0px;
 }

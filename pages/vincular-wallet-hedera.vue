@@ -11,16 +11,16 @@
       <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
         <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
 
-        <div class="p-6 py-[170px] relative z-50">
+        <div class="p-6 py-[120px] relative z-50">
           <!-- Campo de entrada: Account ID de Hedera -->
-          <div class="mt-5">
+          <div>
             <div class="relative">
               <input
                   id="account"
                   type="text"
                   v-model="account.account"
                   placeholder="Account ID de Hedera"
-                  class="w-full text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+                  class="w-full text-madfenix-blanco text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
               />
             </div>
           </div>

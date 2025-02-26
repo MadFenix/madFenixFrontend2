@@ -7,12 +7,12 @@
       <div class="relative rounded-tr-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
         <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
 
-        <div class="p-6 py-[170px] relative z-50">
-          <div class="mt-5 text-center text-gray-700">
+        <div class="p-6 py-[120px] relative z-50">
+          <div class="text-center text-madfenix-blanco">
             Debes enviar una transacción de 0.
             <span v-if="perfil" v-html="perfil.hedera_wallet_check"></span>
             hbar a la cartera 0.0.4970116 con el siguiente memo:<br>
-            <span class="text-3xl" v-html="'vincular:' + user.id"></span><br>
+            <span class="text-3xl" v-html="'vincular:' + user.user.id"></span><br>
             El proceso de vincular y asociar tus NFTs puede tardar hasta 1 hora.<br>
           </div>
 
@@ -25,6 +25,23 @@
               Perfil
             </nuxt-link>
           </div>
+        </div>
+      </div>
+      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+        <div class="flex justify-center">
+          <!-- Botón: Perfil -->
+          <div class="contenedor-boton-left-formularios">
+            <nuxt-link to="/perfil" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+              Volver al Perfil
+            </nuxt-link>
+          </div>
+
+          <div class="w-2 sm:w-12">
+            &nbsp;
+          </div>
+
+          <!-- Botón: Siguiente paso -->
+          <div class="contenedor-boton-right-formularios"></div>
         </div>
       </div>
     </div>
