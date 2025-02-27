@@ -113,7 +113,7 @@
             x-transition:leave-end="opacity-0 -translate-y-full"
             -->
             <div
-                class="fixed bottom-0 left-0 z-50 w-full flex items-center justify-center bg-gradient-to-tr"
+                class="fixed bottom-0 left-0 w-full flex items-center justify-center bg-gradient-to-tr" style="z-index: 100;"
             >
               <div
                   class="flex grid grid-cols-4 items-center w-full bg-madfenix-gris mx-auto text-xl"
