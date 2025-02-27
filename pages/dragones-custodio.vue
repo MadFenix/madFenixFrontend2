@@ -91,7 +91,7 @@
           <!-- Item -->
           <span class="overflow-hidden">
             <div class="h-[140px] text-center text-xl w-full m-auto px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out duration-250 border-madfenix-naranja border-2">
-              <span class="text-4xl sm:text-7xl">85</span> U$D<br>
+              <span class="text-4xl sm:text-7xl">80</span> U$D<br>
               (Nunca más barato)
             </div>
           </span>
