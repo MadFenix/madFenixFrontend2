@@ -59,7 +59,13 @@ aside {
     margin-right: -30px;
 }
 
-.font-ancient-god {
+.title-season {
+    text-shadow: 0px 10px 6px #000000B0;
+}
+
+.lvl-season-reward {
+    font-size: 110px !important;
+    font-family: "Poppins", serif !important;
 }
 
 .v-application--wrap {
