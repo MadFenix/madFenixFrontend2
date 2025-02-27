@@ -5,82 +5,69 @@
       <div class="max-w-screen-xl mx-auto">
         <!-- Hero text -->
         <div class="w-full max-w-3xl mx-auto text-center lg:max-w-5xl">
-          <p
-              class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium tracking-wide text-white rounded-r-full rounded-tl-full bg-gradient-to-r from-dark-600 to-dark-700"
-          >
-            Tienda
-          </p>
           <h1
-              class="mt-4 text-4xl font-extrabold text-white md:mt-5 sm:text-5xl md:text-6xl"
+              class="mt-4 text-4xl font-extrabold text-madfenix-naranja md:mt-5 sm:text-5xl md:text-6xl"
               v-html="'Pasa al siguiente nivel'"
           />
         </div>
       </div>
     </section>
 
-    <!-- Buscamos creadores section -->
     <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8" v-if="storeDetails.products" v-for="product in storeDetails.products" :key="product.id">
-      <!-- CTA card -->
-      <div class="relative py-16 rounded-3xl bg-dark-700 lg:py-20">
-        <!-- Right background diagonal -->
-        <svg class="absolute inset-y-0 top-0 z-20 w-1/4 h-full right-1/4 text-dark-700" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
-          <polygon points="0,0 100,0 0,100"></polygon>
-        </svg>
-        <div class="absolute inset-y-0 z-10 w-1/2 h-full left-1/2 bg-dark-800 rounded-r-3xl"></div>
-
-        <!-- CTA content -->
-        <div class="relative z-30 flex flex-col items-center justify-center px-4 mx-auto text-center sm:px-16 lg:flex-row lg:text-left">
-          <div class="max-w-lg text-2xl font-bold sm:text-4xl lg:w-1/2">
-            <h5 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
+        <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl rounded-tl-3xl rounded-tr-3xl sm:rounded-tr-none bg-madfenix-gris border border-madfenix-naranja sm:border-r-0 font-bold sm:text-4xl">
+          <img :src="product.image" :title="product.name" :alt="product.name" class="inset-y-0 z-40 h-full" />
+        </div>
+        <div class="sm:col-span-9 px-3 sm:px-0 py-3 sm:py-0 sm:flex sm:items-center space-x-3 justify-center h-full rounded-br-3xl rounded-bl-3xl sm:rounded-bl-none bg-madfenix-gris border border-madfenix-naranja sm:border-l-0 sm:mr-12 lg:justify-end">
+          <div class="grow font-extrabold tracking-tight">
+            <h5 class="font-extrabold tracking-tight text-madfenix-naranja text-4xl sm:text-5xl">
               <span v-html="product.name" />
             </h5>
-            <p class="text-white text-md" v-if="product.short_description" v-html="product.short_description" />
+            <p class="text-madfenix-blanco text-xl" v-if="product.short_description" v-html="product.short_description" />
           </div>
-          <div class="flex justify-center max-w-lg mt-10 lg:w-1/2 lg:mt-0 lg:justify-end">
-            <div>
-              <stripe-buy-button v-if="product.price_fiat > 0 && product.price_fiat == 5"
-                                 buy-button-id="buy_btn_1PAYYpHruUfPE2wuw5Mhazx8"
-                                 publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                 :customer-email="user.email"
-              >
-              </stripe-buy-button>
-              <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 10"
-                                 buy-button-id="buy_btn_1PAaDhHruUfPE2wuOkz0bx5C"
-                                 publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                 :customer-email="user.email"
-              >
-              </stripe-buy-button>
-              <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 20"
-                                 buy-button-id="buy_btn_1PAaEuHruUfPE2wu6DXK5KYT"
-                                 publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                 :customer-email="user.email"
-              >
-              </stripe-buy-button>
-              <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 40"
-                                 buy-button-id="buy_btn_1PAaI3HruUfPE2wu9m6H5vGp"
-                                 publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                 :customer-email="user.email"
-              >
-              </stripe-buy-button>
-              <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 80"
-                                 buy-button-id="buy_btn_1PAaHCHruUfPE2wua82AVGzY"
-                                 publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                 :customer-email="user.email"
-              >
-              </stripe-buy-button>
-              <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 160"
-                                 buy-button-id="buy_btn_1PAaJKHruUfPE2wuU9Jq0Nu9"
-                                 publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                 :customer-email="user.email"
-              >
-              </stripe-buy-button>
-              <a v-else-if="product.price_fiat > 0" class="flex cursor-pointer items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900">
-                Próximamente
-              </a>
-              <a v-else @click="buyProduct(product.id, product.price_oro, product.price_plumas)" class="flex cursor-pointer items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900">
-                Comprar por <span class="ml-2" /><span class="ml-2" v-html="getPrice(product)" />
-              </a>
-            </div>
+          <div class="botones-tokens">
+            <stripe-buy-button v-if="product.price_fiat > 0 && product.price_fiat == 5"
+                                                         buy-button-id="buy_btn_1PAYYpHruUfPE2wuw5Mhazx8"
+                                                         publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
+                                                         :customer-email="user.email"
+            >
+            </stripe-buy-button>
+            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 10"
+                               buy-button-id="buy_btn_1PAaDhHruUfPE2wuOkz0bx5C"
+                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
+                               :customer-email="user.email"
+            >
+            </stripe-buy-button>
+            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 20"
+                               buy-button-id="buy_btn_1PAaEuHruUfPE2wu6DXK5KYT"
+                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
+                               :customer-email="user.email"
+            >
+            </stripe-buy-button>
+            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 40"
+                               buy-button-id="buy_btn_1PAaI3HruUfPE2wu9m6H5vGp"
+                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
+                               :customer-email="user.email"
+            >
+            </stripe-buy-button>
+            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 80"
+                               buy-button-id="buy_btn_1PAaHCHruUfPE2wua82AVGzY"
+                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
+                               :customer-email="user.email"
+            >
+            </stripe-buy-button>
+            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 160"
+                               buy-button-id="buy_btn_1PAaJKHruUfPE2wuU9Jq0Nu9"
+                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
+                               :customer-email="user.email"
+            >
+            </stripe-buy-button>
+            <a v-else-if="product.price_fiat > 0" class="flex cursor-pointer items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900">
+              Próximamente
+            </a>
+            <a v-else @click="buyProduct(product.id, product.price_oro, product.price_plumas)" class="w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+              Comprar por <span v-html="getPrice(product)" />
+            </a>
           </div>
         </div>
       </div>
@@ -192,9 +179,9 @@ export default {
 
     getPrice(product) {
       if (product.price_oro > 0) {
-        return product.price_oro + ' oros';
+        return '<span class="text-size-token-store">' + product.price_oro + '</span> oros';
       } else {
-        return product.price_plumas + ' plumas';
+        return '<span class="text-size-token-store">' + product.price_plumas + '</span> plumas';
       }
     },
 

@@ -68,6 +68,10 @@ aside {
     font-family: "Poppins", serif !important;
 }
 
+.text-size-token-store {
+    font-size: 40px;
+}
+
 .v-application--wrap {
   min-height: 60vh !important;
   margin-top: 30px;
