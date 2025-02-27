@@ -83,7 +83,7 @@
           </div>
 
           <!-- Mensaje del servidor (se muestra condicionalmente) -->
-          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-madfenix-rojo"></div>
+          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-madfenix-rojo w-full text-center"></div>
         </div>
       </div>
       <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">

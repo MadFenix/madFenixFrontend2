@@ -104,7 +104,7 @@
                 Canjea un cupón
               </nuxt-link>
               <br>
-              <nuxt-link to="/transfiere-oro-a-hedera" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+              <nuxt-link to="/transfiere-oro-a-hedera-previo1" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
                 Transfiere Oro
               </nuxt-link>
             </div>
@@ -134,7 +134,7 @@
                 Canjea un cupón
               </nuxt-link>
               <br>
-              <nuxt-link to="/transfiere-plumas-a-hedera" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+              <nuxt-link to="/transfiere-plumas-a-hedera-previo1" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
                 Transfiere Plumas
               </nuxt-link>
             </div>

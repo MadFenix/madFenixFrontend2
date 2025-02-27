@@ -35,7 +35,7 @@
           </div>
 
           <!-- Mensaje del servidor (visible condicionalmente) -->
-          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-madfenix-rojo"></div>
+          <div v-if="serverMessage.serverMessage" v-html="serverMessage.serverMessage" class="text-madfenix-rojo w-full text-center"></div>
 
           <!-- Enlace para "¿Has olvidado el password?" -->
           <div class="mt-5 flex justify-center">
