@@ -1,7 +1,7 @@
 <template>
   <div class="text-white container mx-auto">
-    <h1>Términos y condiciones</h1>
-    <div>
+    <h1 class="w-full text-center text-madfenix-naranja">Términos y condiciones</h1>
+    <div class="relative p-4 rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-3/4 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
       <p><strong>Condiciones de uso</strong></p>
       <p>cicloTIC S.C.P. (en adelante Mad Fénix), es un estudio de videojuegos que ofrece productos y servicios para el entretenimiento a sus usuarios. Las presentes condiciones exponen los derechos y obligaciones del usuario y de Mad Fénix como proveedor de productos y productos y servicios.<br><span style="font-style: inherit; font-weight: inherit; color: var( --e-global-color-text ); background-color: var(--ast-global-color-5);"><br>Mad Fénix supondrá que cualquier usuario que utilice el producto o servicio ha leído y aceptado las condiciones de uso. Además,&nbsp;</span>Mad Fénix<span style="font-style: inherit; font-weight: inherit; color: var( --e-global-color-text ); background-color: var(--ast-global-color-5);">&nbsp;se reserva el derecho de actualizar y modificar los Términos y Condiciones de uso sin ningún tipo de aviso previo, estando estos disponibles siempre en la dirección web</span><span style="font-style: inherit; font-weight: inherit; color: var( --e-global-color-text ); background-color: var(--ast-global-color-5);">&nbsp;</span><a style="font-style: inherit; font-weight: inherit;" href="https://www.madfenix.com">www.madfenix.com</a><span style="font-style: inherit; font-weight: inherit; color: var( --e-global-color-text ); background-color: var(--ast-global-color-5);">.</span></p>
       <p>Mad Fénix, con NIF J-67248997 y domicilio en la C/ Sant Valentí, nº 14 1r, 08250 Sant Joan de Vilatorrada; proporciona el Sitio Web Mad Fénix y sus productos y servicios relacionados de acuerdo a los términos establecidos a continuación.</p>

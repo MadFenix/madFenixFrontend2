@@ -142,88 +142,24 @@
         </div>
       </section>
 
-      <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
-        <img src="/img/el-luchador/portada.jpg" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
-        <div class="relative min-h-[300px] mb-0 p-6 z-50">
-          &nbsp;
-        </div>
-      </div>
-      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
-        <div class="flex justify-center">
-          <div class="contenedor-boton-right-formularios">
-            <button class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer" v-html="'El Luchador (' + countNFTsByid(2) + ')'" />
+      <div class="w-full" v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
+        <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+          <img :src="nftCollection.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
+          <div class="relative min-h-[300px] mb-0 p-6 z-50">
+            &nbsp;
           </div>
         </div>
-      </div>
-
-      <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
-        <img src="/img/dragones-custodio/dragon_rey_1_cascada.jpg" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
-        <div class="relative min-h-[300px] mb-0 p-6 z-50">
-          &nbsp;
-        </div>
-      </div>
-      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
-        <div class="flex justify-center">
-          <div class="contenedor-boton-right-formularios">
-            <button class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer" v-html="'Dragón Custodio (' + countNFTsByid(3) + ')'" />
-          </div>
-        </div>
-      </div>
-
-      <div v-if="perfil">
-        <section v-for="nft in perfil.nfts" :key="nft.id" class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
-          <!-- CTA card -->
-          <div class="relative py-16 rounded-3xl bg-dark-700 lg:py-20">
-            <!-- Right background diagonal -->
-            <svg class="absolute inset-y-0 top-0 z-20 w-1/4 h-full right-1/4 text-dark-700" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
-              <polygon points="0,0 100,0 0,100"></polygon>
-            </svg>
-            <div class="absolute inset-y-0 z-10 w-1/2 h-full left-1/2 bg-dark-800 rounded-r-3xl"></div>
-
-            <!-- CTA content -->
-            <div class="relative z-30 flex flex-col items-center justify-center px-4 mx-auto text-center sm:px-16 lg:flex-row lg:text-left">
-              <div class="max-w-lg flex items-center space-x-3 text-2xl font-bold sm:text-4xl lg:w-1/2">
-                <img :src="nft.image" width="80px" :alt="nft.name" />
-                <h5 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                  <span v-html="nft.name" />
-                </h5>
-              </div>
-              <div class="flex justify-center max-w-lg mt-10 lg:w-1/2 lg:mt-0 lg:justify-end">
-                <div>
-                  <nuxt-link :to="'/transfiere-item-a-hedera/?item_identification_id=' + nft.id + '&nft_token_id=' + nft.nft.token_props + '.' + nft.nft.token_realm + '.' + nft.nft.token_number" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-                    Transfiere el Ítem
-                  </nuxt-link>
-                </div>
-              </div>
+        <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+          <div class="flex justify-center">
+            <div class="contenedor-boton-right-formularios">
+              <NuxtLink
+                  :to="'/coleccion/?nft_id=' + nftCollection.nft_id"
+                  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                  v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'"
+              />
             </div>
           </div>
-        </section>
-
-        <section v-for="nft in perfil.nfts_hedera" :key="nft.id" class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
-          <!-- CTA card -->
-          <div class="relative py-16 rounded-3xl bg-dark-700 lg:py-20">
-            <!-- Right background diagonal -->
-            <svg class="absolute inset-y-0 top-0 z-20 w-1/4 h-full right-1/4 text-dark-700" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
-              <polygon points="0,0 100,0 0,100"></polygon>
-            </svg>
-            <div class="absolute inset-y-0 z-10 w-1/2 h-full left-1/2 bg-dark-800 rounded-r-3xl"></div>
-
-            <!-- CTA content -->
-            <div class="relative z-30 flex flex-col items-center justify-center px-4 mx-auto text-center sm:px-16 lg:flex-row lg:text-left">
-              <div class="max-w-lg flex items-center space-x-3 text-2xl font-bold sm:text-4xl lg:w-1/2">
-                <img :src="nft.image" width="80px" :alt="nft.name" />
-                <h5 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                  <span v-html="nft.name" />
-                </h5>
-              </div>
-              <div class="flex justify-center text-white max-w-lg mt-10 lg:w-1/2 lg:mt-0 lg:justify-end">
-                <div>
-                  En hedera
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
       </div>
     </div>
 </template>
@@ -268,6 +204,37 @@ export default {
   },
 
   computed: {
+    nftCollections() {
+      let collections = [];
+      if (this.perfil && this.perfil.nfts) {
+        for (let i = 0; i < this.perfil.nfts.length; i++) {
+          if (!collections.some(obj => obj.nft_id === this.perfil.nfts[i].nft_id)) {
+            collections.push({
+              nft_id: this.perfil.nfts[i].nft_id,
+              name: this.perfil.nfts[i].nft.name,
+              short_description: this.perfil.nfts[i].nft.short_description,
+              portrait_image: this.perfil.nfts[i].nft.portrait_image,
+              featured_image: this.perfil.nfts[i].nft.featured_image,
+            });
+          }
+        }
+      }
+      if (this.perfil && this.perfil.nfts_hedera) {
+        for (let i = 0; i < this.perfil.nfts_hedera.length; i++) {
+          if (!collections.some(obj => obj.nft_id === this.perfil.nfts_hedera[i].nft_id)) {
+            collections.push({
+              nft_id: this.perfil.nfts_hedera[i].nft_id,
+              name: this.perfil.nfts_hedera[i].nft.name,
+              short_description: this.perfil.nfts_hedera[i].nft.short_description,
+              portrait_image: this.perfil.nfts_hedera[i].nft.portrait_image,
+              featured_image: this.perfil.nfts_hedera[i].nft.featured_image,
+            });
+          }
+        }
+      }
+
+      return collections;
+    }
   },
 
   methods: {
