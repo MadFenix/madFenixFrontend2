@@ -142,6 +142,34 @@
         </div>
       </section>
 
+      <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+        <img src="/img/el-luchador/portada.jpg" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
+        <div class="relative min-h-[300px] mb-0 p-6 z-50">
+          &nbsp;
+        </div>
+      </div>
+      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+        <div class="flex justify-center">
+          <div class="contenedor-boton-right-formularios">
+            <button class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer" v-html="'El Luchador (' + countNFTsByid(2) + ')'" />
+          </div>
+        </div>
+      </div>
+
+      <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+        <img src="/img/dragones-custodio/dragon_rey_1_cascada.jpg" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
+        <div class="relative min-h-[300px] mb-0 p-6 z-50">
+          &nbsp;
+        </div>
+      </div>
+      <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+        <div class="flex justify-center">
+          <div class="contenedor-boton-right-formularios">
+            <button class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer" v-html="'Dragón Custodio (' + countNFTsByid(3) + ')'" />
+          </div>
+        </div>
+      </div>
+
       <div v-if="perfil">
         <section v-for="nft in perfil.nfts" :key="nft.id" class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
           <!-- CTA card -->
@@ -297,6 +325,25 @@ export default {
     },
 
     conectarSteam() {
+    },
+
+    countNFTsByid(nft_id) {
+      let counted = 0;
+      if (this.perfil && this.perfil.nfts) {
+        for (let i = 0; i < this.perfil.nfts.length; i++) {
+          if (this.perfil.nfts[i].nft_id == nft_id) {
+            counted += 1;
+          }
+        }
+      }
+      if (this.perfil && this.perfil.nfts_hedera) {
+        for (let i = 0; i < this.perfil.nfts_hedera.length; i++) {
+          if (this.perfil.nfts_hedera[i].nft_id == nft_id) {
+            counted += 1;
+          }
+        }
+      }
+      return counted;
     },
 
     setUserCookies() {
