@@ -239,112 +239,242 @@
       </div>
     </section>
 
-    <section class="max-w-screen-xl my-4 lg:ml-12 sm:my-12" id="container-dragones-custodio">
-      <div class="sm:w-1/2 sm:mx-auto lg:absolute lg:right-[250px] lg:w-1/4">
-        <img src="/img/dragones-custodio/dragon_mestizo_8.png" class="z-30 object-cover w-full">
-      </div>
-
-      <div class="relative text-right sm:pt-[30px] lg:pt-[90px] mx-3 sm:mx-auto sm:w-3/4 sm:pr-24">
-        <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-          Dragón Mestizo
-        </h2>
-        <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
-          Poderosos, variados, con habilidades únicas
+    <section class="hidden my-4 lg:ml-12 sm:my-12 md:flex sm:space-x-0" id="container-dragones-custodio">
+      <div class="grow">
+        <div class="relative text-right sm:pt-[30px] lg:pt-[90px] mx-3 sm:ml-auto sm:w-3/4 sm:pr-24">
+          <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Dragón Mestizo
+          </h2>
+          <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+            Poderosos, variados, con habilidades únicas
+          </div>
+        </div>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:ml-auto lg:pr-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Aelor, un dragón mestizo con habilidades únicas, protegió Erathia de una invasión de criaturas sombrías. Su valentía y mezcla de poderes lo convirtieron en un héroe. Finalmente, fue reconocido y celebrado por todos los dragones puros.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Hero card -->
-      <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mx-auto lg:pr-24 sm:w-3/4">
-        <div class="flex flex-col items-center justify-center lg:items-start">
-          <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
-            <p class="text-2xl font-bold text-madfenix-gris">
-              Aelor, un dragón mestizo con habilidades únicas, protegió Erathia de una invasión de criaturas sombrías. Su valentía y mezcla de poderes lo convirtieron en un héroe. Finalmente, fue reconocido y celebrado por todos los dragones puros.
-            </p>
+      <div class="">
+        <img src="/img/dragones-custodio/dragon_mestizo_8.png" class="z-30" style="margin-left: -100px; margin-top: 120px;">
+      </div>
+    </section>
+
+    <section class="block md:hidden my-4" id="container-dragones-custodio">
+      <div class="">
+        <img src="/img/dragones-custodio/dragon_mestizo_8.png" class="z-30 mx-auto w-1/2">
+      </div>
+      <div class="grow">
+        <div class="relative text-right mx-3">
+          <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Dragón Mestizo
+          </h2>
+          <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+            Poderosos, variados, con habilidades únicas
+          </div>
+        </div>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:ml-auto lg:pr-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Aelor, un dragón mestizo con habilidades únicas, protegió Erathia de una invasión de criaturas sombrías. Su valentía y mezcla de poderes lo convirtieron en un héroe. Finalmente, fue reconocido y celebrado por todos los dragones puros.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="max-w-screen-xl my-4 lg:ml-96 sm:my-12" id="container-dragones-custodio">
-      <div class="sm:w-1/2 sm:mx-auto lg:absolute lg:left-[250px] lg:w-1/4">
-        <img src="/img/dragones-custodio/dragon_noble_5.png" class="z-30 object-cover w-full">
+    <section class="hidden my-4 lg:ml-12 sm:my-12 md:flex sm:space-x-0" id="container-dragones-custodio">
+      <div class="z-30">
+        <img src="/img/dragones-custodio/dragon_noble_5.png" class="z-30" style="margin-top: 60px;">
       </div>
 
-      <div class="relative text-left sm:pt-[30px] lg:pt-[90px] mx-3 sm:mx-auto sm:w-3/4 sm:pl-24">
-        <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-          Dragón Noble
-        </h2>
-        <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
-          Justos, bondadosos, son protectores naturales
+      <div class="grow z-20" style="margin-left: -100px;">
+        <div class="relative text-left sm:pt-[30px] lg:pt-[90px] mx-3 sm:mr-auto sm:w-3/4 sm:pl-24">
+          <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Dragón Noble
+          </h2>
+          <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+            Justos, bondadosos, son protectores naturales
+          </div>
         </div>
-      </div>
-      <!-- Hero card -->
-      <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mx-auto lg:pl-24 sm:w-3/4">
-        <div class="flex flex-col items-center justify-center lg:items-start">
-          <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
-            <p class="text-2xl font-bold text-madfenix-gris">
-              Eryndor, el dragón noble de escamas azules, protegió el Bosque de los Ancestros de un gran incendio. Su justicia y bondad unieron a todas las criaturas del bosque. Fue nombrado Guardián Eterno en agradecimiento.
-            </p>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mr-auto lg:pl-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Eryndor, el dragón noble de escamas azules, protegió el Bosque de los Ancestros de un gran incendio. Su justicia y bondad unieron a todas las criaturas del bosque. Fue nombrado Guardián Eterno en agradecimiento.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="max-w-screen-xl my-4 lg:ml-12 sm:my-12" id="container-dragones-custodio">
-      <div class="sm:w-1/2 sm:mx-auto lg:absolute lg:right-[250px] lg:w-1/4">
-        <img src="/img/dragones-custodio/dragon_realeza_2.png" class="z-30 object-cover w-full">
+    <section class="block md:hidden my-4" id="container-dragones-custodio">
+      <div class="z-30">
+        <img src="/img/dragones-custodio/dragon_noble_5.png" class="z-30 mx-auto w-1/2">
       </div>
 
-      <div class="relative text-right sm:pt-[30px] lg:pt-[90px] mx-3 sm:mx-auto sm:w-3/4 sm:pr-24">
-        <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-          Dragón de la Realeza
-        </h2>
-        <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
-          Majestuosos, diplomáticos, son valientes aventureros
+      <div class="grow z-20">
+        <div class="relative text-left sm:pt-[30px] lg:pt-[90px] mx-3 sm:mr-auto sm:w-3/4 sm:pl-24">
+          <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Dragón Noble
+          </h2>
+          <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+            Justos, bondadosos, son protectores naturales
+          </div>
         </div>
-      </div>
-      <!-- Hero card -->
-      <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mx-auto lg:pr-24 sm:w-3/4">
-        <div class="flex flex-col items-center justify-center lg:items-start">
-          <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
-            <p class="text-2xl font-bold text-madfenix-gris">
-              Altheon, príncipe heredero de Draconia, forjó alianzas al ayudar a los elfos contra un demonio. Su espíritu aventurero y habilidades de combate lo hicieron un héroe. Eventualmente, se convirtió en un rey justo y próspero.
-            </p>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mr-auto lg:pl-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Eryndor, el dragón noble de escamas azules, protegió el Bosque de los Ancestros de un gran incendio. Su justicia y bondad unieron a todas las criaturas del bosque. Fue nombrado Guardián Eterno en agradecimiento.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="max-w-screen-xl my-4 lg:ml-96 sm:my-12" id="container-dragones-custodio">
-      <div class="sm:w-1/2 sm:mx-auto lg:absolute lg:left-[250px] lg:w-1/4">
-        <img src="/img/dragones-custodio/dragon_rey_1.png" class="z-30 object-cover w-full">
-      </div>
-
-      <div class="relative text-left sm:pt-[30px] lg:pt-[90px] mx-3 sm:mx-auto sm:w-3/4 sm:pl-24">
-        <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-          Dragón Rey
-        </h2>
-        <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
-          Sabios, poderosos, son líderes supremos
+    <section class="hidden my-4 lg:ml-12 sm:my-12 md:flex sm:space-x-0" id="container-dragones-custodio">
+      <div class="grow">
+        <div class="relative text-right sm:pt-[30px] lg:pt-[90px] mx-3 sm:ml-auto sm:w-3/4 sm:pr-24">
+          <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Dragón de la Realeza
+          </h2>
+          <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+            Majestuosos, diplomáticos, son valientes aventureros
+          </div>
+        </div>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:ml-auto lg:pr-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Altheon, príncipe heredero de Draconia, forjó alianzas al ayudar a los elfos contra un demonio. Su espíritu aventurero y habilidades de combate lo hicieron un héroe. Eventualmente, se convirtió en un rey justo y próspero.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Hero card -->
-      <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mx-auto lg:pl-24 sm:w-3/4">
-        <div class="flex flex-col items-center justify-center lg:items-start">
-          <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
-            <p class="text-2xl font-bold text-madfenix-gris">
-              Thaldrin, el Dragón Rey de escamas doradas, lideró la Gran Alianza contra una profecía oscura. Su sabiduría y poder salvaron al mundo del cataclismo. Continuó reinando como el protector supremo de todos los reinos.
-            </p>
+      <div class="">
+        <img src="/img/dragones-custodio/dragon_realeza_2.png" class="z-30" style="margin-left: -100px; margin-top: 120px;">
+      </div>
+    </section>
+
+    <section class="block md:hidden my-4" id="container-dragones-custodio">
+      <div class="">
+        <img src="/img/dragones-custodio/dragon_realeza_2.png" class="z-30 mx-auto w-1/2">
+      </div>
+
+      <div class="grow">
+        <div class="relative text-right sm:pt-[30px] lg:pt-[90px] mx-3 sm:ml-auto sm:w-3/4 sm:pr-24">
+          <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Dragón de la Realeza
+          </h2>
+          <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+            Majestuosos, diplomáticos, son valientes aventureros
+          </div>
+        </div>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:ml-auto lg:pr-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Altheon, príncipe heredero de Draconia, forjó alianzas al ayudar a los elfos contra un demonio. Su espíritu aventurero y habilidades de combate lo hicieron un héroe. Eventualmente, se convirtió en un rey justo y próspero.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="max-w-screen-xl my-4 lg:ml-12 sm:my-12 sm:h-[500px] lg:h-[400px]" id="container-dragones-custodio">
-      <div class="sm:w-1/2 sm:mx-auto lg:absolute lg:right-[250px] lg:w-1/4">
-        <img src="/img/dragones-custodio/dragon_fenix.png" class="z-30 object-cover w-full">
+    <section class="hidden my-4 lg:ml-12 sm:my-12 md:flex sm:space-x-0" id="container-dragones-custodio">
+      <div class="z-30">
+        <img src="/img/dragones-custodio/dragon_rey_1.png" class="z-30" style="margin-top: 60px;">
       </div>
 
-      <div class="relative text-right sm:pt-[30px] lg:pt-[190px] mx-3 sm:mx-auto sm:w-3/4 lg:pr-24">
+      <div class="grow z-20" style="margin-left: -100px;">
+        <div class="grow">
+          <div class="relative text-left sm:pt-[30px] lg:pt-[90px] mx-3 sm:mr-auto sm:w-3/4 sm:pl-24">
+            <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              Dragón Rey
+            </h2>
+            <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+              Sabios, poderosos, son líderes supremos
+            </div>
+          </div>
+        </div>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mr-auto lg:pl-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Thaldrin, el Dragón Rey de escamas doradas, lideró la Gran Alianza contra una profecía oscura. Su sabiduría y poder salvaron al mundo del cataclismo. Continuó reinando como el protector supremo de todos los reinos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block md:hidden my-4" id="container-dragones-custodio">
+      <div class="z-30">
+        <img src="/img/dragones-custodio/dragon_rey_1.png" class="z-30 mx-auto w-1/2">
+      </div>
+
+      <div class="grow z-20">
+        <div class="grow">
+          <div class="relative text-left sm:pt-[30px] lg:pt-[90px] mx-3 sm:mr-auto sm:w-3/4 sm:pl-24">
+            <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              Dragón Rey
+            </h2>
+            <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+              Sabios, poderosos, son líderes supremos
+            </div>
+          </div>
+        </div>
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja sm:rounded-tr-3xl rounded-tl-3xl mt-3 p-5 mx-3 sm:mr-auto lg:pl-24 sm:w-3/4">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Thaldrin, el Dragón Rey de escamas doradas, lideró la Gran Alianza contra una profecía oscura. Su sabiduría y poder salvaron al mundo del cataclismo. Continuó reinando como el protector supremo de todos los reinos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hidden my-4 lg:ml-12 sm:my-12 sm:h-[500px] lg:h-[400px] md:flex sm:space-x-0" id="container-dragones-custodio">
+      <div class="sm:grow relative text-right sm:pt-[30px] lg:pt-[190px] mx-3 sm:ml-auto sm:w-3/4 lg:pr-24">
+        <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+          Dragón Fénix
+        </h2>
+        <div class="text-xl mt-2 font-extrabold text-madfenix-blanco md:text-2xl lg:text-3xl">
+          ???
+        </div>
+      </div>
+      <div>
+        <img src="/img/dragones-custodio/dragon_fenix.png" class="z-30 lg:w-1/2" style="margin-left: -100px; margin-top: 120px;">
+      </div>
+    </section>
+
+    <section class="block md:hidden my-4" id="container-dragones-custodio">
+      <div>
+        <img src="/img/dragones-custodio/dragon_fenix.png" class="z-30 mx-auto w-1/2">
+      </div>
+      <div class="sm:grow relative text-right sm:pt-[30px] lg:pt-[190px] mx-3 sm:ml-auto sm:w-3/4 lg:pr-24">
         <h2 class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
           Dragón Fénix
         </h2>
