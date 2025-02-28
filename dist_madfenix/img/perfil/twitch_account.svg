@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66.92" height="69.242" viewBox="0 0 66.92 69.242">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Trazado_18" data-name="Trazado 18" d="M0-47.5H31.165v31.165H0Z" fill="#b978f2"/>
+    </clipPath>
+  </defs>
+  <g id="Vinculate_Twitch_account" data-name="Vinculate Twitch account" transform="translate(-0.48)">
+    <path id="Twitch" d="M26.149,14v14H21.473V14Zm12.834,0v14H34.308V14Zm0,24.508,8.159-8.191V4.676H8.639V38.5H19.151v7l7-7ZM51.818,0V32.667l-14,14H27.31l-7,7h-7v-7H.48V9.319L3.995,0Z" transform="translate(0)" fill="#b978f2"/>
+    <g id="Link" transform="translate(36.235 85.577)" clip-path="url(#clip-path)">
+      <path id="Trazado_16" data-name="Trazado 16" d="M18.357-38.726l4.921-4.921s4.921-4.921,9.842,0,0,9.842,0,9.842l-6.561,6.561s-4.921,4.921-9.842,0a8.613,8.613,0,0,1-1.494-2.149l2.75-2.746a3.329,3.329,0,0,0,1.2,2.434,3.408,3.408,0,0,0,4.921,0l6.561-6.561a3.408,3.408,0,0,0,0-4.921,3.408,3.408,0,0,0-4.921,0L22.68-38.128s-1.521-1.247-4.63-.29Z" transform="translate(-5.235 -0.573)" fill="#b978f2"/>
+      <path id="Trazado_17" data-name="Trazado 17" d="M18.422-19.664,13.5-14.744s-4.921,4.921-9.842,0,0-9.842,0-9.842l6.561-6.561s4.921-4.921,9.842,0A8.613,8.613,0,0,1,21.557-29l-2.75,2.747a3.33,3.33,0,0,0-1.2-2.435,3.408,3.408,0,0,0-4.921,0L6.12-22.125a3.408,3.408,0,0,0,0,4.921,3.408,3.408,0,0,0,4.921,0L14.1-20.262s1.521,1.247,4.63.29Z" transform="translate(-0.507 -4.872)" fill="#b978f2"/>
+    </g>
+  </g>
+</svg>
