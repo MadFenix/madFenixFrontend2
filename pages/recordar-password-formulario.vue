@@ -127,7 +127,9 @@ export default {
       document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
     },
     forgot(){
-      (this.$router.currentRoute.query.token) ? this.forgotData.token = this.$router.currentRoute.query.token : this.$router.push('/login')
+      const route = useRoute()
+      const token = route.query.token
+      (token) ? this.forgotData.token = token : this.$router.push('/login')
       this.api('/api/forgotReset', {
         method: 'POST',
         body: this.forgotData
