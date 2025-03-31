@@ -123,7 +123,7 @@
           <span class="overflow-hidden col-span-2">
             <div class="h-[140px] text-center text-3xl sm:text-5xl  w-full m-auto px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out duration-250 border-madfenix-naranja border-2">
               <div class="mt-4">
-                27 de Marzo <span class="text-4xl sm:text-7xl">133</span> NFTs
+                27 de Marzo <span class="text-4xl sm:text-7xl">60</span> NFTs
               </div>
             </div>
           </span>
@@ -215,10 +215,10 @@
           <!-- Step -->
           <div class="h-[340px] text-center text-madfenix-blanco text-xl w-full m-auto px-8 py-4 btn-madfenix font-semibold bg-madfenix-gris leading-snug transition ease-in-out duration-250 border-madfenix-naranja border-2">
             <div class="mt-5 text-3xl font-semibold text-center text-madfenix-naranja">
-              Dividendos
+              Airdrops HBAR
             </div>
             <p class="mt-2 text-lg leading-relaxed text-center">
-              Cada Dragón Custodio <span class="text-madfenix-naranja">obtendrá un 0.01% de los dividendos trimestrales de Mad Fénix.</span><br>
+              Cada Dragón Custodio <span class="text-madfenix-naranja">obtendrá un 0.01% de los airdrops de HBAR trimestrales de Mad Fénix.</span><br>
               <span class="text-sm">* La cuantía de los mismos la determinará el CEO del proyecto</span><br>
               <span class="text-sm">** Hay cinco Dragones Custodio especiales con un 1% y uno con el 5%</span>
             </p>
