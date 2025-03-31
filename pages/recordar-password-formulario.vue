@@ -92,6 +92,7 @@ export default {
       settings: useSettingsStore(),
       serverMessage: useServerMessageStore(),
       api: null,
+      route: null,
       forgotData: {
         email: '',
         password: '',
@@ -120,6 +121,7 @@ export default {
 
     const { $api } = useNuxtApp();
     this.api = $api;
+    this.route = useRoute()
   },
 
   methods: {
@@ -127,9 +129,7 @@ export default {
       document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
     },
     forgot(){
-      const route = useRoute()
-      const token = route.query.token
-      (token) ? this.forgotData.token = token : this.$router.push('/login')
+      (this.route.query.token) ? this.forgotData.token = this.route.query.token : this.$router.push('/login')
       this.api('/api/forgotReset', {
         method: 'POST',
         body: this.forgotData
