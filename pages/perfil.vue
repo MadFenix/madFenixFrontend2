@@ -87,6 +87,7 @@
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
               <span v-if="perfil" v-html="perfil.oro" /><span v-else>...</span>
+              <p v-if="perfil && perfil.oro_hedera" v-html="perfil.oro_hedera + ' RED'" class="mt-4 text-xl" />
             </h5>
           </div>
           <div class="sm:col-span-2 flex items-center justify-center bg-madfenix-azul">
@@ -117,6 +118,7 @@
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
               <span v-if="perfil" v-html="perfil.plumas" /><span v-else>...</span>
+              <p v-if="perfil && perfil.plumas_hedera" v-html="perfil.plumas_hedera + ' RED'" class="mt-4 text-xl" />
             </h5>
           </div>
           <div class="sm:col-span-2 flex items-center justify-center bg-madfenix-azul">
