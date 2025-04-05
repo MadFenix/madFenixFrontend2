@@ -6,7 +6,7 @@
         </div>
 
         <div class="text-right col-span-1 px-6">
-          <div v-html="'@' + user.user.name" class="text-lg lg:text-5xl font-black text-madfenix-naranja my-3" />
+          <div v-html="'@' + user.user.name" class="text-sm lg:text-xl font-black text-madfenix-naranja my-3" />
           <div v-html="user.user.email" class="text-sm lg:text-xl text-white my-3" />
           <div class="flex space-x-3 justify-end my-3">
             <div v-if="perfil && perfil.user_twitch" class="flex items-center space-x-3 text-white text-center">
@@ -82,7 +82,7 @@
         </div>
       </div>
 
-      <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
+      <section class="max-w-screen-xl px-4 py-7 pt-12 mx-auto md:py-7 md:pt-16 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
@@ -113,7 +113,7 @@
         </div>
       </section>
 
-      <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8">
+      <section class="max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
@@ -144,6 +144,32 @@
         </div>
       </section>
 
+      <section class="max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8">
+        <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
+          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
+            <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
+              <span v-html="pollsNotAnswered" />
+            </h5>
+          </div>
+          <div class="sm:col-span-2 flex items-center justify-center bg-madfenix-azul">
+            <img src="/img/perfil/adivinacion.png" alt="Influye" class="absolute z-50 h-1/2 sm:h-full" />
+            <svg class="inset-y-0 z-40 h-full text-madfenix-gris" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
+              <polygon points="0,0 100,0 0,100"></polygon>
+            </svg>
+          </div>
+          <div class="sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex items-center space-x-3 justify-center h-full bg-madfenix-azul sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end">
+            <h5 class="grow font-extrabold tracking-tight text-white text-size-token">
+              Destino
+            </h5>
+            <div class="botones-tokens">
+              <nuxt-link to="/influye" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                Influye en Névoran
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div class="w-full" v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
         <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
           <img :src="nftCollection.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
@@ -167,6 +193,7 @@
 </template>
 
 <script>
+import { usePollsStore } from '../stores/polls'
 import { useUserStore } from '../stores/user'
 import { useSettingsStore } from '../stores/settings'
 import { useServerMessageStore } from "../stores/serverMessage";
@@ -177,6 +204,7 @@ export default {
 
   data() {
     return {
+      polls: usePollsStore(),
       user: useUserStore(),
       settings: useSettingsStore(),
       serverMessage: useServerMessageStore(),
@@ -198,6 +226,9 @@ export default {
     });
 
     this.setUserCookies();
+    if (this.user.token) {
+      this.polls.fetchPolls();
+    }
     this.setBackground();
 
     const { $api } = useNuxtApp();
@@ -236,7 +267,20 @@ export default {
       }
 
       return collections;
-    }
+    },
+
+    pollsNotAnswered () {
+      let pollsNotAnswered = 0;
+      if (this.polls.polls) {
+        for (let i = 0; i < this.polls.polls.length; i++) {
+          if (!this.polls.polls[i].userAnswer) {
+            pollsNotAnswered++;
+          }
+        }
+      }
+
+      return pollsNotAnswered;
+    },
   },
 
   methods: {
