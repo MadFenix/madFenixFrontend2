@@ -197,6 +197,7 @@
           <div class="flex justify-center">
             <div class="contenedor-boton-right-formularios flex space-x-3">
               <a
+                  v-if="nftCollection.token_number > 0"
                   :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
                   target="_blank"
                   class="flex justify-center items-center text-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
