@@ -195,7 +195,13 @@
         </div>
         <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
           <div class="flex justify-center">
-            <div class="contenedor-boton-right-formularios">
+            <div class="contenedor-boton-right-formularios flex space-x-3">
+              <a
+                  :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
+                  target="_blank"
+                  class="flex justify-center items-center text-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                  v-html="'Mercado secundario'"
+              />
               <NuxtLink
                   :to="'/coleccion/?nft_id=' + nftCollection.nft_id"
                   class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
@@ -263,51 +269,32 @@ export default {
       let collections = [];
       let isNFTFromCategory = false;
       let isNFTFromSubcategory = true;
-      if (this.perfil && this.perfil.nfts) {
-        for (let i = 0; i < this.perfil.nfts.length; i++) {
-          isNFTFromCategory = false;
-          if (this.categorySelected && this.perfil.nfts[i].nft.category == this.categorySelected.name) {
-            isNFTFromCategory = true;
-          }
-          isNFTFromSubcategory = true;
-          if (this.subcategorySelected) {
-            isNFTFromSubcategory = false;
-            if (this.perfil.nfts[i].nft.subcategory == this.subcategorySelected) {
-              isNFTFromSubcategory = true;
+      let currentNFT = null;
+      if (this.perfil && this.perfil.nft_categories) {
+        for (let z = 0; z < this.perfil.nft_categories.length; z++) {
+          for (let i = 0; i < this.perfil.nft_categories[z].nfts.length; i++) {
+            currentNFT = this.perfil.nft_categories[z].nfts[i];
+            isNFTFromCategory = false;
+            if (this.categorySelected && currentNFT.category == this.categorySelected.name) {
+              isNFTFromCategory = true;
             }
-          }
-          if (!collections.some(obj => obj.nft_id === this.perfil.nfts[i].nft_id) && isNFTFromCategory && isNFTFromSubcategory) {
-            collections.push({
-              nft_id: this.perfil.nfts[i].nft_id,
-              name: this.perfil.nfts[i].nft.name,
-              short_description: this.perfil.nfts[i].nft.short_description,
-              portrait_image: this.perfil.nfts[i].nft.portrait_image,
-              featured_image: this.perfil.nfts[i].nft.featured_image,
-            });
-          }
-        }
-      }
-      if (this.perfil && this.perfil.nfts_hedera) {
-        for (let i = 0; i < this.perfil.nfts_hedera.length; i++) {
-          isNFTFromCategory = false;
-          if (this.categorySelected && this.perfil.nfts_hedera[i].nft.category == this.categorySelected.name) {
-            isNFTFromCategory = true;
-          }
-          isNFTFromSubcategory = true;
-          if (this.subcategorySelected) {
-            isNFTFromSubcategory = false;
-            if (this.perfil.nfts_hedera[i].nft.subcategory == this.subcategorySelected) {
-              isNFTFromSubcategory = true;
+            isNFTFromSubcategory = true;
+            if (this.subcategorySelected) {
+              isNFTFromSubcategory = false;
+              if (currentNFT.subcategory == this.subcategorySelected) {
+                isNFTFromSubcategory = true;
+              }
             }
-          }
-          if (!collections.some(obj => obj.nft_id === this.perfil.nfts_hedera[i].nft_id) && isNFTFromCategory && isNFTFromSubcategory) {
-            collections.push({
-              nft_id: this.perfil.nfts_hedera[i].nft_id,
-              name: this.perfil.nfts_hedera[i].nft.name,
-              short_description: this.perfil.nfts_hedera[i].nft.short_description,
-              portrait_image: this.perfil.nfts_hedera[i].nft.portrait_image,
-              featured_image: this.perfil.nfts_hedera[i].nft.featured_image,
-            });
+            if (!collections.some(obj => obj.nft_id === currentNFT.id) && isNFTFromCategory && isNFTFromSubcategory) {
+              collections.push({
+                nft_id: currentNFT.id,
+                name: currentNFT.name,
+                short_description: currentNFT.short_description,
+                portrait_image: currentNFT.portrait_image,
+                featured_image: currentNFT.featured_image,
+                token_number: currentNFT.token_number,
+              });
+            }
           }
         }
       }
