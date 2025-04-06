@@ -1,8 +1,20 @@
 <template>
     <div v-if="user.user && perfil">
       <div class="md:grid md:grid-cols-3 md:items-center border-y-2 border-madfenix-naranja bg-madfenix-gris">
-        <div class="col-span-1 h-full">
-          <img src="/img/perfil/tiefling_bard.png" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" class="h-full" />
+        <div class="relative col-span-1 h-full">
+          <img :src="perfil.avatar" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" class="h-full" />
+          <a
+              @click="categorySelected = categoryAvatars; subcategorySelected = null; showAvatarsModal = true"
+              class="absolute right-3 top-3 text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>
+          </a>
+          <a
+              @click="categorySelected = categoryEstados; subcategorySelected = null; showEstadosModal = true"
+              class="absolute left-1/2 transform -translate-x-1/2 bottom-3 w-2/3 text-sm text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+              v-html="perfil.description" />
         </div>
 
         <div class="text-right col-span-1 px-6">
@@ -186,28 +198,158 @@
         </div>
       </div>
 
-      <div class="w-full" v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
-        <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
-          <img :src="nftCollection.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
-          <div class="relative min-h-[300px] mb-0 p-6 z-50">
-            &nbsp;
+      <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 px-6">
+        <div v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
+          <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+            <img :src="nftCollection.featured_image" class="absolute" style="min-width: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+            <div class="relative min-h-[300px] mb-0 p-6 z-50">
+              &nbsp;
+            </div>
+          </div>
+          <div class="relative sm:mx-auto px-4 z-50 contenedor-botones-formularios">
+            <div class="flex justify-center">
+              <div class="flex space-x-3">
+                <a
+                    v-if="nftCollection.token_number > 0"
+                    :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
+                    target="_blank"
+                    class="flex justify-center items-center text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                  </svg>
+                </a>
+                <NuxtLink
+                    :to="'/coleccion/?nft_id=' + nftCollection.nft_id"
+                    class="flex items-center grow m-auto justify-center px-8 py-4 btn-madfenix text-xs text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                    v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'"
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
-          <div class="flex justify-center">
-            <div class="contenedor-boton-right-formularios flex space-x-3">
-              <a
-                  v-if="nftCollection.token_number > 0"
-                  :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
-                  target="_blank"
-                  class="flex justify-center items-center text-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                  v-html="'Mercado secundario'"
-              />
-              <NuxtLink
-                  :to="'/coleccion/?nft_id=' + nftCollection.nft_id"
-                  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                  v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'"
-              />
+        <span v-else>&nbsp;</span>
+      </div>
+
+      <div v-if="showAvatarsModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden bg-madfenix-gris bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full">
+        <div class="flex items-center justify-center p-4 w-full h-screen">
+          <!-- Modal content -->
+          <div class="bg-madfenix-gris text-madfenix-blanco rounded-lg shadow border border-madfenix-blanco">
+            <!-- Modal header -->
+            <div class="flex justify-between items-start p-4 rounded-t border-b border-madfenix-blanco">
+              <h3 class="text-xl font-semibold">
+                Avatares
+              </h3>
+              <button type="button" @click="showAvatarsModal = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Cerrar pantalla</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="w-full p-3">
+              <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto">
+                <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
+                  <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                    <span v-html="nftSubcategory" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 px-6">
+                <template v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
+                  <div v-if="countNFTsByid(nftCollection.nft_id) > 0 || nftCollection.subcategory == 'Gratis'">
+                    <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[150px] mx-3 mt-12 sm:mx-auto bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+                      <img :src="nftCollection.featured_image" class="absolute" style="min-width: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+                      <div class="relative min-h-[150px] mb-0 p-6 z-50">
+                        &nbsp;
+                      </div>
+                    </div>
+                    <div class="relative sm:mx-auto px-4 z-50 contenedor-botones-formularios">
+                      <div class="flex justify-center">
+                        <div class="flex space-x-3">
+                          <a
+                              v-if="nftCollection.token_number > 0"
+                              :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
+                              target="_blank"
+                              class="flex justify-center items-center text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                          </a>
+                          <NuxtLink
+                              @click="updateAvatar(nftCollection)"
+                              class="flex items-center grow m-auto justify-center px-8 py-4 btn-madfenix text-xs text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                              v-html="'Asignar'"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="showEstadosModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden bg-madfenix-gris bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full">
+        <div class="flex items-center justify-center p-4 w-full h-screen">
+          <!-- Modal content -->
+          <div class="bg-madfenix-gris text-madfenix-blanco rounded-lg shadow border border-madfenix-blanco">
+            <!-- Modal header -->
+            <div class="flex justify-between items-start p-4 rounded-t border-b border-madfenix-blanco">
+              <h3 class="text-xl font-semibold">
+                Estados
+              </h3>
+              <button type="button" @click="showEstadosModal = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Cerrar pantalla</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="w-full p-3">
+              <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto">
+                <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
+                  <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                    <span v-html="nftSubcategory" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 px-6">
+                <template v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
+                  <div v-if="countNFTsByid(nftCollection.nft_id) > 0 || nftCollection.subcategory == 'Gratis'">
+                    <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[150px] mx-3 mt-12 sm:mx-auto bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+                      <img :src="nftCollection.featured_image" class="absolute" style="min-width: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+                      <div class="relative min-h-[150px] mb-0 p-6 z-50">
+                        &nbsp;
+                      </div>
+                    </div>
+                    <div class="relative sm:mx-auto px-4 z-50 contenedor-botones-formularios">
+                      <div class="flex justify-center">
+                        <div class="flex space-x-3">
+                          <a
+                              v-if="nftCollection.token_number > 0"
+                              :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
+                              target="_blank"
+                              class="flex justify-center items-center text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                          </a>
+                          <NuxtLink
+                              @click="updateEstado(nftCollection)"
+                              class="flex items-center grow m-auto justify-center px-8 py-4 btn-madfenix text-xs text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                              v-html="'Asignar'"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
             </div>
           </div>
         </div>
@@ -239,6 +381,8 @@ export default {
       subcategorySelected: null,
       api: null,
       perfil: null,
+      showAvatarsModal: false,
+      showEstadosModal: false,
     }
   },
 
@@ -266,6 +410,31 @@ export default {
   },
 
   computed: {
+    categoryAvatars() {
+      let categoryAvatars = null;
+      if (this.perfil && this.perfil.nft_categories) {
+        for (let z = 0; z < this.perfil.nft_categories.length; z++) {
+          if (this.perfil.nft_categories[z].name == 'Avatar') {
+            categoryAvatars = this.perfil.nft_categories[z];
+            z = this.perfil.nft_categories.length;
+          }
+        }
+      }
+      return categoryAvatars;
+    },
+    categoryEstados() {
+      let categoryEstados = null;
+      if (this.perfil && this.perfil.nft_categories) {
+        for (let z = 0; z < this.perfil.nft_categories.length; z++) {
+          if (this.perfil.nft_categories[z].name == 'Estado') {
+            categoryEstados = this.perfil.nft_categories[z];
+            z = this.perfil.nft_categories.length;
+          }
+        }
+      }
+      return categoryEstados;
+    },
+
     nftCollections() {
       let collections = [];
       let isNFTFromCategory = false;
@@ -287,6 +456,44 @@ export default {
               }
             }
             if (!collections.some(obj => obj.nft_id === currentNFT.id) && isNFTFromCategory && isNFTFromSubcategory) {
+              collections.push({
+                nft_id: currentNFT.id,
+                category: currentNFT.category,
+                subcategory: currentNFT.subcategory,
+                name: currentNFT.name,
+                short_description: currentNFT.short_description,
+                portrait_image: currentNFT.portrait_image,
+                featured_image: currentNFT.featured_image,
+                token_number: currentNFT.token_number,
+              });
+            }
+          }
+        }
+      }
+
+      return collections;
+    },
+    nftCollectionsAvatars() {
+      let collections = [];
+      let isNFTFromCategory = false;
+      let isNFTFromSubcategory = true;
+      let currentNFT = null;
+      if (this.perfil && this.perfil.nft_categories) {
+        for (let z = 0; z < this.perfil.nft_categories.length; z++) {
+          for (let i = 0; i < this.perfil.nft_categories[z].nfts.length; i++) {
+            currentNFT = this.perfil.nft_categories[z].nfts[i];
+            isNFTFromCategory = false;
+            if (this.categorySelected && currentNFT.category == this.categorySelected.name) {
+              isNFTFromCategory = true;
+            }
+            isNFTFromSubcategory = true;
+            if (this.subcategorySelected) {
+              isNFTFromSubcategory = false;
+              if (currentNFT.subcategory == this.subcategorySelected) {
+                isNFTFromSubcategory = true;
+              }
+            }
+            if (!collections.some(obj => obj.nft_id === currentNFT.id) && isNFTFromCategory && isNFTFromSubcategory && currentNFT.category == 'Avatar') {
               collections.push({
                 nft_id: currentNFT.id,
                 name: currentNFT.name,
@@ -348,6 +555,30 @@ export default {
         method: 'POST'
       })
         .then((response) => this.afterPerfil(response))
+        .catch(() => this.logout())
+    },
+
+    updateAvatar(nftCollection) {
+      this.api('/api/profile/setAvatar', {
+        method: 'POST',
+        body: {nft_id: nftCollection.nft_id}
+      })
+        .then(() => {
+          this.getPerfil();
+          this.showAvatarsModal = false;
+        })
+        .catch(() => this.logout())
+    },
+
+    updateEstado(nftCollection) {
+      this.api('/api/profile/setEstado', {
+        method: 'POST',
+        body: {nft_id: nftCollection.nft_id}
+      })
+        .then(() => {
+          this.getPerfil();
+          this.showEstadosModal = false;
+        })
         .catch(() => this.logout())
     },
 

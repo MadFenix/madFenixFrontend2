@@ -83,6 +83,8 @@ export default {
       api: null,
       perfil: null,
       nft_id: null,
+      categorySelected: null,
+      subcategorySelected: null,
     }
   },
 
@@ -132,39 +134,32 @@ export default {
 
       return nftsToReturn;
     },
+
     nftCollections() {
       let collections = [];
-      if (this.perfil && this.perfil.nfts) {
-        for (let i = 0; i < this.perfil.nfts.length; i++) {
-          if (this.nft_id == this.perfil.nfts[i].nft_id) {
-            collections.push({
-              nft_id: this.perfil.nfts[i].nft_id,
-              name: this.perfil.nfts[i].nft.name,
-              short_description: this.perfil.nfts[i].nft.short_description,
-              portrait_image: this.perfil.nfts[i].nft.portrait_image,
-              featured_image: this.perfil.nfts[i].nft.featured_image,
-            });
-            break;
-          }
-        }
-      }
-      if (this.perfil && this.perfil.nfts_hedera) {
-        for (let i = 0; i < this.perfil.nfts_hedera.length; i++) {
-          if (this.nft_id == this.perfil.nfts_hedera[i].nft_id && !collections.some(obj => obj.nft_id === this.perfil.nfts_hedera[i].nft_id)) {
-            collections.push({
-              nft_id: this.perfil.nfts_hedera[i].nft_id,
-              name: this.perfil.nfts_hedera[i].nft.name,
-              short_description: this.perfil.nfts_hedera[i].nft.short_description,
-              portrait_image: this.perfil.nfts_hedera[i].nft.portrait_image,
-              featured_image: this.perfil.nfts_hedera[i].nft.featured_image,
-            });
-            break;
+      let currentNFT = null;
+      if (this.perfil && this.perfil.nft_categories) {
+        for (let z = 0; z < this.perfil.nft_categories.length; z++) {
+          for (let i = 0; i < this.perfil.nft_categories[z].nfts.length; i++) {
+            currentNFT = this.perfil.nft_categories[z].nfts[i];
+            if (this.nft_id == currentNFT.id) {
+              collections.push({
+                nft_id: currentNFT.id,
+                category: currentNFT.category,
+                subcategory: currentNFT.subcategory,
+                name: currentNFT.name,
+                short_description: currentNFT.short_description,
+                portrait_image: currentNFT.portrait_image,
+                featured_image: currentNFT.featured_image,
+                token_number: currentNFT.token_number,
+              });
+            }
           }
         }
       }
 
       return collections;
-    }
+    },
   },
 
   methods: {
