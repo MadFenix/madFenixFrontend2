@@ -143,16 +143,38 @@
       </div>
     </section>
 
-
-
-    <section class="my-4 sm:ml-12 sm:my-12" id="container-dragones-custodio">
-      <div class="sm:absolute sm:right-0 sm:w-1/3">
-        <img src="/img/dragones-custodio/dragon_fenix.png" class="z-30 object-cover w-full">
+    <div class="my-4 container mx-auto p-12">
+      <h2 class="text-madfenix-naranja">
+        Juegos que mueven comunidades
+      </h2>
+      <p class="mt-6 text-xl text-white">
+        Desde ligas a premios personalizados en nuestro pase de temporada.
+      </p>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
+          <h3 class="mb-3 w-full text-center text-madfenix-naranja">Ligas</h3>
+          <p>
+            Organizamos ligas gamificadas donde creadores de contenido presiden los equipos. Cada uno tiene un sponsor.
+          </p>
+        </div>
+        <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
+          <h3 class="mb-3 w-full text-center text-madfenix-naranja">Plumas Fénix</h3>
+          <p>
+            Son un reclamo para nuestro ecosistema ya que pueden dar ventaja a equipos de la liga, participaciones en sorteos, etc.
+          </p>
+        </div>
+        <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
+          <h3 class="mb-3 w-full text-center text-madfenix-naranja">Pase de Temporada</h3>
+          <p>
+            Nuestros jugadores ganan premios con cada nivel superado. Podemos agregar ventajas de proyectos amigos.
+          </p>
+        </div>
       </div>
+    </div>
 
+    <section class="my-4 sm:my-12 container mx-auto">
       <!-- Hero card -->
-      <div class="bg-madfenix-naranja">
-
+      <div class="bg-madfenix-naranja flex">
         <!-- Hero card content -->
         <div class="p-5 sm:p-20 sm:w-2/3">
           <!-- Card content text-->
@@ -176,96 +198,45 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="mt-12">
-        <div class="flex justify-center text-left mx-3 sm:mr-auto w-full">
-          <div class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
-            Sellos del Fénix
-          </div>
+        <div class="sm:w-1/3 flex items-center justify-center">
+          <img src="/img/dragones-custodio/dragon_fenix.png" class="z-30 object-cover h-3/4">
         </div>
       </div>
-      <section class="hidden mb-4 sm:mb-12 md:flex sm:space-x-0">
-        <div class="z-30">
-          <img src="/img/sellos-fenix/SelloDelFenix.png" class="z-30" style="margin-top: 60px;">
-        </div>
+    </section>
 
-        <div class="grow z-20" style="margin-left: -100px; margin-right: -100px; margin-top: 120px;">
-          <!-- Hero card -->
-          <div class="bg-madfenix-naranja mt-3 p-5 mx-3 lg:px-24">
-            <div class="flex flex-col items-center justify-center lg:items-start">
-              <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
-                <p class="text-xl text-madfenix-gris">
-                  Los sellos del Fénix nacen como un <span class="text-madfenix-gris font-bold">distintivo de reconocimiento</span> a quienes ayuden a difundir el camino a la Unión Consciente
-                </p>
-              </div>
+    <section class="my-12 container mx-auto">
+      <h2 class="text-madfenix-naranja w-full text-center">
+        Sellos del Fénix
+      </h2>
+
+      <div class="grid grid-cols-2">
+        <div class="">
+          <img src="/img/sellos-fenix/SelloSuperiorDelFenix.png" class="z-30 mx-auto w-1/2">
+        </div>
+        <div class="">
+          <img src="/img/sellos-fenix/SelloDelFenix.png" class="z-30 mx-auto w-1/2">
+        </div>
+      </div>
+      <div class="grow">
+        <!-- Hero card -->
+        <div class="bg-madfenix-naranja mt-3 p-5 mx-3 lg:px-24">
+          <div class="flex flex-col items-center justify-center lg:items-start">
+            <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+              <p class="text-2xl font-bold text-madfenix-gris">
+                Los sellos del Fénix nacen como un <span class="text-madfenix-gris font-bold">distintivo de reconocimiento</span> a quienes ayuden a difundir el camino a la Unión Consciente
+              </p>
             </div>
-          </div>
-        </div>
-
-        <div class="z-30">
-          <img src="/img/sellos-fenix/SelloSuperiorDelFenix.png" class="z-30" style="margin-top: 60px;">
-        </div>
-      </section>
-
-      <section class="block md:hidden my-4">
-        <div class="grid grid-cols-2">
-          <div class="">
-            <img src="/img/sellos-fenix/SelloSuperiorDelFenix.png" class="z-30 mx-auto w-1/2">
-          </div>
-          <div class="">
-            <img src="/img/sellos-fenix/SelloDelFenix.png" class="z-30 mx-auto w-1/2">
-          </div>
-        </div>
-        <div class="grow">
-          <!-- Hero card -->
-          <div class="bg-madfenix-naranja mt-3 p-5 mx-3 lg:px-24">
-            <div class="flex flex-col items-center justify-center lg:items-start">
-              <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
-                <p class="text-2xl font-bold text-madfenix-gris">
-                  Los sellos del Fénix nacen como un <span class="text-madfenix-gris font-bold">distintivo de reconocimiento</span> a quienes ayuden a difundir el camino a la Unión Consciente
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="z-30 mt-10 flex justify-center w-full">
-        <NuxtLink :to="'/sellos-fenix'" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-naranja rounded-full h-14 duration-250 text-madfenix-gris hover:text-madfenix-blanco focus:outline-none hover:bg-madfenix-gris border-2 border-madfenix-gris hover:border-madfenix-naranja">
-          Más sobre los sellos
-        </NuxtLink>
-      </div>
-
-      <div class="my-4 container mx-auto p-12">
-        <h2 class="text-madfenix-naranja">
-          Juegos que mueven comunidades
-        </h2>
-        <p class="mt-6 text-xl text-white">
-          Desde ligas a premios personalizados en nuestro pase de temporada.
-        </p>
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
-            <h3 class="mb-3 w-full text-center text-madfenix-naranja">Ligas</h3>
-            <p>
-              Organizamos ligas gamificadas donde creadores de contenido presiden los equipos. Cada uno tiene un sponsor.
-            </p>
-          </div>
-          <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
-            <h3 class="mb-3 w-full text-center text-madfenix-naranja">Plumas Fénix</h3>
-            <p>
-              Son un reclamo para nuestro ecosistema ya que pueden dar ventaja a equipos de la liga, participaciones en sorteos, etc.
-            </p>
-          </div>
-          <div class="mt-3 p-8 text-white bg-madfenix-gris border-2 border-madfenix-naranja container-movemos-comunidades-modulos">
-            <h3 class="mb-3 w-full text-center text-madfenix-naranja">Pase de Temporada</h3>
-            <p>
-              Nuestros jugadores ganan premios con cada nivel superado. Podemos agregar ventajas de proyectos amigos.
-            </p>
           </div>
         </div>
       </div>
     </section>
+
+    <div class="z-30 container mx-auto mt-10 flex justify-center w-full">
+      <NuxtLink :to="'/sellos-fenix'" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-naranja rounded-full h-14 duration-250 text-madfenix-gris hover:text-madfenix-blanco focus:outline-none hover:bg-madfenix-gris border-2 border-madfenix-gris hover:border-madfenix-naranja">
+        Más sobre los sellos
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
