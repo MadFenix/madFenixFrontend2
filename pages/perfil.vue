@@ -24,6 +24,7 @@
         <div class="text-right col-span-1 px-6">
           <div v-html="'@' + user.user.name" class="text-sm lg:text-xl font-black text-madfenix-naranja my-3" />
           <div v-html="user.user.email" class="text-sm lg:text-xl text-white my-3" />
+          <div v-if="perfil && perfil.count_refered > 0" v-html="'Personas referidas: ' + perfil.count_refered" class="text-sm lg:text-xl text-white my-3" />
           <div class="flex space-x-3 justify-end my-3">
             <div v-if="perfil && perfil.user_twitch" class="flex items-center space-x-3 text-white text-center">
               <a @click="desconectarTwitch()" class="cursor-pointer">
