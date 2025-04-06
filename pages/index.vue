@@ -177,6 +177,66 @@
           </div>
         </div>
       </div>
+
+      <div class="mt-12">
+        <div class="flex justify-center text-left mx-3 sm:mr-auto w-full">
+          <div class="text-4xl font-extrabold text-madfenix-naranja sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+            Sellos del Fénix
+          </div>
+        </div>
+      </div>
+      <section class="hidden mb-4 sm:mb-12 md:flex sm:space-x-0">
+        <div class="z-30">
+          <img src="/img/sellos-fenix/SelloDelFenix.png" class="z-30" style="margin-top: 60px;">
+        </div>
+
+        <div class="grow z-20" style="margin-left: -100px; margin-right: -100px; margin-top: 120px;">
+          <!-- Hero card -->
+          <div class="bg-madfenix-naranja mt-3 p-5 mx-3 lg:px-24">
+            <div class="flex flex-col items-center justify-center lg:items-start">
+              <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+                <p class="text-xl text-madfenix-gris">
+                  Los sellos del Fénix nacen como un <span class="text-madfenix-gris font-bold">distintivo de reconocimiento</span> a quienes ayuden a difundir el camino a la Unión Consciente
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="z-30">
+          <img src="/img/sellos-fenix/SelloSuperiorDelFenix.png" class="z-30" style="margin-top: 60px;">
+        </div>
+      </section>
+
+      <section class="block md:hidden my-4">
+        <div class="grid grid-cols-2">
+          <div class="">
+            <img src="/img/sellos-fenix/SelloSuperiorDelFenix.png" class="z-30 mx-auto w-1/2">
+          </div>
+          <div class="">
+            <img src="/img/sellos-fenix/SelloDelFenix.png" class="z-30 mx-auto w-1/2">
+          </div>
+        </div>
+        <div class="grow">
+          <!-- Hero card -->
+          <div class="bg-madfenix-naranja mt-3 p-5 mx-3 lg:px-24">
+            <div class="flex flex-col items-center justify-center lg:items-start">
+              <div class="z-30 w-full max-w-lg mx-auto text-center lg:text-left lg:max-w-none md:max-w-2xl">
+                <p class="text-2xl font-bold text-madfenix-gris">
+                  Los sellos del Fénix nacen como un <span class="text-madfenix-gris font-bold">distintivo de reconocimiento</span> a quienes ayuden a difundir el camino a la Unión Consciente
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="z-30 mt-10 flex justify-center w-full">
+        <NuxtLink :to="'/sellos-fenix'" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-naranja rounded-full h-14 duration-250 text-madfenix-gris hover:text-madfenix-blanco focus:outline-none hover:bg-madfenix-gris border-2 border-madfenix-gris hover:border-madfenix-naranja">
+          Más sobre los sellos
+        </NuxtLink>
+      </div>
+
       <div class="my-4 container mx-auto p-12">
         <h2 class="text-madfenix-naranja">
           Juegos que mueven comunidades

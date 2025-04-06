@@ -1,7 +1,7 @@
 <template>
     <div v-if="user.user && perfil">
       <div class="md:grid md:grid-cols-3 md:items-center border-y-2 border-madfenix-naranja bg-madfenix-gris">
-        <div class="relative col-span-1 h-full">
+        <div class="relative col-span-1 h-full max-w-[380px]">
           <img :src="perfil.avatar" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" class="h-full" />
           <a
               @click="categorySelected = categoryAvatars; subcategorySelected = null; showAvatarsModal = true"
@@ -100,7 +100,7 @@
 
       <section class="max-w-screen-xl px-4 py-7 pt-12 mx-auto md:py-7 md:pt-16 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
-          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
+          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
               <span v-if="perfil" v-html="perfil.oro" /><span v-else>...</span>
               <p v-if="perfil && perfil.oro_hedera" v-html="perfil.oro_hedera + ' RED'" class="mt-4 text-xl" />
@@ -131,7 +131,7 @@
 
       <section class="max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
-          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
+          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
               <span v-if="perfil" v-html="perfil.plumas" /><span v-else>...</span>
               <p v-if="perfil && perfil.plumas_hedera" v-html="perfil.plumas_hedera + ' RED'" class="mt-4 text-xl" />
@@ -162,7 +162,7 @@
 
       <section class="max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
-          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
+          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
               <span v-html="pollsNotAnswered" />
             </h5>
@@ -202,7 +202,7 @@
         </div>
       </div>
 
-      <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 px-6">
+      <div class="max-w-screen-xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 px-6">
         <div v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
           <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
             <img :src="nftCollection.featured_image" class="absolute" style="min-width: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
