@@ -170,6 +170,22 @@
         </div>
       </section>
 
+      <div v-if="perfil && perfil.nft_categories" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto sm:w-3/4 ">
+        <div class="py-2 md:py-2" v-for="(nftCategory, indexNftCategory) in perfil.nft_categories" :key="indexNftCategory">
+          <a @click="categorySelected = nftCategory; subcategorySelected = null" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <span v-html="nftCategory.name" />
+          </a>
+        </div>
+      </div>
+
+      <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto sm:w-3/4 ">
+        <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
+          <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <span v-html="nftSubcategory" />
+          </a>
+        </div>
+      </div>
+
       <div class="w-full" v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
         <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
           <img :src="nftCollection.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
@@ -188,6 +204,10 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="p-4">
+        &nbsp;
       </div>
     </div>
 </template>
@@ -208,6 +228,8 @@ export default {
       user: useUserStore(),
       settings: useSettingsStore(),
       serverMessage: useServerMessageStore(),
+      categorySelected: null,
+      subcategorySelected: null,
       api: null,
       perfil: null,
     }
@@ -239,9 +261,22 @@ export default {
   computed: {
     nftCollections() {
       let collections = [];
+      let isNFTFromCategory = false;
+      let isNFTFromSubcategory = true;
       if (this.perfil && this.perfil.nfts) {
         for (let i = 0; i < this.perfil.nfts.length; i++) {
-          if (!collections.some(obj => obj.nft_id === this.perfil.nfts[i].nft_id)) {
+          isNFTFromCategory = false;
+          if (this.categorySelected && this.perfil.nfts[i].nft.category == this.categorySelected.name) {
+            isNFTFromCategory = true;
+          }
+          isNFTFromSubcategory = true;
+          if (this.subcategorySelected) {
+            isNFTFromSubcategory = false;
+            if (this.perfil.nfts[i].nft.subcategory == this.subcategorySelected) {
+              isNFTFromSubcategory = true;
+            }
+          }
+          if (!collections.some(obj => obj.nft_id === this.perfil.nfts[i].nft_id) && isNFTFromCategory && isNFTFromSubcategory) {
             collections.push({
               nft_id: this.perfil.nfts[i].nft_id,
               name: this.perfil.nfts[i].nft.name,
@@ -254,7 +289,18 @@ export default {
       }
       if (this.perfil && this.perfil.nfts_hedera) {
         for (let i = 0; i < this.perfil.nfts_hedera.length; i++) {
-          if (!collections.some(obj => obj.nft_id === this.perfil.nfts_hedera[i].nft_id)) {
+          isNFTFromCategory = false;
+          if (this.categorySelected && this.perfil.nfts_hedera[i].nft.category == this.categorySelected.name) {
+            isNFTFromCategory = true;
+          }
+          isNFTFromSubcategory = true;
+          if (this.subcategorySelected) {
+            isNFTFromSubcategory = false;
+            if (this.perfil.nfts_hedera[i].nft.subcategory == this.subcategorySelected) {
+              isNFTFromSubcategory = true;
+            }
+          }
+          if (!collections.some(obj => obj.nft_id === this.perfil.nfts_hedera[i].nft_id) && isNFTFromCategory && isNFTFromSubcategory) {
             collections.push({
               nft_id: this.perfil.nfts_hedera[i].nft_id,
               name: this.perfil.nfts_hedera[i].nft.name,
