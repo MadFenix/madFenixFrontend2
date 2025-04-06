@@ -5,16 +5,20 @@
           <img :src="perfil.avatar" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" class="h-full" />
           <a
               @click="categorySelected = categoryAvatars; subcategorySelected = null; showAvatarsModal = true"
-              class="absolute right-3 top-3 text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+              class="absolute right-3 top-3 text-center m-auto justify-center px-8 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-            </svg>
+            <div class="flex items-center justify-center h-full w-full text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+              </svg>
+            </div>
           </a>
           <a
               @click="categorySelected = categoryEstados; subcategorySelected = null; showEstadosModal = true"
-              class="absolute left-1/2 transform -translate-x-1/2 bottom-3 w-2/3 text-sm text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-              v-html="perfil.description" />
+              class="absolute left-1/2 transform -translate-x-1/2 bottom-3 w-2/3 text-sm text-center m-auto justify-center px-8 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+              >
+            <div class="flex items-center justify-center h-full w-full text-center" v-html="perfil.description" />
+          </a>
         </div>
 
         <div class="text-right col-span-1 px-6">
@@ -174,7 +178,7 @@
               Destino
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/influye" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+              <nuxt-link to="/influye" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris text-sm font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Influye en Névoran
               </nuxt-link>
             </div>
@@ -246,7 +250,7 @@
               </button>
             </div>
             <!-- Modal body -->
-            <div class="w-full p-3">
+            <div class="w-full p-3 overflow-y-auto" style="height: 500px">
               <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto">
                 <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
                   <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
@@ -255,7 +259,7 @@
                 </div>
               </div>
 
-              <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 px-6">
+              <div class="w-full grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-7 px-3 sm:px-6">
                 <template v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
                   <div v-if="countNFTsByid(nftCollection.nft_id) > 0 || nftCollection.subcategory == 'Gratis'">
                     <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[150px] mx-3 mt-12 sm:mx-auto bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
@@ -308,7 +312,7 @@
               </button>
             </div>
             <!-- Modal body -->
-            <div class="w-full p-3">
+            <div class="w-full p-3 overflow-y-auto" style="height: 500px">
               <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto">
                 <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
                   <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
@@ -317,7 +321,7 @@
                 </div>
               </div>
 
-              <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 px-6">
+              <div class="w-full grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-7 px-3 sm:px-6">
                 <template v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
                   <div v-if="countNFTsByid(nftCollection.nft_id) > 0 || nftCollection.subcategory == 'Gratis'">
                     <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[150px] mx-3 mt-12 sm:mx-auto bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
