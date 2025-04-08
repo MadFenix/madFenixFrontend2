@@ -24,10 +24,17 @@ export default defineNuxtConfig({
       ]
     },
   },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt'
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag', 'nuxt-meta-pixel'],
+  gtag: {
+    id: 'G-8RYGGHXWFG'
+  },
+  runtimeConfig: {
+    public: {
+      metapixel: {
+        default: { id: '9303409733121965', pageView: '/**' },
+      }
+    }
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true }
 })
