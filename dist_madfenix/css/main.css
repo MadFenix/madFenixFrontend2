@@ -18,6 +18,11 @@ aside {
     object-fit: cover;
 }
 
+#video-storemadfenix, #image-storemadfenix {
+    width: 100%;
+    object-fit: cover;
+}
+
 #title-nuestra-mision {
     opacity: 1;
 }

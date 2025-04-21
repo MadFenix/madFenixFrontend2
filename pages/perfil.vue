@@ -1,7 +1,7 @@
 <template>
     <div v-if="user.user && perfil">
       <div class="md:grid md:grid-cols-3 md:items-center border-y-2 border-madfenix-naranja bg-madfenix-gris">
-        <div class="relative col-span-1 h-full max-w-[380px]">
+        <div class="relative col-span-1 h-full max-w-[380px] max-h-[380px]">
           <img :src="perfil.avatar" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" class="h-full" />
           <a
               @click="categorySelected = categoryAvatars; subcategorySelected = null; showAvatarsModal = true"
