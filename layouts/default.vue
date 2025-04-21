@@ -460,7 +460,7 @@ import { useServerMessageStore } from "../stores/serverMessage"
 import VueCookieComply from '@ipaat/vue3-tailwind3-cookie-comply'
 import { ref } from 'vue'
 import Cookies from "js-cookie";
-import { nextTick } from 'vue';
+import { nextTick, watch } from 'vue';
 
 export default {
   components: {
@@ -549,6 +549,9 @@ export default {
     const { $api } = useNuxtApp();
     this.api = $api;
     this.fetchEvents();
+    watch(this.user.token, () => {
+      this.fetchEvents();
+    });
   },
 
   methods: {
