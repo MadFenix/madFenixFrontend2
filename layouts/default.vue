@@ -76,6 +76,17 @@
               Registro
             </nuxt-link>
           </div>
+          <div
+              class="flex justify-between items-center md:space-x-0.5 lg:space-x-2 text-xl md:text-base font-medium text-white cursor-pointer"
+              @click="fetchEvents(); showEventsModal = true;"
+          >
+            <div v-html="numberEventsNotRead" />
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+              </svg>
+            </span>
+          </div>
 
           <!-- Mobile menu container -->
           <div class="block md:hidden">
@@ -176,6 +187,120 @@
       </nav>
     </header>
     <slot />
+    <div v-if="showEventsModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden bg-madfenix-gris bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full">
+      <div class="flex items-center justify-center p-4 w-full h-screen">
+        <!-- Modal content -->
+        <div class="bg-madfenix-gris text-madfenix-blanco rounded-lg shadow border border-madfenix-blanco min-w-[300px]">
+          <!-- Modal header -->
+          <div class="flex justify-between items-start p-4 rounded-t border-b border-madfenix-blanco">
+            <h3 class="text-xl font-semibold" v-html="'Eventos'" />
+            <button type="button" @click="showEventsModal = false;" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span class="sr-only">Cerrar pantalla</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+            <div v-if="loadingEvents">Cargando eventos...</div>
+            <div v-else-if="!events || events.length <= 0">No tienes eventos.</div>
+            <div v-else v-for="eventToList in events" :key="eventToList.id">
+              <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden min-h-[100px] p-3" v-html="eventToList.description" />
+              <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+                <div class="flex justify-center">
+                  <!-- Botón: Siguiente paso -->
+                  <div>
+                    <span @click="viewEvent(eventToList)" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                      <span v-if="eventToList.read_at">Releer</span><span v-else>Leer</span>&nbsp;evento
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="showEventModal && event" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden bg-madfenix-gris bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full">
+      <div class="flex items-center justify-center p-4 w-full h-screen">
+        <!-- Modal content -->
+        <div class="bg-madfenix-gris text-madfenix-blanco rounded-lg shadow border border-madfenix-blanco">
+          <!-- Modal header -->
+          <div class="flex justify-between items-start p-4 rounded-t border-b border-madfenix-blanco">
+            <h3 class="text-xl font-semibold" v-html="event.description" />
+            <button type="button" @click="showEventModal = false;" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span class="sr-only">Cerrar pantalla</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+            <div>
+              <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden min-h-[100px] p-3" v-html="event.details" />
+              <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+                <div class="flex justify-center" v-if="event.product_gift_id">
+                  <!-- Botón: Siguiente paso -->
+                  <div>
+                    <span v-if="event.product_gift_delivered" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2">
+                      Recompensa obtenida
+                    </span>
+                    <span v-else @click="claimEventGift(event)" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                      Obtener recompensa
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="showProductsModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden bg-madfenix-gris bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full">
+      <div class="flex items-center justify-center p-4 w-full h-screen">
+        <!-- Modal content -->
+        <div class="bg-madfenix-gris text-madfenix-blanco rounded-lg shadow border border-madfenix-blanco">
+          <!-- Modal header -->
+          <div class="flex justify-between items-start p-4 rounded-t border-b border-madfenix-blanco">
+            <h3 class="text-xl font-semibold">
+              ¡Tus nuevos ítems!
+            </h3>
+            <button type="button" @click="showProductsModal = false; imageItemsReveal = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span class="sr-only">Cerrar pantalla</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+            <video id="video-storemadfenix" class="rounded rounded-3xl border border-2 border-madfenix-gris" playsinline @ended="revealImageItems()" v-if="!imageItemsReveal">
+              <source :src="videoNewItems" type="video/mp4">
+              Tu navegador no soporta el video.
+            </video>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2" v-if="imageItemsReveal && itemsPurchaseToShow">
+              <div v-for="nft in itemsPurchaseToShow.nfts" :key="nft.id">
+                <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+                  <img :src="nft.image" style="width: 100%;" :alt="nft.name" :title="nft.name" />
+
+                  <div class="px-6 mt-3 mb-10 relative z-50 w-full text-center text-madfenix-blanco" v-html="nft.name" />
+                </div>
+              </div>
+              <div v-if="itemsPurchaseToShow.plumas">
+                <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+                  <img :src="'/img/perfil/pluma.png'" style="width: 100%;" :alt="itemsPurchaseToShow.plumas" :title="itemsPurchaseToShow.plumas" />
+
+                  <div class="px-6 mt-3 mb-10 relative z-50 w-full text-center text-madfenix-blanco" v-html="itemsPurchaseToShow.plumas" />
+                </div>
+              </div>
+              <div v-if="itemsPurchaseToShow.oro">
+                <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+                  <img :src="'/img/perfil/oro.png'" style="width: 100%;" :alt="itemsPurchaseToShow.oro" :title="itemsPurchaseToShow.oro" />
+
+                  <div class="px-6 mt-3 mb-10 relative z-50 w-full text-center text-madfenix-blanco" v-html="itemsPurchaseToShow.oro" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer class="px-4 py-12 md:py-16 bg-madfenix-gris sm:px-6 lg:px-8">
       <div class="grid gap-8 mx-auto lg:max-w-screen-xl sm:max-w-3xl md:grid-cols-3 md:gap-y-12 lg:grid-cols-4">
         <!-- Logo and copyright text -->
@@ -335,6 +460,7 @@ import { useServerMessageStore } from "../stores/serverMessage"
 import VueCookieComply from '@ipaat/vue3-tailwind3-cookie-comply'
 import { ref } from 'vue'
 import Cookies from "js-cookie";
+import { nextTick } from 'vue';
 
 export default {
   components: {
@@ -389,7 +515,30 @@ export default {
           ],
         },
       ],
-      result: null
+      result: null,
+      events: [],
+      loadingEvents: false,
+      event: null,
+      showEventsModal: false,
+      showEventModal: false,
+      showProductsModal: false,
+      imageItemsReveal: false,
+      videoNewItems: '/video/MadFenixLogoReveal.mp4',
+      itemsPurchaseToShow: null,
+    }
+  },
+
+  computed: {
+    numberEventsNotRead() {
+      let numberEventsNotReadToReturn = 0;
+
+      for (let i = 0; i < this.events.length; i++) {
+        if (!this.events[i].read_at) {
+          numberEventsNotReadToReturn++;
+        }
+      }
+
+      return numberEventsNotReadToReturn;
     }
   },
 
@@ -399,9 +548,14 @@ export default {
 
     const { $api } = useNuxtApp();
     this.api = $api;
+    this.fetchEvents();
   },
 
   methods: {
+    revealImageItems() {
+      this.imageItemsReveal = true;
+    },
+
     afterLogout(){
       Cookies.remove('token')
       Cookies.remove('user')
@@ -424,6 +578,76 @@ export default {
       if (localStorage.getItem('user')) {
         this.user.user = JSON.parse(localStorage.getItem('user'));
       }
+    },
+
+    viewEvent(eventToShow) {
+      this.showEventsModal = false;
+      this.event = eventToShow;
+      this.readEvent(eventToShow);
+      this.showEventModal = true;
+    },
+
+    openNewItems(itemsPurchase) {
+      this.showEventModal = false;
+      this.event = null;
+      this.videoNewItems = itemsPurchase.video_purchase;
+      this.itemsPurchaseToShow = itemsPurchase;
+      if (itemsPurchase.video_purchase) {
+        this.imageItemsReveal = false;
+      } else {
+        this.imageItemsReveal = true;
+      }
+
+      this.showProductsModal = true;
+
+      if (itemsPurchase.video_purchase) {
+        nextTick(() => {
+          document.getElementById("video-storemadfenix").play();
+        });
+      }
+    },
+
+    validateProduct(product_order) {
+      this.api('/api/store/validateProductOrder', {
+        method: 'POST',
+        body: {product_order_id: product_order.id}
+      })
+          .then((response) => this.openNewItems(response))
+          .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+    },
+
+    claimEventGift(event) {
+      this.api('/api/store/addEventGiftToOrder', {
+        method: 'POST',
+        body: {event_id: event.id}
+      })
+          .then((response) => {
+            this.validateProduct(response);
+          })
+          .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+    },
+
+    readEvent(event) {
+      this.api('/api/event/readEvent', {
+        method: 'POST',
+        body: {event_id: event.id}
+      })
+          .then(() => {
+            this.fetchEvents();
+          })
+          .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+    },
+
+    fetchEvents() {
+      this.loadingEvents = true;
+      this.api('/api/event/list', {
+        method: 'GET'
+      })
+          .then((response) => {
+            this.loadingEvents = false;
+            this.events = response;
+          })
+          .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
     },
 
     onDecline(accepted) {
