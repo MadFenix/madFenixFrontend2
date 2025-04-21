@@ -203,7 +203,7 @@
           <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
             <div v-if="loadingEvents">Cargando eventos...</div>
             <div v-else-if="!events || events.length <= 0">No tienes eventos.</div>
-            <div v-else v-for="eventToList in events" :key="eventToList.id">
+            <div v-else v-for="eventToList in events" :key="eventToList.id" class="mt-3">
               <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden min-h-[100px] p-3" v-html="eventToList.description" />
               <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
                 <div class="flex justify-center">
