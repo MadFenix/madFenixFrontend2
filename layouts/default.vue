@@ -639,6 +639,9 @@ export default {
     },
 
     fetchEvents() {
+      if (!this.user.token) {
+        return;
+      }
       this.loadingEvents = true;
       this.api('/api/event/list', {
         method: 'GET'
