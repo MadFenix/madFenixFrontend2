@@ -200,7 +200,7 @@
             </button>
           </div>
           <!-- Modal body -->
-          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
             <div v-if="loadingEvents">Cargando eventos...</div>
             <div v-else-if="!events || events.length <= 0">No tienes eventos.</div>
             <div v-else v-for="eventToList in events" :key="eventToList.id">
@@ -233,7 +233,7 @@
             </button>
           </div>
           <!-- Modal body -->
-          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
             <div>
               <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden min-h-[100px] p-3" v-html="event.details" />
               <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
@@ -269,7 +269,7 @@
             </button>
           </div>
           <!-- Modal body -->
-          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
             <video id="video-storemadfenix" class="rounded rounded-3xl border border-2 border-madfenix-gris" playsinline @ended="revealImageItems()" v-if="!imageItemsReveal">
               <source :src="videoNewItems" type="video/mp4">
               Tu navegador no soporta el video.

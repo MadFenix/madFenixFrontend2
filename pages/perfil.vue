@@ -251,7 +251,7 @@
               </button>
             </div>
             <!-- Modal body -->
-            <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+            <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
               <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto">
                 <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
                   <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
@@ -313,7 +313,7 @@
               </button>
             </div>
             <!-- Modal body -->
-            <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+            <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
               <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto">
                 <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
                   <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">

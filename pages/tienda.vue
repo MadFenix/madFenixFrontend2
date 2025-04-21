@@ -87,7 +87,7 @@
             </button>
           </div>
           <!-- Modal body -->
-          <div class="w-full p-3 overflow-y-auto" style="height: 500px">
+          <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
             <video id="video-storemadfenix" class="rounded rounded-3xl border border-2 border-madfenix-gris" playsinline @ended="revealImageItems()" v-if="!imageItemsReveal">
               <source :src="videoNewItems" type="video/mp4">
               Tu navegador no soporta el video.
