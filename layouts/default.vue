@@ -525,6 +525,7 @@ export default {
       imageItemsReveal: false,
       videoNewItems: '/video/MadFenixLogoReveal.mp4',
       itemsPurchaseToShow: null,
+      watchUserToken: null,
     }
   },
 
@@ -549,7 +550,7 @@ export default {
     const { $api } = useNuxtApp();
     this.api = $api;
     this.fetchEvents();
-    watch(this.user.token, () => {
+    this.watchUserToken = watch(this.user.token, () => {
       this.events = [];
       this.fetchEvents();
     });
