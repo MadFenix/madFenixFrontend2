@@ -550,6 +550,7 @@ export default {
     this.api = $api;
     this.fetchEvents();
     watch(this.user.token, () => {
+      this.events = [];
       this.fetchEvents();
     });
   },
