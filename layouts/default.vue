@@ -543,6 +543,13 @@ export default {
     }
   },
 
+  watch: {
+    'user.token'() {
+      this.events = [];
+      this.fetchEvents();
+    }
+  },
+
   mounted() {
     this.setUserCookies();
     this.result = ref('Esperando la interacción del usuario...');
@@ -550,10 +557,6 @@ export default {
     const { $api } = useNuxtApp();
     this.api = $api;
     this.fetchEvents();
-    this.watchUserToken = watch(this.user.token, () => {
-      this.events = [];
-      this.fetchEvents();
-    });
   },
 
   methods: {
