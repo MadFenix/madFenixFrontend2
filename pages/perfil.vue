@@ -118,10 +118,6 @@
               Oros
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/canjear-cupon-oro" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-                Canjea un cupón
-              </nuxt-link>
-              <br>
               <nuxt-link to="/transfiere-oro-a-hedera-previo1" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Transfiere Oro
               </nuxt-link>
@@ -149,10 +145,6 @@
               Plumas
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/canjear-cupon" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-                Canjea un cupón
-              </nuxt-link>
-              <br>
               <nuxt-link to="/transfiere-plumas-a-hedera-previo1" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Transfiere Plumas
               </nuxt-link>
@@ -161,7 +153,7 @@
         </div>
       </section>
 
-      <section class="max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8">
+      <section class="max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
             <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
@@ -181,6 +173,32 @@
             <div class="botones-tokens">
               <nuxt-link to="/influye" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris text-sm font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Influye en Névoran
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8">
+        <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
+          <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
+            <h5 class="font-extrabold tracking-tight text-white text-size-token-number text-center w-full">
+              <span v-html="itemsStored" />
+            </h5>
+          </div>
+          <div class="sm:col-span-2 flex items-center justify-center bg-madfenix-azul">
+            <img src="/img/perfil/mochila.png" alt="Ítems" class="absolute z-50 h-1/2 sm:h-full" />
+            <svg class="inset-y-0 z-40 h-full text-madfenix-gris" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
+              <polygon points="0,0 100,0 0,100"></polygon>
+            </svg>
+          </div>
+          <div class="sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex items-center space-x-3 justify-center h-full bg-madfenix-azul sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end">
+            <h5 class="grow font-extrabold tracking-tight text-white text-size-token">
+              Ítems
+            </h5>
+            <div class="botones-tokens">
+              <nuxt-link to="/canjear-cupon" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                Canjea un cupón
               </nuxt-link>
             </div>
           </div>
@@ -516,16 +534,30 @@ export default {
     },
 
     pollsNotAnswered () {
-      let pollsNotAnswered = 0;
+      /*let pollsNotAnswered = 0;
       if (this.polls.polls) {
         for (let i = 0; i < this.polls.polls.length; i++) {
           if (!this.polls.polls[i].userAnswer) {
             pollsNotAnswered++;
           }
         }
+      }*/
+
+      return this.polls.polls.length;
+    },
+
+    itemsStored () {
+      let itemsNumber = 0;
+      if (this.perfil) {
+        for (let i = 0; i < this.perfil.nfts.length; i++) {
+          itemsNumber++;
+        }
+        for (let i = 0; i < this.perfil.nfts_hedera.length; i++) {
+          itemsNumber++;
+        }
       }
 
-      return pollsNotAnswered;
+      return itemsNumber;
     },
   },
 

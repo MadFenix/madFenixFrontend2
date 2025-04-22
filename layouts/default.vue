@@ -460,7 +460,7 @@ import { useServerMessageStore } from "../stores/serverMessage"
 import VueCookieComply from '@ipaat/vue3-tailwind3-cookie-comply'
 import { ref } from 'vue'
 import Cookies from "js-cookie";
-import { nextTick, watch } from 'vue';
+import { nextTick } from 'vue';
 
 export default {
   components: {
@@ -525,7 +525,6 @@ export default {
       imageItemsReveal: false,
       videoNewItems: '/video/MadFenixLogoReveal.mp4',
       itemsPurchaseToShow: null,
-      watchUserToken: null,
     }
   },
 
