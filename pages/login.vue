@@ -16,6 +16,7 @@
                   type="text"
                   v-model="signInData.email"
                   placeholder="Ingresa tu email"
+                  @keyup.enter="login()"
                   class="w-full text-madfenix-blanco text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
               />
             </div>
@@ -29,6 +30,7 @@
                   type="password"
                   v-model="signInData.password"
                   placeholder="Ingresa tu contraseña"
+                  @keyup.enter="login()"
                   class="w-full text-madfenix-blanco text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
               />
             </div>
@@ -134,7 +136,7 @@ export default {
         body: this.signInData
       })
         .then((response) => (response.token) ? this.afterLogin(response) : this.serverMessage.setServerMessage(response))
-        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
     },
 
     setUserCookies() {

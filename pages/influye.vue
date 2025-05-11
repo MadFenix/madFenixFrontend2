@@ -33,7 +33,7 @@
       </section>
 
       <template v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
-        <div class="w-full" v-if="nftCollection.name == 'Dragones Custodio'">
+        <div class="w-full" v-if="nftCollection.name == 'Cronistas'">
           <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[150px] mx-3 mt-4 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
             <img :src="nftCollection.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
             <div class="relative min-h-[150px] mb-0 p-6 z-50">
@@ -54,58 +54,63 @@
         </div>
       </template>
 
-      <div class="w-full" v-if="this.polls.polls" v-for="(poll, indexPoll) in this.polls.polls" :key="poll.id">
-        <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[500px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
-          <img :src="poll.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
-          <template v-if="currentListAnswers[indexPoll]">
-            <div class="overflow-y-auto h-[430px] mt-3">
-              <div class="relative w-full text-center mb-0 p-2 z-50 text-madfenix-blanco" v-for="(currentAnswer, indexCurrentAnswer) in currentListAnswers[indexPoll]" :key="indexCurrentAnswer" v-html="'@' + currentAnswer.username + ': ' + currentAnswer.answer" />
-            </div>
-          </template>
-          <template v-else>
-            <div class="relative min-h-[500px] mb-0 p-6 z-50 text-madfenix-blanco" v-html="poll.description" />
-          </template>
+      <div class="w-full" v-if="this.eventos" v-for="(evento, indexEvento) in this.eventos" :key="indexEvento">
+        <div class="max-w-screen-xl px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8">
+          <h2 class="px-4 sm:px-16 text-madfenix-blanco text-center capitalize-first" v-html="evento.name" />
         </div>
-        <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
-          <div class="flex space-x-3 justify-center">
-            <template v-if="poll.answers && poll.answers != ''">
-              <div v-for="(answer, indexAnswer) in poll.answers" :key="indexAnswer" class=" text-center">
-                <a
-                    @click="vote(poll, answer)"
-                    class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                    v-html="answer.description + '<br>(' + answer.votes + '%' + answerUser(poll, answer) + ')'"
-                />
+        <div class="w-full" v-if="evento.polls" v-for="(poll, indexPoll) in evento.polls" :key="poll.id">
+          <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[500px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
+            <img :src="poll.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
+            <template v-if="currentListAnswers[indexPoll]">
+              <div class="overflow-y-auto h-[430px] mt-3">
+                <div class="relative w-full text-center mb-0 p-2 z-50 text-madfenix-blanco" v-for="(currentAnswer, indexCurrentAnswer) in currentListAnswers[indexPoll]" :key="indexCurrentAnswer" v-html="'@' + currentAnswer.username + ': ' + currentAnswer.answer" />
               </div>
             </template>
             <template v-else>
-              <template v-if="poll.userAnswer">
-                <a
-                    v-if="!currentListAnswers[indexPoll]"
-                    @click="currentListAnswers[indexPoll] = poll.customAnswers"
-                    class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                    v-html="'Listar respuesta'"
-                />
-                <a
-                    v-else
-                    @click="currentListAnswers[indexPoll] = null"
-                    class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                    v-html="'Ocultar respuesta'"
-                />
+              <div class="absolute bottom-0 w-full mb-0 p-6 z-50 text-madfenix-blanco background-destino" v-html="poll.description" />
+            </template>
+          </div>
+          <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
+            <div class="flex space-x-3 justify-center">
+              <template v-if="poll.answers && poll.answers != ''">
+                <div v-for="(answer, indexAnswer) in poll.answers" :key="indexAnswer" class=" text-center">
+                  <a
+                      @click="vote(poll, answer)"
+                      class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                      v-html="answer.description + '<br>(' + answer.votes + '%' + answerUser(poll, answer) + ')'"
+                  />
+                </div>
               </template>
               <template v-else>
-                <input
-                    type="text"
-                    v-model="customAnswers[index]"
-                    class="w-full text-madfenix-blanco text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
-                    placeholder="Respuesta"
-                />
-                <a
-                    @click="vote(poll, customAnswers[index])"
-                    class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                    v-html="'Votar'"
-                />
+                <template v-if="poll.userAnswer">
+                  <a
+                      v-if="!currentListAnswers[indexPoll]"
+                      @click="currentListAnswers[indexPoll] = poll.customAnswers"
+                      class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                      v-html="'Listar respuesta'"
+                  />
+                  <a
+                      v-else
+                      @click="currentListAnswers[indexPoll] = null"
+                      class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                      v-html="'Ocultar respuesta'"
+                  />
+                </template>
+                <template v-else>
+                  <input
+                      type="text"
+                      v-model="customAnswers[index]"
+                      class="w-full text-madfenix-blanco text-center text-3xl rounded-tl-3xl rounded-br-3xl bg-madfenix-gris py-4 pl-10 pr-3 border-2 border-madfenix-gris focus:border-madfenix-naranja"
+                      placeholder="Respuesta"
+                  />
+                  <a
+                      @click="vote(poll, customAnswers[index])"
+                      class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                      v-html="'Votar'"
+                  />
+                </template>
               </template>
-            </template>
+            </div>
           </div>
         </div>
       </div>
@@ -160,6 +165,28 @@ export default {
   },
 
   computed: {
+    eventos() {
+      let eventos = [];
+      let currentPoll = null;
+      let pastPoll = null;
+      if (this.polls && this.polls.polls) {
+        for (let i = 0; i < this.polls.polls.length; i++) {
+          currentPoll = this.polls.polls[i];
+          if (!pastPoll || pastPoll.name != currentPoll.name) {
+            eventos.push({
+              name: currentPoll.name,
+              polls: [currentPoll]
+            });
+          } else {
+            eventos[eventos.length - 1].polls.push(currentPoll);
+          }
+          pastPoll = this.polls.polls[i];
+        }
+      }
+
+      return eventos;
+    },
+
     nftCollections() {
       let collections = [];
       if (this.perfil && this.perfil.nfts) {

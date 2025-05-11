@@ -1,102 +1,130 @@
 <template>
     <div v-if="user.user && perfil">
       <div class="md:grid md:grid-cols-3 md:items-center border-y-2 border-madfenix-naranja bg-madfenix-gris">
-        <div class="relative col-span-1 h-full max-w-[380px] max-h-[380px]">
+        <div class="relative col-span-1 h-full sm:max-w-[380px] sm:max-h-[380px] sm:min-w-[300px] sm:min-h-[300px]">
           <img :src="perfil.avatar" alt="Avatar perfil Mad Fénix" title="Avatar perfil Mad Fénix" class="h-full" />
           <a
               @click="categorySelected = categoryAvatars; subcategorySelected = null; showAvatarsModal = true"
-              class="absolute right-3 top-3 text-center m-auto justify-center px-8 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+              class="absolute right-3 bottom-3 sm:right-[-15px] sm:bottom-[-15px] text-center m-auto justify-center px-4 btn-madfenix text-madfenix-gris font-extrabold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
           >
             <div class="flex items-center justify-center h-full w-full text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
               </svg>
             </div>
           </a>
+        </div>
+
+        <div class="relative text-left col-span-2 px-9 h-full min-w-[300px] min-h-[300px]">
+          <div v-html="'@' + user.user.name" class="mt-9 text-3xl orbitron-medium sm:text-5xl font-black text-madfenix-naranja my-3 w-full text-left" />
           <a
               @click="categorySelected = categoryEstados; subcategorySelected = null; showEstadosModal = true"
-              class="absolute left-1/2 transform -translate-x-1/2 bottom-3 w-2/3 text-sm text-center m-auto justify-center px-8 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-              >
-            <div class="flex items-center justify-center h-full w-full text-center" v-html="perfil.description" />
+              class="flex space-x-3 items-center justify-start text-xl sm:text-2xl orbitron-normal text-white my-3 cursor-pointer"
+          >
+            <div class="flex items-center justify-center h-full text-center" v-html="perfil.description" />
+            <div
+                class="text-center m-auto justify-center px-1 btn-madfenix-icon text-madfenix-gris font-extrabold leading-snug transition ease-in-out h-7 lg:h-9 duration-250 text-madfenix-naranja bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+            >
+              <div class="flex items-center justify-center h-full w-full text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                </svg>
+              </div>
+            </div>
+          </a>
+          <div class="absolute right-3 bottom-3">
+            <div class="flex items-center space-x-3 justify-center my-3 text-xs lg:text-sm">
+              <div v-if="perfil && perfil.user_twitch" class="flex items-center space-x-3 text-white text-center">
+                <span v-html="perfil.user_twitch" />
+                <a @click="desconectarTwitch()" class="cursor-pointer">
+                  <img src="/img/perfil/twitch_account.svg" alt="Desconectar Twitch" title="Desconectar Twitch" class="w-[50px] lg:w-[50px]">
+                </a>
+              </div>
+              <div v-else class="flex items-center space-x-3 text-white text-center">
+                <span v-html="'Vincular Twitch'" />
+                <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.user.id" class="cursor-pointer">
+                  <img src="/img/perfil/twitch_account.svg" alt="Conectar Twitch" title="Conectar Twitch" class="w-[50px] lg:w-[50px]">
+                </a>
+              </div>
+              <div v-html="user.user.email" class="text-xs lg:text-sm text-white my-3" />
+              <div>
+                <a @click="logout()" class="cursor-pointer">
+                  <img src="/img/perfil/logout.svg" alt="Logout" title="Logout" class="w-[50px] lg:w-[50px]">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sm:flex space-x-5 justify-center items-center px-5 border-b-2 border-madfenix-naranja bg-madfenix-gris">
+        <div v-if="perfil && perfil.hedera_wallet" class="py-4 text-white text-center text-sm">
+          Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
+        </div>
+        <div v-else-if="perfil && perfil.hedera_wallet_check" class="py-4">
+          <nuxt-link to="/vincular-wallet-hedera-2"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            Vincular hedera
+          </nuxt-link>
+        </div>
+        <div v-else class="py-4">
+          <nuxt-link to="/vincular-wallet-hedera"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            Vincular hedera
+          </nuxt-link>
+        </div>
+
+        <div v-if="perfil && perfil.referred_code_from" class="py-4 text-white text-center text-sm">
+          Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
+        </div>
+        <div v-else class="py-4">
+          <nuxt-link to="/vincular-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            Vincular código de referido
+          </nuxt-link>
+        </div>
+
+        <div v-if="perfil && perfil.referred_code" class="py-4 text-white text-center text-sm">
+          Tu código de referido: <span v-html="perfil.referred_code" /> (<span v-html="perfil.count_refered" />)&nbsp;
+        </div>
+        <div v-else class="py-4">
+          <nuxt-link to="/crear-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            Crear código de referido
+          </nuxt-link>
+        </div>
+
+        <div v-if="perfil && perfil.user_steam" class="py-4 w-full text-white text-center hidden text-sm">
+          Conectad@ con <span v-html="perfil.user_steam" />.&nbsp;
+          <a @click="desconectarSteam()" class="text-white underline font-semibold hover:no-underline">
+            Desconectar Steam
+          </a>
+        </div>
+        <div v-else class="py-4 hidden text-sm lg:text-xl">
+          <a @click="conectarSteam()" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            Conectar Steam
           </a>
         </div>
 
-        <div class="text-right col-span-1 px-6">
-          <div v-html="'@' + user.user.name" class="text-sm lg:text-xl font-black text-madfenix-naranja my-3" />
-          <div v-html="user.user.email" class="text-sm lg:text-xl text-white my-3" />
-          <div v-if="perfil && perfil.count_refered > 0" v-html="'Personas referidas: ' + perfil.count_refered" class="text-sm lg:text-xl text-white my-3" />
-          <div class="flex space-x-3 justify-end my-3">
-            <div v-if="perfil && perfil.user_twitch" class="flex items-center space-x-3 text-white text-center">
-              <a @click="desconectarTwitch()" class="cursor-pointer">
-                <img src="/img/perfil/twitch_account.svg" alt="Desconectar Twitch" title="Desconectar Twitch" class="w-[50px] lg:w-[70px]">
-              </a>
-              <span v-html="perfil.user_twitch" />
+        <div class="py-4 flex items-center">
+          <nuxt-link to="/eliminar-cuenta" class="text-center m-auto justify-center px-1 btn-madfenix-icon text-madfenix-gris font-extrabold leading-snug transition ease-in-out h-7 lg:h-9 duration-250 text-madfenix-naranja bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <div class="flex items-center justify-center h-full w-full text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-8 text-madfenix-rojo">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+              </svg>
             </div>
-            <div v-else>
-              <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.user.id" class="cursor-pointer">
-                <img src="/img/perfil/twitch_account.svg" alt="Conectar Twitch" title="Conectar Twitch" class="w-[50px] lg:w-[70px]">
-              </a>
-            </div>
-
-            <div>
-              <a @click="logout()" class="cursor-pointer">
-                <img src="/img/perfil/logout.svg" alt="Logout" title="Logout" class="w-[50px] lg:w-[70px]">
-              </a>
-            </div>
-          </div>
+          </nuxt-link>
         </div>
+      </div>
 
-        <div class="col-span-1 px-6">
-          <div v-if="perfil && perfil.hedera_wallet" class="my-4 w-full text-white text-center text-sm lg:text-xl">
-            Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
-          </div>
-          <div v-else-if="perfil && perfil.hedera_wallet_check" class="my-4">
-            <nuxt-link to="/vincular-wallet-hedera-2"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-              Vincular hedera
-            </nuxt-link>
-          </div>
-          <div v-else class="my-4">
-            <nuxt-link to="/vincular-wallet-hedera"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-              Vincular hedera
-            </nuxt-link>
-          </div>
-
-          <div v-if="perfil && perfil.referred_code_from" class="my-4 w-full text-white text-center text-sm lg:text-xl">
-            Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
-          </div>
-          <div v-else class="my-4">
-            <nuxt-link to="/vincular-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-              Vincular código de referido
-            </nuxt-link>
-          </div>
-
-          <div v-if="perfil && perfil.referred_code" class="my-4 w-full text-white text-center text-sm lg:text-xl">
-            Tu código de referido: <span v-html="perfil.referred_code" />.&nbsp;
-          </div>
-          <div v-else class="my-4">
-            <nuxt-link to="/crear-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-              Crear código de referido
-            </nuxt-link>
-          </div>
-
-          <div v-if="perfil && perfil.user_steam" class="my-4 w-full text-white text-center hidden text-sm lg:text-xl">
-            Conectad@ con <span v-html="perfil.user_steam" />.&nbsp;
-            <a @click="desconectarSteam()" class="text-white underline font-semibold hover:no-underline">
-              Desconectar Steam
-            </a>
-          </div>
-          <div v-else class="my-4 hidden text-sm lg:text-xl">
-            <a @click="conectarSteam()" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-              Conectar Steam
-            </a>
-          </div>
-
-          <div class="my-4">
-            <nuxt-link to="/eliminar-cuenta" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-              Eliminar cuenta
-            </nuxt-link>
-          </div>
+      <div class="flex items-center justify-center px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8">
+        <div>
+          <nuxt-link to="/canjear-cupon" class="flex items-center uppercase orbitron-medium w-full m-auto justify-center px-8 py-4 btn-madfenix text-2xl text-madfenix-gris font-extrabold bg-madfenix-naranja leading-snug transition ease-in-out h-12 sm:h-16 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            Canjea un cupón
+          </nuxt-link>
         </div>
+      </div>
+
+      <div class="max-w-screen-xl px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8">
+        <h2 class="px-4 sm:px-16 text-madfenix-blanco text-center lowercase">
+          <span class="uppercase">M</span>onedas
+        </h2>
       </div>
 
       <section class="max-w-screen-xl px-4 py-7 pt-12 mx-auto md:py-7 md:pt-16 sm:px-6 lg:px-8">
@@ -153,6 +181,10 @@
         </div>
       </section>
 
+      <div class="max-w-screen-xl px-4 py-6 mx-auto md:py-8 sm:px-6 lg:px-8 w-full flex justify-center">
+        <img class="px-4 sm:px-16 h-[55px]" src="/img/perfil/separador_plumas.png" />
+      </div>
+
       <section class="max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
@@ -179,6 +211,10 @@
         </div>
       </section>
 
+      <div class="max-w-screen-xl px-4 py-6 mx-auto md:py-8 sm:px-6 lg:px-8 w-full flex justify-center">
+        <img class="px-4 sm:px-16 h-[55px]" src="/img/perfil/separador_plumas.png" />
+      </div>
+
       <section class="max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8">
         <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
           <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-madfenix-gris">
@@ -197,25 +233,42 @@
               Ítems
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/canjear-cupon" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
-                Canjea un cupón
-              </nuxt-link>
+              &nbsp;
             </div>
           </div>
         </div>
       </section>
 
-      <div v-if="perfil && perfil.nft_categories" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto sm:w-3/4 ">
+      <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
+        <h2 class="px-4 sm:px-16 text-madfenix-blanco text-center lowercase">
+          <span class="uppercase">C</span>olecciones
+        </h2>
+      </div>
+
+      <div v-if="perfil && perfil.nft_categories" class="flex flex-wrap justify-center space-x-3 bg-madfenix-naranja py-2">
         <div class="py-2 md:py-2" v-for="(nftCategory, indexNftCategory) in perfil.nft_categories" :key="indexNftCategory">
-          <a @click="categorySelected = nftCategory; subcategorySelected = null" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <a
+              @click="categorySelected = nftCategory; subcategorySelected = null"
+              class="flex items-center hover:orbiton-medium w-full m-auto justify-center px-8 py-4 btn-madfenix hover:text-madfenix-naranja hover:bg-madfenix-gris font-semibold leading-snug transition ease-in-out h-10 lg:h-14 duration-250 border-madfenix-naranja border-2 cursor-pointer"
+              :class="{
+                'orbitron-normal text-madfenix-gris bg-madfenix-naranja': categorySelected != nftCategory,
+                'orbitron-medium text-madfenix-naranja bg-madfenix-gris': categorySelected == nftCategory
+              }"
+          >
             <span v-html="nftCategory.name" />
           </a>
         </div>
       </div>
 
-      <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 max-w-screen-xl mx-auto sm:w-3/4 ">
+      <div v-if="perfil && categorySelected" class="flex flex-wrap justify-center space-x-3 mt-3 max-w-screen-xl mx-auto sm:w-3/4 background-subcategories">
         <div class="py-2 md:py-2" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
-          <a @click="subcategorySelected = nftSubcategory" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <a @click="subcategorySelected = nftSubcategory"
+             class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix font-semibold leading-snug transition ease-in-out h-10 lg:h-14 duration-250 cursor-pointer"
+             :class="{
+                'text-madfenix-blanco': subcategorySelected != nftSubcategory,
+                'text-madfenix-naranja underline': subcategorySelected == nftSubcategory
+              }"
+          >
             <span v-html="nftSubcategory" />
           </a>
         </div>
@@ -231,22 +284,24 @@
           </div>
           <div class="relative sm:mx-auto px-4 z-50 contenedor-botones-formularios">
             <div class="flex justify-center">
-              <div class="flex space-x-3">
+              <div class="grid grid-cols-10 gap-3">
+                <NuxtLink
+                    :to="'/coleccion/?nft_id=' + nftCollection.nft_id"
+                    class="flex items-center col-span-6 m-auto justify-center px-3 py-4 btn-madfenix text-xs text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                    v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'"
+                />
                 <a
                     v-if="nftCollection.token_number > 0"
                     :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
                     target="_blank"
-                    class="flex justify-center items-center text-center m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
+                    class="flex justify-center col-span-4 space-x-3 items-center text-center m-auto justify-center px-2 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer group"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                   </svg>
+                  <img src="/img/perfil/kabila.png" title="Mercado Secundario" class="w-6 h-6 group-hover:hidden" />
+                  <img src="/img/perfil/kabila-hover.png" title="Mercado Secundario" class="w-6 h-6 hidden group-hover:block" />
                 </a>
-                <NuxtLink
-                    :to="'/coleccion/?nft_id=' + nftCollection.nft_id"
-                    class="flex items-center grow m-auto justify-center px-8 py-4 btn-madfenix text-xs text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
-                    v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'"
-                />
               </div>
             </div>
           </div>
@@ -585,6 +640,10 @@ export default {
 
     afterPerfil(response) {
       this.perfil = response;
+
+      if (!this.categorySelected && this.perfil.nft_categories[2] !== undefined) {
+        this.categorySelected = this.perfil.nft_categories[2]
+      }
     },
 
     getPerfil() {
@@ -627,7 +686,7 @@ export default {
           method: 'POST'
         })
             .then((response) => this.getPerfil())
-            .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+            .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
       }
     },
 
@@ -636,7 +695,7 @@ export default {
         method: 'POST'
       })
         .then((response) => this.getPerfil())
-        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : this.serverMessage.setServerMessage(error.message) : this.serverMessage.setServerMessage('Error.'))
+        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
     },
 
     conectarSteam() {

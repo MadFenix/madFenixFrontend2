@@ -12,6 +12,10 @@ aside {
     border-radius: 25px 0px;
 }
 
+.btn-madfenix-icon {
+    border-radius: 10px 0px;
+}
+
 #video-logomadfenix, #image-logomadfenix {
     width: 100vw;
     max-height: 80vh;
@@ -88,6 +92,13 @@ aside {
   font-style: normal;
 }
 
+.orbitron-normal {
+  font-family: "Orbitron", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
 .orbitron-medium {
   font-family: "Orbitron", serif;
   font-optical-sizing: auto;
@@ -107,6 +118,7 @@ h3, h4, h5 {
     font-size: 22px !important;
 }
 h6 {
+    font-family: "Poppins", serif;
     font-size: 22px !important;
 }
 @media screen and (max-width: 768px) {
@@ -142,4 +154,23 @@ h6 {
           4px -4px 0 black,
           -4px  4px 0 black,
           4px  4px 0 black;
+}
+
+.background-subcategories {
+    /* UI Properties */
+    background: #161616 0% 0% no-repeat padding-box;
+    border-radius: 20px 0px;
+    opacity: 0.56;
+}
+
+.background-destino {
+    /* UI Properties */
+    background-color: rgba(22, 22, 22, 0.5)
+}
+
+.capitalize-first::first-letter {
+    text-transform: uppercase;
+}
+.capitalize-first {
+    text-transform: lowercase;
 }
