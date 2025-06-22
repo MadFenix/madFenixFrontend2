@@ -41,7 +41,7 @@
 
           <!-- Enlace para "¿Has olvidado el password?" -->
           <div class="mt-5 flex justify-center">
-            <NuxtLink to="/recordar-password" class="text-madfenix-azul hover:underline">
+            <NuxtLink :to="'/' + accountParameterToUrl + 'recordar-password'" class="text-madfenix-azul hover:underline">
               ¿Has olvidado el password?
             </NuxtLink>
           </div>
@@ -52,7 +52,7 @@
           <!-- Botón: Perfil -->
           <div class="contenedor-boton-left-formularios">
             <NuxtLink
-                to="/registro"
+                :to="'/' + accountParameterToUrl + 'registro'"
                 class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
             >
               Registro

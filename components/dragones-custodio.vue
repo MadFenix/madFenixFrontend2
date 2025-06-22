@@ -39,7 +39,7 @@
             </div>
             <!-- Hero buttons -->
             <div class="z-30 mt-10 sm:flex sm:justify-center lg:justify-start">
-              <a class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-gris rounded-full h-14 duration-250 text-madfenix-naranja hover:text-madfenix-blanco focus:outline-none hover:bg-dark-900" href="/dragones-custodio#utilidades">
+              <a class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-gris rounded-full h-14 duration-250 text-madfenix-naranja hover:text-madfenix-blanco focus:outline-none hover:bg-dark-900" :href="'/' + accountParameterToUrl + 'dragones-custodio#utilidades'">
                 Ver utilidades
               </a>
             </div>

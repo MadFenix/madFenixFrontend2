@@ -9,7 +9,7 @@
       <!-- Contenedor para el botón -->
       <div class="flex justify-center">
         <NuxtLink
-            to="/registro"
+            :to="'/' + accountParameterToUrl + 'registro'"
             class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded"
         >
           Registro gratuito

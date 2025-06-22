@@ -177,7 +177,7 @@ export default {
       this.user.setToken('')
       this.user.setUserToNull()
       this.user.removeUser()
-      setTimeout(() => this.$router.push({ path: '/login' }), 2000)
+      setTimeout(() => this.$router.push({ path: '/'+ this.accountParameterToUrl + 'login' }), 2000)
     },
 
     logout () {
@@ -218,7 +218,7 @@ export default {
           });
         }
       } else {
-        this.$router.push({ path: '/perfil' })
+        this.$router.push({ path: '/'+ this.accountParameterToUrl + 'perfil' })
       }
 
       this.getStoreDetails()

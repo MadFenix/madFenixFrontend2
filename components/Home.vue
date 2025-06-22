@@ -74,7 +74,7 @@
                   </div>
                 </div>
                 <div class="mt-8">
-                  <nuxt-link to="/habitos" class="mt-3 relative inline-flex items-center justify-center w-auto h-12 px-8 text-base font-medium leading-snug text-white md:h-14 group">
+                  <nuxt-link :to="'/' + accountParameterToUrl + 'habitos'" class="mt-3 relative inline-flex items-center justify-center w-auto h-12 px-8 text-base font-medium leading-snug text-white md:h-14 group">
                     <span class="absolute top-0 left-0 z-10 block w-full h-full transition-all ease-in-out rounded-full bg-gradient-to-r duration-250 from-dark-800 to-dark-900 md:w-14 md:group-hover:w-full"></span>
                     <span class="relative z-20">Configurar</span>
                   </nuxt-link>
@@ -85,7 +85,7 @@
 
             <!-- Juego 2 -->
             <div class="max-w-lg mx-auto shadow-xl rounded-3xl bg-dark-700">
-              <!--<nuxt-link to="/blog/2024-03-12-tokens-mad-fenix">-->
+              <!--<nuxt-link :to="'/' + accountParameterToUrl + 'blog/2024-03-12-tokens-mad-fenix'">-->
               <div class="w-full">
                 <img src="/img/games/2elevado/portadaStores.jpg" class="w-full max-h-[250px] rounded-t-3xl" title="2 Elevado" />
               </div>
@@ -192,7 +192,7 @@
             </div>
             <!-- Hero buttons -->
             <div class="z-30 mt-10 sm:flex sm:justify-center lg:justify-start">
-              <a class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-gris rounded-full h-14 duration-250 text-madfenix-naranja hover:text-madfenix-blanco focus:outline-none hover:bg-dark-900" href="/dragones-custodio#utilidades">
+              <a class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-madfenix-gris rounded-full h-14 duration-250 text-madfenix-naranja hover:text-madfenix-blanco focus:outline-none hover:bg-dark-900" :href="'/' + accountParameterToUrl + 'dragones-custodio#utilidades'">
                 Ver utilidades
               </a>
             </div>
@@ -354,7 +354,7 @@ export default {
       this.user.setToken('')
       this.user.setUserToNull()
       this.user.removeUser()
-      setTimeout(() => this.$router.push({ path: '/login' }), 2000)
+      setTimeout(() => this.$router.push({ path: '/'+ this.accountParameterToUrl + 'login' }), 2000)
     },
 
     logout () {

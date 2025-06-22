@@ -54,7 +54,7 @@
                 <input type="checkbox" v-model="signUpCheck" class="form-checkbox h-5 w-5 text-blue-500" />
               </div>
               <div class="col-span-10 text-madfenix-blanco">
-                Acepto los <a href="/condiciones" target="_blank" class="text-blue-500 hover:underline">términos y condiciones</a>
+                Acepto los <a :href="'/' + accountParameterToUrl + 'condiciones'" target="_blank" class="text-blue-500 hover:underline">términos y condiciones</a>
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@
         <div class="flex justify-center">
           <!-- Botón: Perfil -->
           <div class="contenedor-boton-left-formularios">
-            <nuxt-link to="/login" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'login'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
               Volver al Login
             </nuxt-link>
           </div>
@@ -173,7 +173,7 @@ export default {
         method: 'POST',
         body: this.signUpData
       })
-        .then((response) => (response === 'User registered') ? this.$router.push({ path: '/login' }) : this.serverMessage.setServerMessage(response))
+        .then((response) => (response === 'User registered') ? this.$router.push({ path: '/'+ this.accountParameterToUrl + 'login' }) : this.serverMessage.setServerMessage(response))
     },
 
     setUserCookies() {

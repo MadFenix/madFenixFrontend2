@@ -29,7 +29,7 @@
         <div class="flex justify-center">
           <!-- Botón: Perfil -->
           <div class="contenedor-boton-left-formularios">
-            <nuxt-link to="/login" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'login'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
               Volver al Login
             </nuxt-link>
           </div>

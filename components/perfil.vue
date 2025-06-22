@@ -62,12 +62,12 @@
           Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
         </div>
         <div v-else-if="perfil && perfil.hedera_wallet_check" class="py-4">
-          <nuxt-link to="/vincular-wallet-hedera-2"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-wallet-hedera-2'"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
             Vincular hedera
           </nuxt-link>
         </div>
         <div v-else class="py-4">
-          <nuxt-link to="/vincular-wallet-hedera"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-wallet-hedera'"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
             Vincular hedera
           </nuxt-link>
         </div>
@@ -76,7 +76,7 @@
           Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
         </div>
         <div v-else class="py-4">
-          <nuxt-link to="/vincular-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-codigo-referido'"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
             Vincular código de referido
           </nuxt-link>
         </div>
@@ -85,7 +85,7 @@
           Tu código de referido: <span v-html="perfil.referred_code" /> (<span v-html="perfil.count_refered" />)&nbsp;
         </div>
         <div v-else class="py-4">
-          <nuxt-link to="/crear-codigo-referido"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <nuxt-link :to="'/' + accountParameterToUrl + 'crear-codigo-referido'"  class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
             Crear código de referido
           </nuxt-link>
         </div>
@@ -103,7 +103,7 @@
         </div>
 
         <div class="py-4 flex items-center">
-          <nuxt-link to="/eliminar-cuenta" class="text-center m-auto justify-center px-1 btn-madfenix-icon text-madfenix-gris font-extrabold leading-snug transition ease-in-out h-7 lg:h-9 duration-250 text-madfenix-naranja bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <nuxt-link :to="'/' + accountParameterToUrl + 'eliminar-cuenta'" class="text-center m-auto justify-center px-1 btn-madfenix-icon text-madfenix-gris font-extrabold leading-snug transition ease-in-out h-7 lg:h-9 duration-250 text-madfenix-naranja bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
             <div class="flex items-center justify-center h-full w-full text-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-8 text-madfenix-rojo">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
@@ -115,7 +115,7 @@
 
       <div class="flex items-center justify-center px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8">
         <div>
-          <nuxt-link to="/canjear-cupon" class="flex items-center uppercase orbitron-medium w-full m-auto justify-center px-8 py-4 btn-madfenix text-2xl text-madfenix-gris font-extrabold bg-madfenix-naranja leading-snug transition ease-in-out h-12 sm:h-16 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+          <nuxt-link :to="'/' + accountParameterToUrl + 'canjear-cupon'" class="flex items-center uppercase orbitron-medium w-full m-auto justify-center px-8 py-4 btn-madfenix text-2xl text-madfenix-gris font-extrabold bg-madfenix-naranja leading-snug transition ease-in-out h-12 sm:h-16 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
             Canjea un cupón
           </nuxt-link>
         </div>
@@ -146,7 +146,7 @@
               Oros
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/transfiere-oro-a-hedera-previo1" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+              <nuxt-link :to="'/' + accountParameterToUrl + 'transfiere-oro-a-hedera-previo1'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Transfiere Oro
               </nuxt-link>
             </div>
@@ -173,7 +173,7 @@
               Plumas
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/transfiere-plumas-a-hedera-previo1" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+              <nuxt-link :to="'/' + accountParameterToUrl + 'transfiere-plumas-a-hedera-previo1'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Transfiere Plumas
               </nuxt-link>
             </div>
@@ -203,7 +203,7 @@
               Destino
             </h5>
             <div class="botones-tokens">
-              <nuxt-link to="/influye" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris text-sm font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+              <nuxt-link :to="'/' + accountParameterToUrl + 'influye'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris text-sm font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
                 Influye en Névoran
               </nuxt-link>
             </div>
@@ -631,7 +631,7 @@ export default {
       this.user.setToken('')
       this.user.setUserToNull()
       this.user.removeUser()
-      setTimeout(() => this.$router.push({ path: '/login' }), 2000)
+      setTimeout(() => this.$router.push({ path: '/'+ this.accountParameterToUrl + 'login' }), 2000)
     },
 
     logout () {

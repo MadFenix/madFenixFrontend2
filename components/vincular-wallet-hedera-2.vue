@@ -19,7 +19,7 @@
           <!-- Botón para ir al perfil -->
           <div class="my-5">
             <nuxt-link
-                to="/perfil"
+                :to="'/' + accountParameterToUrl + 'perfil'"
                 class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer"
             >
               Perfil
@@ -31,7 +31,7 @@
         <div class="flex justify-center">
           <!-- Botón: Perfil -->
           <div class="contenedor-boton-left-formularios">
-            <nuxt-link to="/perfil" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'perfil'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
               Volver al Perfil
             </nuxt-link>
           </div>
@@ -103,7 +103,7 @@ export default {
       this.user.setToken('')
       this.user.setUserToNull()
       this.user.removeUser()
-      setTimeout(() => this.$router.push({ path: '/login' }), 2000)
+      setTimeout(() => this.$router.push({ path: '/'+ this.accountParameterToUrl + 'login' }), 2000)
     },
 
     logout () {
