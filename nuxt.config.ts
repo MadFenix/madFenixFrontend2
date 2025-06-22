@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -25,6 +24,11 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag', 'nuxt-meta-pixel'],
+
+  routeRules: {
+    "/": { prerender: true },
+  },
+
   gtag: {
     id: 'G-8RYGGHXWFG'
   },
@@ -36,5 +40,5 @@ export default defineNuxtConfig({
     }
   },
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true }
+  devtools: { enabled: false }
 })
