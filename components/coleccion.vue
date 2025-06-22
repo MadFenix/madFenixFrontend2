@@ -1,44 +1,44 @@
 <template>
-    <div v-if="user.user && perfil" class="mb-4">
-      <div class="w-full" v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
-        <div class="relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-madfenix-gris border border-madfenix-naranja overflow-hidden">
-          <img :src="nftCollection.featured_image" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
-          <div class="relative min-h-[300px] mb-0 p-6 z-50">
+    <div v-if="user.user && perfil" :class="`mb-4`">
+      <div :class="`w-full`" v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
+        <div :class="`relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto sm:w-2/3 bg-[color:var(--gris)] border border-[color:var(--naranja)] overflow-hidden`">
+          <img :src="nftCollection.featured_image" :class="`absolute`" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
+          <div :class="`relative min-h-[300px] mb-0 p-6 z-50`">
             &nbsp;
           </div>
         </div>
-        <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
-          <div class="flex justify-center">
+        <div :class="`relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios`">
+          <div :class="`flex justify-center`">
             <!-- Botón: Perfil -->
-            <div class="contenedor-boton-left-formularios">
-              <nuxt-link :to="'/' + accountParameterToUrl + 'perfil'" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <div :class="`contenedor-boton-left-formularios`">
+              <nuxt-link :to="'/' + accountParameterToUrl + 'perfil'" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
                 Volver al Perfil
               </nuxt-link>
             </div>
 
-            <div class="w-2 sm:w-12">
+            <div :class="`w-2 sm:w-12`">
               &nbsp;
             </div>
 
-            <div class="contenedor-boton-right-formularios">
-              <div class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 border-madfenix-naranja border-2" v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'" />
+            <div :class="`contenedor-boton-right-formularios`">
+              <div :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 border-[color:var(--naranja)] border-2`" v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'" />
             </div>
           </div>
         </div>
       </div>
 
-      <div v-if="perfil" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6 mx-3 sm:mx-auto sm:w-2/3">
+      <div v-if="perfil" :class="`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6 mx-3 sm:mx-auto sm:w-2/3`">
         <div v-for="nft in nfts" :key="nft.id">
-          <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+          <div :class="`relative rounded-tr-3xl rounded-bl-3xl border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
             <img :src="nft.image" style="width: 100%;" :alt="nft.name" :title="nft.name" />
 
-            <div class="px-6 mt-3 mb-10 relative z-50 w-full text-center text-madfenix-blanco" v-html="nft.name" />
+            <div :class="`px-6 mt-3 mb-10 relative z-50 w-full text-center text-[color:var(--blanco)]`" v-html="nft.name" />
           </div>
-          <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios" v-if="nft.nft.token_number > 0">
-            <div class="flex justify-center">
+          <div :class="`relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios`" v-if="nft.nft.token_number > 0">
+            <div :class="`flex justify-center`">
               <!-- Botón: Siguiente paso -->
               <div>
-                <nuxt-link :to="'/transfiere-item-a-hedera/?item_identification_id=' + nft.id + '&nft_token_id=' + nft.nft.token_props + '.' + nft.nft.token_realm + '.' + nft.nft.token_number" class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+                <nuxt-link :to="'/transfiere-item-a-hedera/?item_identification_id=' + nft.id + '&nft_token_id=' + nft.nft.token_props + '.' + nft.nft.token_realm + '.' + nft.nft.token_number" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
                   Transferir
                 </nuxt-link>
               </div>
@@ -46,16 +46,16 @@
           </div>
         </div>
         <div v-for="nft in nfts_hedera" :key="nft.id">
-          <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+          <div :class="`relative rounded-tr-3xl rounded-bl-3xl border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
             <img :src="nft.image" style="width: 100%;" :alt="nft.name" :title="nft.name" />
 
-            <div class="px-6 mt-3 mb-10 relative z-50 w-full text-center text-madfenix-blanco" v-html="nft.name" />
+            <div :class="`px-6 mt-3 mb-10 relative z-50 w-full text-center text-[color:var(--blanco)]`" v-html="nft.name" />
           </div>
-          <div class="relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios">
-            <div class="flex justify-center">
+          <div :class="`relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios`">
+            <div :class="`flex justify-center`">
               <!-- Botón: Siguiente paso -->
               <div>
-                <div class="flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 border-madfenix-naranja border-2">
+                <div :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 border-[color:var(--naranja)] border-2`">
                   Hedera
                 </div>
               </div>
@@ -91,16 +91,7 @@ export default {
   },
 
   mounted() {
-    useHead({
-      title: 'Colección - Mad Fénix Games',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Colección en Mad Fénix Games.'
-        }
-      ]
-    });
+
 
     this.setUserCookies();
     this.setBackground();
@@ -108,6 +99,17 @@ export default {
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     this.setConfigCookies();
+
+    useHead({
+      title: 'Colección - ' + this.user.config?.config?.name_ecosystem ?? '',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Colección en ' + this.user.config?.config?.name_ecosystem ?? ''
+        }
+      ]
+    });
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -223,6 +225,9 @@ export default {
 
      setConfigCookies() {
       let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      if (config) {
+        config = JSON.parse(config)
+      }
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

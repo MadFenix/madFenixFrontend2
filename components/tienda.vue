@@ -1,31 +1,31 @@
 <template>
   <div v-if="storeDetails">
     <!-- Case Study Hero -->
-    <section class="px-4 py-12 md:py-16 sm:px-6 lg:px-8">
-      <div class="max-w-screen-xl mx-auto">
+    <section :class="`px-4 py-12 md:py-16 sm:px-6 lg:px-8`">
+      <div :class="`max-w-screen-xl mx-auto`">
         <!-- Hero text -->
-        <div class="w-full max-w-3xl mx-auto text-center lg:max-w-5xl">
+        <div :class="`w-full max-w-3xl mx-auto text-center lg:max-w-5xl`">
           <h1
-              class="mt-4 text-4xl font-extrabold text-madfenix-naranja md:mt-5 sm:text-5xl md:text-6xl"
+              :class="`mt-4 text-4xl font-extrabold text-[color:var(--naranja)] md:mt-5 sm:text-5xl md:text-6xl`"
               v-html="'Pasa al siguiente nivel'"
           />
         </div>
       </div>
     </section>
 
-    <section class="max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8" v-if="storeDetails.products" v-for="product in storeDetails.products" :key="product.id">
-      <div class="relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left">
-        <div class="sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl rounded-tl-3xl rounded-tr-3xl sm:rounded-tr-none bg-madfenix-gris border border-madfenix-naranja sm:border-r-0 font-bold sm:text-4xl">
-          <img :src="product.image" :title="product.name" :alt="product.name" class="inset-y-0 z-40 h-full" />
+    <section :class="`max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8`" v-if="storeDetails.products" v-for="product in storeDetails.products" :key="product.id">
+      <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
+        <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl rounded-tl-3xl rounded-tr-3xl sm:rounded-tr-none bg-[color:var(--gris)] border border-[color:var(--naranja)] sm:border-r-0 font-bold sm:text-4xl`">
+          <img :src="product.image" :title="product.name" :alt="product.name" :class="`inset-y-0 z-40 h-full`" />
         </div>
-        <div class="sm:col-span-9 px-3 sm:px-0 py-3 sm:py-0 sm:flex sm:items-center space-x-3 justify-center h-full rounded-br-3xl rounded-bl-3xl sm:rounded-bl-none bg-madfenix-gris border border-madfenix-naranja sm:border-l-0 sm:mr-12 lg:justify-end">
-          <div class="grow font-extrabold tracking-tight">
-            <h5 class="font-extrabold tracking-tight text-madfenix-naranja text-4xl sm:text-5xl">
+        <div :class="`sm:col-span-9 px-3 sm:px-0 py-3 sm:py-0 sm:flex sm:items-center space-x-3 justify-center h-full rounded-br-3xl rounded-bl-3xl sm:rounded-bl-none bg-[color:var(--gris)] border border-[color:var(--naranja)] sm:border-l-0 sm:mr-12 lg:justify-end`">
+          <div :class="`grow font-extrabold tracking-tight`">
+            <h5 :class="`font-extrabold tracking-tight text-[color:var(--naranja)] text-4xl sm:text-5xl`">
               <span v-html="product.name" />
             </h5>
-            <p class="text-madfenix-blanco text-xl" v-if="product.short_description" v-html="product.short_description" />
+            <p :class="`text-[color:var(--blanco)] text-xl`" v-if="product.short_description" v-html="product.short_description" />
           </div>
-          <div class="botones-tokens">
+          <div :class="`botones-tokens`">
             <stripe-buy-button v-if="product.price_fiat > 0 && product.price_fiat == 5"
                                                          buy-button-id="buy_btn_1PAYYpHruUfPE2wuw5Mhazx8"
                                                          publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
@@ -62,42 +62,42 @@
                                :customer-email="user.email"
             >
             </stripe-buy-button>
-            <a v-else-if="product.price_fiat > 0" class="flex cursor-pointer items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900">
+            <a v-else-if="product.price_fiat > 0" :class="`flex cursor-pointer items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900`">
               Próximamente
             </a>
-            <a v-else @click="buyProduct(product.id, product.price_oro, product.price_plumas)" class="w-full m-auto justify-center px-8 py-4 btn-madfenix text-madfenix-gris font-semibold bg-madfenix-naranja leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-madfenix-naranja hover:bg-madfenix-gris border-madfenix-naranja border-2 cursor-pointer">
+            <a v-else @click="buyProduct(product.id, product.price_oro, product.price_plumas)" :class="`w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
               Comprar por <span v-html="getPrice(product)" />
             </a>
           </div>
         </div>
       </div>
     </section>
-    <div v-if="showProductsModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden bg-madfenix-gris bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full">
-      <div class="flex items-center justify-center p-4 w-full h-screen">
+    <div v-if="showProductsModal" tabindex="-1" aria-hidden="true" :class="`overflow-y-auto overflow-x-hidden bg-[color:var(--gris)] bg-opacity-50 fixed top-0 right-0 left-0 z-50 w-full h-modal md:h-full`">
+      <div :class="`flex items-center justify-center p-4 w-full h-screen`">
         <!-- Modal content -->
-        <div class="bg-madfenix-gris text-madfenix-blanco rounded-lg shadow border border-madfenix-blanco">
+        <div :class="`bg-[color:var(--gris)] text-[color:var(--blanco)] rounded-lg shadow border border-[color:var(--blanco)]`">
           <!-- Modal header -->
-          <div class="flex justify-between items-start p-4 rounded-t border-b border-madfenix-blanco">
-            <h3 class="text-xl font-semibold">
+          <div :class="`flex justify-between items-start p-4 rounded-t border-b border-[color:var(--blanco)]`">
+            <h3 :class="`text-xl font-semibold`">
               ¡Tus nuevos ítems!
             </h3>
-            <button type="button" @click="showProductsModal = false; imageItemsReveal = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-              <span class="sr-only">Cerrar pantalla</span>
+            <button type="button" @click="showProductsModal = false; imageItemsReveal = false" :class="`text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white`">
+              <svg aria-hidden="true" :class="`w-5 h-5`" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span :class="`sr-only`">Cerrar pantalla</span>
             </button>
           </div>
           <!-- Modal body -->
-          <div class="w-full p-3 overflow-y-auto" style="height: 500px; max-width: 700px;">
-            <video id="video-storemadfenix" class="rounded rounded-3xl border border-2 border-madfenix-gris" playsinline @ended="revealImageItems()" v-if="!imageItemsReveal">
+          <div :class="`w-full p-3 overflow-y-auto`" style="height: 500px; max-width: 700px;">
+            <video id="video-storemadfenix" :class="`rounded rounded-3xl border border-2 border-[color:var(--gris)]`" playsinline @ended="revealImageItems()" v-if="!imageItemsReveal">
               <source :src="videoNewItems" type="video/mp4">
               Tu navegador no soporta el video.
             </video>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-2" v-if="imageItemsReveal && itemsPurchaseToShow">
+            <div :class="`grid grid-cols-2 md:grid-cols-3 gap-2`" v-if="imageItemsReveal && itemsPurchaseToShow">
               <div v-for="nft in itemsPurchaseToShow.nfts" :key="nft.id">
-                <div class="relative rounded-tr-3xl rounded-bl-3xl border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
+                <div :class="`relative rounded-tr-3xl rounded-bl-3xl border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
                   <img :src="nft.image" style="width: 100%;" :alt="nft.name" :title="nft.name" />
 
-                  <div class="px-6 mt-3 mb-10 relative z-50 w-full text-center text-madfenix-blanco" v-html="nft.name" />
+                  <div :class="`px-6 mt-3 mb-10 relative z-50 w-full text-center text-[color:var(--blanco)]`" v-html="nft.name" />
                 </div>
               </div>
             </div>
@@ -135,6 +135,14 @@ export default {
   },
 
   mounted() {
+
+    this.setUserCookies();
+    this.setBackground();
+
+    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+
+    this.setConfigCookies();
+
     useHead({
       title: 'Tienda - Mad Fénix',
       meta: [
@@ -151,12 +159,6 @@ export default {
         }
       ]
     });
-    this.setUserCookies();
-    this.setBackground();
-
-    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
-
-    this.setConfigCookies();
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -250,14 +252,17 @@ export default {
 
     getPrice(product) {
       if (product.price_oro > 0) {
-        return '<span class="text-size-token-store">' + product.price_oro + '</span> oros';
+        return '<span :class="`text-size-token-store`">' + product.price_oro + '</span> oros';
       } else {
-        return '<span class="text-size-token-store">' + product.price_plumas + '</span> plumas';
+        return '<span :class="`text-size-token-store`">' + product.price_plumas + '</span> plumas';
       }
     },
 
      setConfigCookies() {
       let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      if (config) {
+        config = JSON.parse(config)
+      }
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

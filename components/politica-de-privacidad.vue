@@ -1,10 +1,10 @@
 <template>
-  <div class="text-white container mx-auto">
-    <header class="entry-header ast-no-thumbnail">
-      <h1 class="entry-title w-full text-center text-madfenix-naranja" itemprop="headline">Política de privacidad</h1>
+  <div :class="`text-white container mx-auto`">
+    <header :class="`entry-header ast-no-thumbnail`">
+      <h1 :class="`entry-title w-full text-center text-[color:var(--naranja)]`" itemprop="headline">Política de privacidad</h1>
     </header>
-    <div class="relative p-4 rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-3/4 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
-      <div class="entry-content clear" ast-blocks-layout="true" itemprop="text">
+    <div :class="`relative p-4 rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-3/4 border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
+      <div :class="`entry-content clear`" ast-blocks-layout="true" itemprop="text">
         <p>Para dar cumplimiento con lo establecido en la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico, a continuación se indican los datos de la información general de este sitio Web:</p>
         <p><strong>OBJETO</strong></p>
         <p>Estas condiciones generales (en adelante, las «Condiciones Generales») regulan el uso de todos los servicios de este sitio Web (en adelante «el Portal») que CicloTIC SCP, pone a disposición de los usuarios de Internet. Por la mera utilización del Portal, los usuarios expresan la aceptación y sin reservas de las mismas, las cuales podrán ser modificadas por CicloTIC SCP en cualquier momento. Los usuarios se ven asimismo sometidos a todas aquellas condiciones particulares, avisos o reglamentos de instrucciones que se pongan en su conocimiento, en relación a los contenidos o servicios concretos, que contemplan con lo previsto en estas Condiciones Generales en cuanto no se opongan.</p>
@@ -79,22 +79,24 @@ export default {
     },
 
     mounted() {
-      useHead({
-        title: 'Política de privacidad - Mad Fénix Games',
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'Política de privacidad en Mad Fénix Games.'
-          }
-        ]
-      });
+
       this.setUserCookies();
       this.setBackground();
 
       this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     this.setConfigCookies();
+
+    useHead({
+        title: 'Política de privacidad - ' + this.user.config?.config?.name_ecosystem ?? '',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Política de privacidad en ' + this.user.config?.config?.name_ecosystem ?? ''
+          }
+        ]
+      });
     },
 
     methods: {
@@ -104,6 +106,9 @@ export default {
 
        setConfigCookies() {
       let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      if (config) {
+        config = JSON.parse(config)
+      }
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

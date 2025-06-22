@@ -1,14 +1,14 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-green-600 p-4" v-if="user.user">
+  <div :class="`min-h-screen flex items-center justify-center bg-green-600 p-4`" v-if="user.user">
     <audio id="audioNotification">
       <source src="/img/streams/notificationSong.ogg" type="audio/ogg">
     </audio>
     <div v-if="items">
-      <div class="w-full items-center text-center">
-        <img src="/img/streams/fenix_feliz.png" class="mx-auto w-[250px]" />
+      <div :class="`w-full items-center text-center`">
+        <img src="/img/streams/fenix_feliz.png" :class="`mx-auto w-[250px]`" />
       </div>
-      <div v-for="item in items" class="w-[800px]">
-        <div v-html="item" class="text-5xl font-bold text-white" style="text-shadow: -4px -4px 0 black, 4px -4px 0 black, -4px  4px 0 black, 4px  4px 0 black;" />
+      <div v-for="item in items" :class="`w-[800px]`">
+        <div v-html="item" :class="`text-5xl font-bold text-white`" style="text-shadow: -4px -4px 0 black, 4px -4px 0 black, -4px  4px 0 black, 4px  4px 0 black;" />
       </div>
     </div>
   </div>
@@ -45,21 +45,23 @@ export default {
   },
 
   mounted() {
-    useHead({
-      title: 'Notificaciones - Mad Fénix Games',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Notificaciones en Mad Fénix Games.'
-        }
-      ]
-    });
+
     this.setUserCookies();
 
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     this.setConfigCookies();
+
+    useHead({
+      title: 'Notificaciones - ' + this.user.config?.config?.name_ecosystem ?? '',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Notificaciones en ' + this.user.config?.config?.name_ecosystem ?? ''
+        }
+      ]
+    });
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -95,6 +97,9 @@ export default {
 
      setConfigCookies() {
       let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      if (config) {
+        config = JSON.parse(config)
+      }
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

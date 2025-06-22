@@ -1,23 +1,23 @@
 <template>
   <div>
     <!-- Título de la tarjeta -->
-    <h2 class="leading-10 text-xl font-bold text-center mb-4 bg-madfenix-naranja py-6 h-[100px] flex items-center justify-center">Notificaciones</h2>
+    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Notificaciones</h2>
 
-    <div class="p-5 sm:p-20" v-if="user.user">
-      <div class="relative rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-1/2 border-2 border-madfenix-naranja bg-madfenix-gris overflow-hidden">
-        <img src="/img/formularios/madfenix7.png" class="absolute" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
+    <div :class="`p-5 sm:p-20`" v-if="user.user">
+      <div :class="`relative rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-1/2 border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
+        <img src="/img/formularios/madfenix7.png" :class="`absolute`" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
 
-        <div class="p-6 py-[120px] relative z-50">
-          <div v-for="calendarEvent in events" :key="calendarEvent.id" class="mt-5">
+        <div :class="`p-6 py-[120px] relative z-50`">
+          <div v-for="calendarEvent in events" :key="calendarEvent.id" :class="`mt-5`">
             <!-- Tarjeta individual de notificación con fondo primario (por ejemplo, azul) y texto blanco -->
-            <div class="bg-blue-500 text-white rounded shadow">
+            <div :class="`bg-blue-500 text-white rounded shadow`">
               <!-- Encabezado de la notificación -->
-              <div class="px-4 py-2">
-                <div class="text-xl font-bold" v-html="calendarEvent.description"></div>
-                <div class="text-sm" v-html="(new Date(calendarEvent.reservated_at)).toString()"></div>
+              <div :class="`px-4 py-2`">
+                <div :class="`text-xl font-bold`" v-html="calendarEvent.description"></div>
+                <div :class="`text-sm`" v-html="(new Date(calendarEvent.reservated_at)).toString()"></div>
               </div>
               <!-- Contenedor para los detalles -->
-              <div class="px-4 py-2">
+              <div :class="`px-4 py-2`">
                 <span v-html="calendarEvent.details"></span>
               </div>
             </div>
@@ -54,22 +54,24 @@ export default {
   },
 
   mounted() {
-    useHead({
-      title: 'Notificaciones - Mad Fénix Games',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Notificaciones en Mad Fénix Games.'
-        }
-      ]
-    });
+
     this.setUserCookies();
     this.setBackground();
 
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     this.setConfigCookies();
+
+    useHead({
+      title: 'Notificaciones - ' + this.user.config?.config?.name_ecosystem ?? '',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Notificaciones en ' + this.user.config?.config?.name_ecosystem ?? ''
+        }
+      ]
+    });
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -90,6 +92,9 @@ export default {
 
      setConfigCookies() {
       let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      if (config) {
+        config = JSON.parse(config)
+      }
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

@@ -26,22 +26,24 @@ export default {
   },
 
   mounted() {
-    useHead({
-      title: 'Sobre nosotros - Mad Fénix Games',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Sobre nosotros en Mad Fénix Games.'
-        }
-      ]
-    });
+
     this.setUserCookies();
     this.setBackground();
 
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     this.setConfigCookies();
+
+    useHead({
+      title: 'Sobre nosotros - ' + this.user.config?.config?.name_ecosystem ?? '',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Sobre nosotros en ' + this.user.config?.config?.name_ecosystem ?? ''
+        }
+      ]
+    });
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -54,6 +56,9 @@ export default {
 
      setConfigCookies() {
       let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      if (config) {
+        config = JSON.parse(config)
+      }
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 
