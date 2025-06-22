@@ -90,7 +90,9 @@ export default {
         ]
       });
       this.setUserCookies();
-    this.setBackground();
+      this.setBackground();
+
+      this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
     },
 
     methods: {

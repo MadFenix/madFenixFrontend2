@@ -121,6 +121,8 @@ export default {
     this.setUserCookies();
     this.setBackground();
 
+    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+
     const { $api } = useNuxtApp();
     this.api = $api;;
     this.transactionData.nft_identification_id = this.$route.query.item_identification_id;

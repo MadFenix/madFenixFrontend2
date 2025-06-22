@@ -77,6 +77,8 @@ export default {
     this.setUserCookies();
     this.setBackground();
 
+    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+
     const { $api } = useNuxtApp();
     this.api = $api;
     setTimeout(() => this.$router.push({ path: '/perfil' }), 3000)
