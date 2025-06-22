@@ -123,6 +123,8 @@ export default {
 
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
+    this.setConfigCookies();
+
     const { $api } = useNuxtApp();
     this.api = $api;;
     this.transactionData.nft_identification_id = this.$route.query.item_identification_id;
@@ -146,7 +148,20 @@ export default {
         .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
     },
 
-    setUserCookies() {
+     setConfigCookies() {
+      let config = Cookies.get(this.accountParameterToUrl + '_config')
+      if (config) {
+        this.user.setConfig(this.accountParameterToUrl, config);
+
+      } else {
+        try {
+          this.user.fetchConfig(this.accountParameterToUrl);
+        } catch (error) {
+        }
+      }
+    },
+
+   setUserCookies() {
       let token = Cookies.get('token')
       if (token) {
         this.user.setToken(token);

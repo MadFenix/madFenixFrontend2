@@ -41,6 +41,8 @@ export default {
 
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
+    this.setConfigCookies();
+
     const { $api } = useNuxtApp();
     this.api = $api;
   },
@@ -50,7 +52,20 @@ export default {
       document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
     },
 
-    setUserCookies() {
+     setConfigCookies() {
+      let config = Cookies.get(this.accountParameterToUrl + '_config')
+      if (config) {
+        this.user.setConfig(this.accountParameterToUrl, config);
+
+      } else {
+        try {
+          this.user.fetchConfig(this.accountParameterToUrl);
+        } catch (error) {
+        }
+      }
+    },
+
+   setUserCookies() {
       let token = Cookies.get('token')
       if (token) {
         this.user.setToken(token);
