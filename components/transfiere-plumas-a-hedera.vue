@@ -143,7 +143,7 @@ export default {
       document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
     },
     afterTransferToHedrera(response){
-      this.$router.push('/perfil')
+      this.$router.push( '/'+ this.accountParameterToUrl + 'perfil')
     },
 
     transferToHedrera(){

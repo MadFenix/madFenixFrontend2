@@ -122,7 +122,7 @@ export default {
 
     nextStep(){
       if (this.tokenAdded) {
-        this.$router.push('/transfiere-plumas-a-hedera')
+        this.$router.push( '/'+ this.accountParameterToUrl + 'transfiere-plumas-a-hedera')
       } else {
         this.serverMessage.setServerMessage('Debes aceptar que quieres enviar plumas a tu cuenta de Hedera.')
       }

@@ -131,7 +131,7 @@ export default {
     afterLogin(response){
       this.user.setToken(response.token)
       this.user.fetchUser()
-      this.$router.push('/sala-de-espera')
+      this.$router.push( '/'+ this.accountParameterToUrl + 'sala-de-espera')
     },
 
     login(){

@@ -133,12 +133,12 @@ export default {
       document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
     },
     forgot(){
-      (this.route.query.token) ? this.forgotData.token = this.route.query.token : this.$router.push('/login')
+      (this.route.query.token) ? this.forgotData.token = this.route.query.token : this.$router.push( '/'+ this.accountParameterToUrl + 'login')
       this.api('/api/host/forgotReset', {
         method: 'POST',
         body: this.forgotData
       })
-        .then((response) => (response === 'Password reset') ? this.$router.push('/login') : this.serverMessage.setServerMessage(response))
+        .then((response) => (response === 'Password reset') ? this.$router.push( '/'+ this.accountParameterToUrl + 'login') : this.serverMessage.setServerMessage(response))
         .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
     },
 

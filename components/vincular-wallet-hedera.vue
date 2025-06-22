@@ -106,7 +106,7 @@ export default {
     },
 
     afterLinkWallet(response){
-      this.$router.push('/vincular-wallet-hedera-2')
+      this.$router.push( '/'+ this.accountParameterToUrl + 'vincular-wallet-hedera-2')
     },
 
     linkWallet(){

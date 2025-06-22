@@ -122,7 +122,7 @@ export default {
 
     nextStep(){
       if (this.tokenAdded) {
-        this.$router.push('/transfiere-plumas-a-hedera-previo2')
+        this.$router.push( '/'+ this.accountParameterToUrl + 'transfiere-plumas-a-hedera-previo2')
       } else {
         this.serverMessage.setServerMessage('Debes aceptar que has agregado el token.')
       }

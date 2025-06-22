@@ -123,7 +123,7 @@ export default {
 
     nextStep(){
       if (this.tokenAdded) {
-        this.$router.push('/transfiere-oro-a-hedera')
+        this.$router.push( '/'+ this.accountParameterToUrl + 'transfiere-oro-a-hedera')
       } else {
         this.serverMessage.setServerMessage('Debes aceptar que quieres enviar oro a tu cuenta de Hedera.')
       }
