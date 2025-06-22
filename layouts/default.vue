@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div id="container-global" v-if="accountParameterToUrl">
+    <div v-if="accountParameterToUrlLoaded == false">
+      Cargando...
+    </div>
+    <div id="container-global" v-else-if="accountParameterToUrl">
       <template v-if="!user.config">
         Cargando...
       </template>
@@ -51,7 +54,7 @@
                   Home
                 </nuxt-link>
 
-                <nuxt-link v-if="user.user" v-for="(item, key) in items" :key="key" :to="item.path"
+                <nuxt-link v-if="user.user" v-for="(item, key) in items" :key="key" :to="'/' + this.accountParameterToUrl + item.path"
                            class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700"
                            v-html="item.text"
                 />
@@ -151,7 +154,7 @@
                       </svg>
                     </nuxt-link>
 
-                    <nuxt-link :to="item.path" v-for="(item, key) in items" :key="key"
+                    <nuxt-link :to="'/' + this.accountParameterToUrl + item.path" v-for="(item, key) in items" :key="key"
                                class="block border-l-2 border-dark-600 p-4 font-medium text-white hover:text-white hover:bg-dark-700 sm:inline-block"
                     >
                       <svg v-if="item.text == 'Perfil'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-auto">
@@ -343,7 +346,7 @@
                   </nuxt-link>
                 </li>
                 <li v-if="user.user" v-for="(item, key) in items" :key="key" class="font-medium text-white hover:text-white">
-                  <nuxt-link :to="item.path" v-html="item.text" />
+                  <nuxt-link :to="'/' + this.accountParameterToUrl + item.path" v-html="item.text" />
                 </li>
                 <li class="font-medium text-white hover:text-white">
                   <a href="https://universo.madfenix.com/shelves/nevoran" target="_blank" class="cursor-pointer" >
@@ -523,9 +526,9 @@ export default {
       route: useRoute(),
       api: null,
       items: [
-        { icon: ['fas', 'user'], text: 'Perfil', path: '/' + this.accountParameterToUrl + 'perfil' },
-        { icon: ['fas', 'user'], text: 'Temporada', path: '/' + this.accountParameterToUrl + 'temporada' },
-        { icon: ['fas', 'user'], text: 'Tienda', path: '/' + this.accountParameterToUrl + 'tienda' },
+        { icon: ['fas', 'user'], text: 'Perfil', path: 'perfil' },
+        { icon: ['fas', 'user'], text: 'Temporada', path: 'temporada' },
+        { icon: ['fas', 'user'], text: 'Tienda', path: 'tienda' },
       ],
       footerItems: [
         {
@@ -574,6 +577,7 @@ export default {
       videoNewItems: '/video/MadFenixLogoReveal.mp4',
       itemsPurchaseToShow: null,
       accountParameterToUrl: '',
+      accountParameterToUrlLoaded: false,
       signUpData: {
         account: '',
       },
@@ -607,6 +611,7 @@ export default {
     this.result = ref('Esperando la interacción del usuario...');
 
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+    this.accountParameterToUrlLoaded = true;
 
     this.setConfigCookies();
 
@@ -659,7 +664,7 @@ export default {
       this.user.setToken('')
       this.user.setUserToNull()
       this.user.removeUser()
-      setTimeout(() => this.$router.push({ path: '/login' }), 2000)
+      setTimeout(() => this.$router.push({ path: '/' + this.accountParameterToUrl + 'login' }), 2000)
     },
 
     logout () {
@@ -671,7 +676,7 @@ export default {
     },
 
     setConfigCookies() {
-      let config = Cookies.get(this.accountParameterToUrl + '_config')
+      let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

@@ -113,7 +113,7 @@ export default {
     },
 
      setConfigCookies() {
-      let config = Cookies.get(this.accountParameterToUrl + '_config')
+      let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 

@@ -80,6 +80,7 @@ export default {
     this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     this.setConfigCookies();
+    this.user.fetchConfig(this.accountParameterToUrl);
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -92,7 +93,7 @@ export default {
     },
 
      setConfigCookies() {
-      let config = Cookies.get(this.accountParameterToUrl + '_config')
+      let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
       if (config) {
         this.user.setConfig(this.accountParameterToUrl, config);
 
