@@ -56,7 +56,7 @@ export const useUserStore = defineStore('userStore', {
     fetchUser() {
       const { $api } = useNuxtApp();
 
-      $api('/api/user')
+      $api('/api/host/user')
           .then((response) => {
             if (response && response.data) {
               //window.document.cookie = 'user=' + JSON.stringify(response.data.data)

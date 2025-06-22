@@ -7,8 +7,8 @@
           <!-- Logo -->
           <div class="flex items-center">
             <!-- Large logo -->
-            <nuxt-link to="/"
-                       class="block flex space-x-2 items-center text-2xl font-black md:hidden lg:flex group font-ancient-god"
+            <nuxt-link :to="'/' + accountParameterToUrl"
+               class="block flex space-x-2 items-center text-2xl font-black md:hidden lg:flex group font-ancient-god"
             >
               <img src="/img/logo-white.png" title="Mad Fénix" alt="Mad Fénix" class="w-12" />
               <span
@@ -23,7 +23,7 @@
 
             <!-- Small logo for mobile screens -->
             <a
-                href="/"
+                :href="'/' + accountParameterToUrl"
                 class="hidden text-3xl font-black md:block lg:hidden group"
             >
                 <span
@@ -40,7 +40,7 @@
           <div
               class="hidden md:flex justify-between items-center md:space-x-0.5 lg:space-x-2 text-xl md:text-base font-medium text-white"
           >
-            <nuxt-link to="/"
+            <nuxt-link :to="'/' + accountParameterToUrl"
                        class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700"
             >
               Home
@@ -65,12 +65,12 @@
             >
               Logout
             </a>
-            <nuxt-link v-if="!user.user" to="/login"
+            <nuxt-link v-if="!user.user" :to="'/' + accountParameterToUrl + 'login'"
                        class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700"
             >
               Login
             </nuxt-link>
-            <nuxt-link v-if="!user.user" to="/registro"
+            <nuxt-link v-if="!user.user" :to="'/' + accountParameterToUrl + 'registro'"
                        class="block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700"
             >
               Registro
@@ -138,7 +138,7 @@
               <div
                   class="flex grid grid-cols-6 items-center w-full bg-madfenix-gris mx-auto text-xl"
               >
-                <nuxt-link to="/"
+                <nuxt-link :to="'/' + accountParameterToUrl"
                            class="block p-4 font-medium rounded-full text-white hover:text-white hover:bg-dark-700 sm:inline-block"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-auto">
@@ -306,7 +306,7 @@
         <!-- Logo and copyright text -->
         <div class="flex flex-col lg:mx-auto">
           <div class="flex items-center">
-            <a href="/" class="text-2xl font-black lg:block group font-ancient-god">
+            <a :href="'/' + accountParameterToUrl" class="text-2xl font-black lg:block group font-ancient-god">
               <span class="text-white transition duration-200 ease-in-out">Mad</span>
               <span class="transition duration-200 ease-in-out text-white group-hover:text-madfenix-naranja"> Fénix</span>
             </a>
@@ -333,7 +333,7 @@
           <h6 class="text-xl font-semibold text-madfenix-naranja">Estudio</h6>
           <ul class="mt-2 space-y-1 text-lg">
             <li class="font-medium text-white hover:text-white">
-              <nuxt-link to="/">
+              <nuxt-link :to="'/' + accountParameterToUrl">
                 Home
               </nuxt-link>
             </li>
@@ -356,32 +356,32 @@
               </a>
             </li>
             <li v-if="!user.user" class="font-medium text-white hover:text-white">
-              <nuxt-link to="/login" >
+              <nuxt-link :to="'/' + accountParameterToUrl + 'login'" >
                 Login
               </nuxt-link>
             </li>
             <li v-if="!user.user" class="font-medium text-white hover:text-white">
-              <nuxt-link to="/registro" >
+              <nuxt-link :to="'/' + accountParameterToUrl + 'registro'" >
                 Registro
               </nuxt-link>
             </li>
             <li class="font-medium text-white hover:text-white">
-              <nuxt-link to="/aviso-legal" >
+              <nuxt-link :to="'/' + accountParameterToUrl + 'aviso-legal'" >
                 Aviso legal
               </nuxt-link>
             </li>
             <li class="font-medium text-white hover:text-white">
-              <nuxt-link to="/condiciones" >
+              <nuxt-link :to="'/' + accountParameterToUrl + 'condiciones'" >
                 Términos y condiciones
               </nuxt-link>
             </li>
             <li class="font-medium text-white hover:text-white">
-              <nuxt-link to="/politica-de-cookies" >
+              <nuxt-link :to="'/' + accountParameterToUrl + 'politica-de-cookies'" >
                 Política de cookies
               </nuxt-link>
             </li>
             <li class="font-medium text-white hover:text-white">
-              <nuxt-link to="/politica-de-privacidad" >
+              <nuxt-link :to="'/' + accountParameterToUrl + 'politica-de-privacidad'" >
                 Política de privacidad
               </nuxt-link>
             </li>
@@ -473,11 +473,12 @@ export default {
       user: useUserStore(),
       settings: useSettingsStore(),
       serverMessage: useServerMessageStore(),
+      route: useRoute(),
       api: null,
       items: [
-        { icon: ['fas', 'user'], text: 'Perfil', path: '/perfil' },
-        { icon: ['fas', 'user'], text: 'Temporada', path: '/temporada' },
-        { icon: ['fas', 'user'], text: 'Tienda', path: '/tienda' },
+        { icon: ['fas', 'user'], text: 'Perfil', path: '/' + this.accountParameterToUrl + 'perfil' },
+        { icon: ['fas', 'user'], text: 'Temporada', path: '/' + this.accountParameterToUrl + 'temporada' },
+        { icon: ['fas', 'user'], text: 'Tienda', path: '/' + this.accountParameterToUrl + 'tienda' },
       ],
       footerItems: [
         {
@@ -525,6 +526,7 @@ export default {
       imageItemsReveal: false,
       videoNewItems: '/video/MadFenixLogoReveal.mp4',
       itemsPurchaseToShow: null,
+      accountParameterToUrl: '',
     }
   },
 
@@ -552,6 +554,8 @@ export default {
   mounted() {
     this.setUserCookies();
     this.result = ref('Esperando la interacción del usuario...');
+
+    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
 
     const { $api } = useNuxtApp();
     this.api = $api;

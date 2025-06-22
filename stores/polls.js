@@ -36,7 +36,7 @@ export const usePollsStore = defineStore('pollsStore', {
     fetchPolls() {
       const { $api } = useNuxtApp();
 
-      $api('/api/poll/pollsDetailsLast30Days')
+      $api('/api/host/poll/pollsDetailsLast30Days')
           .then((response) => {
             if (response) {
               //window.document.cookie = 'user=' + JSON.stringify(response.data.data)
