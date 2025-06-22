@@ -110,6 +110,8 @@ export default {
         id_hedera: '',
         plumas: '',
       },
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

@@ -87,6 +87,8 @@ export default {
       serverMessage: useServerMessageStore(),
       api: null,
       tokenAdded: false,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

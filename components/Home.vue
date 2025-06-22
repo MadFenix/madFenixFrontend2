@@ -259,7 +259,9 @@ export default {
       imageLogoReveal: false,
       newCompleteHabit: {
         id: 0
-      }
+      },
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

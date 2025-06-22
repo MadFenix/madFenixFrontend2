@@ -99,6 +99,8 @@ export default {
         nft_identification_id: '',
       },
       nft_token_id: '',
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

@@ -45,6 +45,8 @@ export default {
       serverMessage: useServerMessageStore(),
       api: null,
       events: [],
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

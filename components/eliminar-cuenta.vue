@@ -86,6 +86,8 @@ export default {
         email: '',
         password: '',
       },
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

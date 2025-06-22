@@ -120,6 +120,8 @@ export default {
         newsletter: false,
       },
       signUpCheck: false,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

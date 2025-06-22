@@ -138,6 +138,8 @@ export default {
       currentListAnswers: [],
       api: null,
       perfil: null,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

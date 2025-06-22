@@ -69,6 +69,8 @@ export default {
       forgotData: {
         email: '',
       },
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

@@ -99,6 +99,8 @@ export default {
         password_confirmation: '',
         token: '',
       },
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

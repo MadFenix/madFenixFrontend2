@@ -79,6 +79,8 @@ export default {
       referred: {
         referred_code_from: '',
       },
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

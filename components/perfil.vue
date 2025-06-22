@@ -461,6 +461,8 @@ export default {
       perfil: null,
       showAvatarsModal: false,
       showEstadosModal: false,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

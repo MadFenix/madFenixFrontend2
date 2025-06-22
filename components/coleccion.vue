@@ -85,6 +85,8 @@ export default {
       nft_id: null,
       categorySelected: null,
       subcategorySelected: null,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

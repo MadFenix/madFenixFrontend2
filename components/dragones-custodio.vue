@@ -499,6 +499,8 @@ export default {
       settings: useSettingsStore(),
       serverMessage: useServerMessageStore(),
       api: null,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

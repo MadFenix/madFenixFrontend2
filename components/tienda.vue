@@ -129,6 +129,8 @@ export default {
       imageItemsReveal: false,
       videoNewItems: '/video/MadFenixLogoReveal.mp4',
       itemsPurchaseToShow: null,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 

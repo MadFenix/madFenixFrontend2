@@ -36,6 +36,8 @@ export default {
       items: null,
       itemsInterval : null,
       itemsIntervalRemove : null,
+      route: useRoute(),
+      accountParameterToUrl: '',
     }
   },
 
