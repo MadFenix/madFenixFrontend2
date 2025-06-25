@@ -226,7 +226,7 @@ export default {
     },
 
      setConfigCookies() {
-      let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      let config = localStorage.getItem(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
       if (config) {
         config = JSON.parse(config)
       }
@@ -242,12 +242,12 @@ export default {
     },
 
    setUserCookies() {
-      let token = Cookies.get('token')
+      let token = localStorage.getItem('token')
       if (token) {
         this.user.setToken(token);
 
         //let user = document.cookie.match(new RegExp('(^| )user=([^;]+)'))
-        let user = Cookies.get('user')
+        let user = localStorage.getItem('user')
 
         if (user) {
           this.user.updateUser(JSON.parse(user));

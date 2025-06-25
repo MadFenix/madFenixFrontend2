@@ -534,6 +534,17 @@ export default {
             },
           ],
         },
+        {
+          title: 'Config (necesario)',
+          description: 'Esta cookie almacena los datos de configuración del ecosistema, lo que permite personalizar tu experiencia en el sitio. Se actualiza cada vez que se modifican los datos del usuario.',
+          items: [
+            {
+              label: 'config',
+              value: 'config',
+              isRequired: true,
+            },
+          ],
+        },
       ],
       result: null,
       events: [],
@@ -661,7 +672,7 @@ export default {
     },
 
     setConfigCookies() {
-      let config = Cookies.get(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
+      let config = localStorage.getItem(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
       if (config) {
         config = JSON.parse(config)
       }
