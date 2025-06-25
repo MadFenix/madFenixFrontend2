@@ -1,6 +1,6 @@
 <template>
     <div v-if="seasonDetails && user">
-      <h1 :class="`text-[color:var(--naranja)] w-full text-center py-12`">Temporada</h1>
+      <h1 :class="`text-[color:var(--naranja)] w-full text-center py-12`"><span v-html="user.config?.theme?.title_season ?? 'Season'" /></h1>
       <div :class="`relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 sm:m-auto sm:w-2/3 border border-[color:var(--blanco)] bg-[color:var(--gris)] overflow-hidden`">
         <img src="/img/el-luchador/portada.jpg" :class="`absolute`" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
         <div :class="`relative min-h-[300px] mb-0 p-6 z-50`">
@@ -16,23 +16,23 @@
       </div>
       <div :class="`relative mx-3 sm:m-auto sm:w-2/3`">
         <div :class="`flex items-end justify-end title-season`">
-          <p :class="`text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4`" v-html="'Nivel: ' + (seasonDetails.user_season_level?? 0) + '&nbsp;&nbsp;&nbsp;'" />
-          <p :class="`text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4`" v-html="'Puntos: ' + (seasonDetails.user_season_points?? 0) + '&nbsp;&nbsp;&nbsp;'" />
-          <p :class="`text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4`" v-html="'Premium: ' + (seasonDetails.user_season_premium? 'Si' : 'No')" />
+          <p :class="`text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4`" v-html="(user.config?.theme?.title_season_level ?? 'Level') + ': ' + (seasonDetails.user_season_level?? 0) + '&nbsp;&nbsp;&nbsp;'" />
+          <p :class="`text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4`" v-html="(user.config?.theme?.title_season_points ?? 'Points') + ': ' + (seasonDetails.user_season_points?? 0) + '&nbsp;&nbsp;&nbsp;'" />
+          <p :class="`text-2xl font-medium tracking-tight text-white sm:text-3xl lg:text-4xl lg:leading-tight mt-4`" v-html="(user.config?.theme?.title_season_premium ?? 'Premium') + ': ' + (seasonDetails.user_season_premium? 'Si' : 'No')" />
         </div>
       </div>
 
-      <div :class="`grid grid-cols-1 sm:grid-cols-2 gap-12 mx-3 sm:mx-auto sm:w-2/3 mt-12`">
+      <div :class="`grid grid-cols-1 sm:grid-cols-2 gap-12 mx-3 xl:mx-auto xl:w-2/3 mt-12`">
         <div v-if="seasonDetails.seasonRewards" v-for="seasonReward in seasonDetails.seasonRewards" :key="seasonReward.id">
           <div :class="`relative rounded-tr-3xl rounded-bl-3xl border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
             <div :class="`p-6 pt-[50px] pb-[70px] relative z-50`">
               <div :class="`font-extrabold tracking-tight text-[color:var(--naranja)] w-full text-center lvl-season-reward`">
-                Nivel: <span v-html="seasonReward.level" />
+                <span v-html="user.config?.theme?.title_season_level ?? 'Level'" />: <span v-html="seasonReward.level" />
               </div>
-              <div :class="`text-4xl min-h-[200px] tracking-tight text-[color:var(--blanco)] sm:text-5xl w-full text-center`">
-                <span :class="`text-2xl sm:text-3xl`" v-html="seasonReward.required_points + ' puntos'" /><br>
+              <div :class="`text-4xl min-h-[150px] tracking-tight text-[color:var(--blanco)] sm:text-3xl w-full text-center`">
+                <span :class="`text-2xl sm:text-3xl`" v-html="seasonReward.required_points + ' ' + (user.config?.theme?.title_season_points ?? 'Points')" /><br>
                 <span :class="`font-extrabold`">Premio:</span><br>
-                <span v-if="seasonReward.oro" v-html="seasonReward.oro + ' oros'" /><span v-if="seasonReward.plumas" v-html="seasonReward.plumas + ' plumas'" /><span v-if="seasonReward.nft" v-html="'1 Ítem ' + seasonReward.nft.name + '. Límite: '" /><span v-if="seasonReward.max_nft_rewards" v-html="seasonReward.max_nft_rewards" /><span v-if="seasonReward.custom_reward" v-html="seasonReward.custom_reward" />
+                <span v-if="seasonReward.oro" v-html="seasonReward.oro + ' ' + (user.config?.theme?.title_coin_premium ?? 'Oro')" /><span v-if="seasonReward.plumas" v-html="seasonReward.plumas + ' ' + (user.config?.theme?.title_coin_free ?? 'Plata')" /><span v-if="seasonReward.nft" v-html="'1 Ítem ' + seasonReward.nft.name + '. Límite: '" /><span v-if="seasonReward.max_nft_rewards" v-html="seasonReward.max_nft_rewards" /><span v-if="seasonReward.custom_reward" v-html="seasonReward.custom_reward" />
               </div>
             </div>
           </div>
@@ -119,7 +119,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     afterLogout(){
       Cookies.remove('token')

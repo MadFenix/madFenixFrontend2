@@ -154,7 +154,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     signUp(){
       if (this.signUpData.name == "") {

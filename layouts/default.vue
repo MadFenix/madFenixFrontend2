@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="`--naranja: ${user.colors.naranja}; --gris: ${user.colors.gris}; --backgroundGeneral: ${user.colors.backgroundGeneral}; --azul: ${user.colors.azul}; --verde: ${user.colors.verde}; --rojo: ${user.colors.rojo}; --blanco: ${user.colors.blanco}`" :class="`bg-[color:var(--backgroundGeneral)]`">
     <div v-if="accountParameterToUrlLoaded == false">
       Cargando...
     </div>
@@ -8,7 +8,7 @@
         Cargando...
       </template>
       <template v-else>
-        <div :style="`--naranja: ${user.colors.naranja}; --gris: ${user.colors.gris}; --azul: ${user.colors.azul}; --verde: ${user.colors.verde}; --rojo: ${user.colors.rojo}; --blanco: ${user.colors.blanco}`">
+        <div>
           <header>
             <nav
                 :class="`flex items-center px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8`">
@@ -131,13 +131,13 @@
                       <nuxt-link :to="'/' + this.accountParameterToUrl + item.path" v-for="(item, key) in items" :key="key"
                                  :class="`block border-l-2 border-dark-600 p-4 font-medium text-white hover:text-white hover:bg-dark-700 sm:inline-block`"
                       >
-                        <svg v-if="item.text == 'Perfil'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
+                        <svg v-if="item.text == this.user.config?.theme?.title_profile" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                         </svg>
-                        <svg v-else-if="item.text == 'Temporada'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
+                        <svg v-else-if="item.text == this.user.config?.theme?.title_season" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
                         </svg>
-                        <svg v-else-if="item.text == 'Tienda'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
+                        <svg v-else-if="item.text == this.user.config?.theme?.title_store" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                         </svg>
 
@@ -374,14 +374,12 @@
                 <h6 :class="`text-xl font-semibold text-[color:var(--naranja)]`">
                   Síguenos
                 </h6>
-                <p :class="`mt-2 text-lg text-white`">
-                  Renacer te vuelve más fuerte.
-                </p>
+                <p :class="`mt-2 text-lg text-white`" v-html="user.config?.config?.slogan_ecosystem?? ''" />
                 <div :class="`w-full mt-4 lg:mt-6`">
                   <!-- Social links container -->
                   <div :class="`flex justify-start space-x-4`">
                     <!-- Instagram -->
-                    <a :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" href="https://www.instagram.com/madfenixgames" target="_blank">
+                    <a v-if="user.config?.config?.url_instagram" :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" :href="user.config?.config?.url_instagram?? ''" target="_blank">
                       <!-- TablerIcon name: brand-instagram -->
                       <svg xmlns="http://www.w3.org/2000/svg" :class="`w-6 h-6`" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -392,21 +390,17 @@
                     </a>
 
                     <!-- Youtube -->
-                    <a :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" href="https://youtube.com/@madfenixgames" target="_blank">
-                      <svg viewBox="0 -3 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :class="`w-6 h-6`" fill="#FC9208">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>youtube [#168]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-300.000000, -7442.000000)" fill="#FC9208"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289" id="youtube-[#168]"> </path> </g> </g> </g> </g>
-                      </svg>
+                    <a v-if="user.config?.config?.url_youtube" :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" :href="user.config?.config?.url_youtube?? ''" target="_blank">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Huge Icons by Hugeicons - undefined --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M12 20.5c1.81 0 3.545-.179 5.153-.507c2.01-.41 3.014-.614 3.93-1.792c.917-1.179.917-2.532.917-5.238v-1.926c0-2.706 0-4.06-.917-5.238c-.916-1.178-1.92-1.383-3.93-1.792A26 26 0 0 0 12 3.5c-1.81 0-3.545.179-5.153.507c-2.01.41-3.014.614-3.93 1.792C2 6.978 2 8.331 2 11.037v1.926c0 2.706 0 4.06.917 5.238c.916 1.178 1.92 1.383 3.93 1.792c1.608.328 3.343.507 5.153.507"/><path d="M15.962 12.313c-.148.606-.938 1.04-2.517 1.911c-1.718.947-2.577 1.42-3.272 1.237a1.7 1.7 0 0 1-.635-.317C9 14.709 9 13.806 9 12s0-2.709.538-3.144c.182-.147.4-.256.635-.317c.695-.183 1.554.29 3.272 1.237c1.58.87 2.369 1.305 2.517 1.911c.05.206.05.42 0 .626"/></g></svg>
                     </a>
 
-                    <!-- Youtube -->
-                    <a :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" href="https://twitch.tv/elfenixvalenti" target="_blank">
-                      <svg viewBox="-0.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :class="`w-6 h-6`" fill="#FC9208">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>twitch [#182]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-141.000000, -7399.000000)" fill="#FC9208"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M97,7249 L99,7249 L99,7244 L97,7244 L97,7249 Z M92,7249 L94,7249 L94,7244 L92,7244 L92,7249 Z M102,7250.307 L102,7241 L88,7241 L88,7253 L92,7253 L92,7255.953 L94.56,7253 L99.34,7253 L102,7250.307 Z M98.907,7256 L94.993,7256 L92.387,7259 L90,7259 L90,7256 L85,7256 L85,7242.48 L86.3,7239 L104,7239 L104,7251.173 L98.907,7256 Z" id="twitch-[#182]"> </path> </g> </g> </g> </g>
-                      </svg>
+                    <!-- Twitch -->
+                    <a v-if="user.config?.config?.url_twitch" :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" :href="user.config?.config?.url_twitch?? ''" target="_blank">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Huge Icons by Hugeicons - undefined --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7v4m-4-4v4m4-8H8c-1.886 0-2.828 0-3.414.584C4 4.167 4 5.106 4 6.984v6.576c0 .37 0 .555.025.71a2 2 0 0 0 1.662 1.657c.156.024.341.024.713.024c.093 0 .14 0 .178.006a.5.5 0 0 1 .416.414c.006.039.006.085.006.178v1.543c0 1.182 0 1.773.335 1.89c.334.117.705-.344 1.446-1.268l1.919-2.39c.147-.183.221-.275.324-.324c.102-.049.22-.049.457-.049h3.862c.818 0 1.226 0 1.594-.152c.367-.151.656-.44 1.235-1.015l.656-.655c.579-.575.867-.863 1.02-1.23c.152-.366.152-.773.152-1.587V6.985c0-1.879 0-2.818-.586-3.401C18.828 3 17.886 3 16 3" color="currentColor"/></svg>
                     </a>
 
                     <!-- Twitter -->
-                    <a :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" href="https://twitter.com/madfenixgames" target="_blank">
+                    <a v-if="user.config?.config?.url_x" :class="`flex items-center justify-center w-12 h-12 transition duration-300 ease-in-out rounded-full bg-dark-700 hover:text-dark-900 text-[color:var(--naranja)] border-2 border-[color:var(--gris)] hover:border-[color:var(--naranja)]`" :href="user.config?.config?.url_x?? ''" target="_blank">
                       <!-- TablerIcon name: brand-twitter -->
                       <svg xmlns="http://www.w3.org/2000/svg" :class="`w-6 h-6`" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -499,7 +493,8 @@ export default {
       serverMessage: useServerMessageStore(),
       route: useRoute(),
       api: null,
-      items: [
+      items: [],
+      itemsToCheck: [
         { icon: ['fas', 'user'], text: 'Perfil', path: 'perfil' },
         { icon: ['fas', 'user'], text: 'Temporada', path: 'temporada' },
         { icon: ['fas', 'user'], text: 'Tienda', path: 'tienda' },
@@ -589,9 +584,17 @@ export default {
 
     this.setConfigCookies();
 
-    this.items[0].text = this.user.config?.theme?.title_profile ?? 'Perfil';
-    this.items[1].text = this.user.config?.theme?.title_season ?? 'Temporada';
-    this.items[2].text = this.user.config?.theme?.title_store ?? 'Tienda';
+    this.itemsToCheck[0].text = this.user.config?.theme?.title_profile ?? 'Perfil';
+    this.items.push(this.itemsToCheck[0]);
+    if (this.user.config?.config?.active_seasons) {
+      this.itemsToCheck[1].text = this.user.config?.theme?.title_season ?? 'Temporada';
+      this.items.push(this.itemsToCheck[1]);
+    }
+    if (this.user.config?.config?.active_store) {
+      this.itemsToCheck[2].text = this.user.config?.theme?.title_store ?? 'Tienda';
+      this.items.push(this.itemsToCheck[2]);
+    }
+
 
     const { $api } = useNuxtApp();
     this.api = $api;
@@ -629,7 +632,7 @@ export default {
         return;
       }
 
-      this.$router.push({ path: '/' + this.clearName(this.signUpData.account) + '/' })
+      window.location.href = '/' + this.clearName(this.signUpData.account) + '/'
     },
 
     revealImageItems() {

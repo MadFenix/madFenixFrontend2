@@ -54,7 +54,7 @@
     <div :class="`flex items-center mt-5`">
       <div :class="`flex-1`"></div>
       <div :class="`w-1/2 text-center text-[color:var(--blanco)]`">
-        Cuando vinculas tu código de refereido obtienes 5 oros. También apoyas al referido que vinculas.
+        Cuando vinculas tu código de refereido obtienes 5 <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" />. También apoyas al referido que vinculas.
       </div>
       <div :class="`flex-1`"></div>
     </div>
@@ -113,7 +113,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     afterCreateReferred(response){
       this.$router.push( '/'+ this.accountParameterToUrl + 'perfil')

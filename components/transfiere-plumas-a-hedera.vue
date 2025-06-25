@@ -1,13 +1,13 @@
 <template>
   <div>
     <!-- Título de la tarjeta -->
-    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Transferir Plumas a Hedera - Paso 3/3</h2>
+    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Transferir <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> a Hedera - Paso 3/3</h2>
 
     <!-- Segunda fila: Mensaje sobre transferencias -->
     <div :class="`flex items-center mb-5`">
       <div :class="`flex-1`"></div>
       <div :class="`w-1/2 text-center text-[color:var(--blanco)]`">
-        Ingresa un número entero en la cantidad de plumas.
+        Ingresa un número entero en la cantidad de <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" />.
       </div>
       <div :class="`flex-1`"></div>
     </div>
@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <!-- Campo: Cantidad de plumas -->
+          <!-- Campo: Cantidad de <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> -->
           <div :class="`mt-3`">
             <div :class="`relative`">
               <input
@@ -78,8 +78,8 @@
         <div :class="`flex items-center mt-5 mb-5`">
           <div :class="`flex-1`"></div>
           <div :class="`w-1/2 text-center text-[color:var(--blanco)]`">
-            <b>Para transferir Plumas desde Hedera a tu cuenta de Mad Fénix</b><br>
-            Debes enviar las plumas que quieras ingresar a la cuenta 0.0.4970116 con el siguiente memo:<br>
+            <b>Para transferir <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> desde Hedera a tu cuenta de Mad Fénix</b><br>
+            Debes enviar las <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> que quieras ingresar a la cuenta 0.0.4970116 con el siguiente memo:<br>
             <span :class="`text-3xl`" v-html="'deposito:' + user.user.id"></span><br>
             Este proceso puede tardar de 10 a 20 minutos.<br>
             No envíes decimales ya que se perderán.
@@ -128,12 +128,12 @@ export default {
     this.setConfigCookies();
 
     useHead({
-      title: 'Transferir plumas a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
+      title: 'Transferir ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Transferir plumas a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
+          content: 'Transferir ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
         }
       ]
     });
@@ -144,7 +144,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     afterTransferToHedrera(response){
       this.$router.push( '/'+ this.accountParameterToUrl + 'perfil')

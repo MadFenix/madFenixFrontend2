@@ -16,7 +16,7 @@
     <div :class="`flex items-center mb-5`">
       <div :class="`flex-1`"></div>
       <div :class="`w-1/2 text-center text-[color:var(--blanco)]`">
-        Las transferencias pueden tardar de 5 a 15 minutos. Si hay problemas en la red, tras 30 minutos no te llega tu oro o tienes cualquier problema contacta con iam@valentigamez.com o en X en la cuenta @MadFenixGames o @elfenixvalenti.
+        Las transferencias pueden tardar de 5 a 15 minutos. Si hay problemas en la red, tras 30 minutos no te llega tu <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" /> o tienes cualquier problema contacta con iam@valentigamez.com o en X en la cuenta @MadFenixGames o @elfenixvalenti.
       </div>
       <div :class="`flex-1`"></div>
     </div>
@@ -135,7 +135,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     afterTransferToHedrera(response){
       this.$router.push( '/'+ this.accountParameterToUrl + 'perfil')

@@ -53,7 +53,7 @@
     <!-- Texto informativo debajo de la card -->
     <div :class="`flex justify-center mt-5 mb-5 w-full`">
       <div :class="`w-1/2 text-center`">
-        Cuando alguien vincula tu código de referido obtienes 5 oros. También obtienes el 10% de oro de las compras con esta moneda en la tienda por parte de tus referidos.
+        Cuando alguien vincula tu código de referido obtienes 5 <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" />. También obtienes el 10% de <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" /> de las compras con esta moneda en la tienda por parte de tus referidos.
       </div>
     </div>
   </div>
@@ -111,7 +111,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     afterCreateReferred(response){
       this.$router.push( '/'+ this.accountParameterToUrl + 'perfil')

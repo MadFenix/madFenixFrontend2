@@ -16,7 +16,7 @@
 
     <section :class="`max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 my-4 sm:my-12`" id="container-sello-fenix">
       <p :class="`text-2xl text-[color:var(--blanco)] text-center`">
-        Los <span :class="`text-[color:var(--naranja)] font-bold`">Sellos del Fénix</span> son un distintivo de reconocimiento para quienes ayudan a <span :class="`text-[color:var(--naranja)] font-bold`">expandir el camino hacia la Unión Consciente</span>. Funcionan como un <span :class="`text-[color:var(--naranja)] font-bold`">sistema de referidos</span> donde tanto quien invita como la persona referida reciben <span :class="`text-[color:var(--naranja)] font-bold`">5 Oros</span>, y además, el referidor obtiene <span :class="`text-[color:var(--naranja)] font-bold`">el 10%</span> de cada compra con Oro en la tienda de Mad Fénix realizada por su referido. A su vez, quienes refieren miembros a la comunidad obtienen <span :class="`text-[color:var(--naranja)] font-bold`">Sellos del Fénix</span>, que desbloquean beneficios exclusivos cada quincena.
+        Los <span :class="`text-[color:var(--naranja)] font-bold`">Sellos del Fénix</span> son un distintivo de reconocimiento para quienes ayudan a <span :class="`text-[color:var(--naranja)] font-bold`">expandir el camino hacia la Unión Consciente</span>. Funcionan como un <span :class="`text-[color:var(--naranja)] font-bold`">sistema de referidos</span> donde tanto quien invita como la persona referida reciben <span :class="`text-[color:var(--naranja)] font-bold`">5 <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" /></span>, y además, el referidor obtiene <span :class="`text-[color:var(--naranja)] font-bold`">el 10%</span> de cada compra con Oro en la tienda de Mad Fénix realizada por su referido. A su vez, quienes refieren miembros a la comunidad obtienen <span :class="`text-[color:var(--naranja)] font-bold`">Sellos del Fénix</span>, que desbloquean beneficios exclusivos cada quincena.
       </p>
     </section>
 
@@ -86,7 +86,7 @@
       <div :class="`overflow-hidden col-span-2 py-6`">
         <div
             :class="`mt-4 w-full text-center text-3xl font-extrabold text-[color:var(--naranja)] md:mt-5 sm:text-3xl md:text-4xl`"
-            v-html="'Drop de Plumas'"
+            v-html="'Drop de ' + (user.config?.theme?.title_coin_free ?? 'Plata')"
         />
       </div>
 
@@ -266,7 +266,7 @@
       <div :class="`overflow-hidden col-span-2 py-6`">
         <div
             :class="`mt-4 w-full text-center text-3xl font-extrabold text-[color:var(--naranja)] md:mt-5 sm:text-3xl md:text-4xl`"
-            v-html="'Drop de Plumas Superior'"
+            v-html="'Drop de ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' Superior'"
         />
       </div>
 
@@ -467,7 +467,10 @@ export default {
 
   methods: {
     setBackground () {
-      //document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        //document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
 
      setConfigCookies() {

@@ -175,7 +175,7 @@
               Pase de Temporada Premium Gratuito
             </div>
             <p :class="`mt-2 text-lg leading-relaxed text-center`">
-              Actualmente los pases de temporada premium tienen un coste de 20 piezas de oro. <span :class="`text-[color:var(--naranja)]`">Para los holders de un Dragon Custodio será gratis</span>.
+              Actualmente los pases de temporada premium tienen un coste de 20 <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" />. <span :class="`text-[color:var(--naranja)]`">Para los holders de un Dragon Custodio será gratis</span>.
             </p>
           </div>
 
@@ -568,7 +568,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
 
      setConfigCookies() {

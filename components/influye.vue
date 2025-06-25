@@ -1,6 +1,6 @@
 <template>
-    <div v-if="user.user && perfil">
-      <h1 :class="`text-[color:var(--naranja)] w-full text-center py-12`">Influye</h1>
+    <div v-if="user.user && perfil && user.config?.config?.active_polls">
+      <h1 :class="`text-[color:var(--naranja)] w-full text-center py-12`"><span v-html="user.config?.theme?.title_polls ?? 'Polls'" /></h1>
       <section :class="`max-w-screen-xl px-4 pb-12 mx-auto md:pb-16 sm:px-6 lg:px-8`">
         <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
           <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-[color:var(--gris)]`">
@@ -10,14 +10,14 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/pluma.png" alt="Plumas" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img src="/img/perfil/pluma.png" :alt="(user.config?.theme?.title_coin_free ?? 'Plata')" :class="`absolute z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
           </div>
           <div :class="`sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex items-center space-x-3 justify-center h-full bg-[color:var(--azul)] sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end`">
             <h5 :class="`grow font-extrabold tracking-tight text-white text-size-token`">
-              Plumas
+              <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" />
             </h5>
             <div :class="`botones-tokens`">
               <nuxt-link :to="'/' + accountParameterToUrl + 'canjear-cupon'" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
@@ -25,7 +25,7 @@
               </nuxt-link>
               <br>
               <nuxt-link :to="'/' + accountParameterToUrl + 'transfiere-plumas-a-hedera-previo1'" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-                Transfiere Plumas
+                Transfiere&nbsp;<span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" />
               </nuxt-link>
             </div>
           </div>
@@ -230,7 +230,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
 
     afterPerfil(response) {

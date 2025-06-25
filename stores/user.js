@@ -7,6 +7,7 @@ export const useUserStore = defineStore('userStore', {
     user: null,
     config: null,
     colors: {
+      backgroundGeneral: '#303030',
       gris: '#161616',
       azul: '#326B8A',
       verde: '#517A31',
@@ -45,10 +46,11 @@ export const useUserStore = defineStore('userStore', {
     },
 
     setConfig(accountParameterToUrl, config) {
-      this.colors.gris = config.theme.color_black;
-      this.colors.naranja = config.theme.color_primary;
-      this.colors.azul = config.theme.color_secondary;
-      this.colors.blanco = config.theme.color_white0;
+      this.colors.backgroundGeneral = config.theme.color_background_secondary?? '#303030';
+      this.colors.gris = config.theme.color_black?? '#161616';
+      this.colors.naranja = config.theme.color_primary?? '#FC9208';
+      this.colors.azul = config.theme.color_secondary?? '#326B8A';
+      this.colors.blanco = config.theme.color_white0?? '#EBEBEB';
       const accountParameter = accountParameterToUrl.replace(/^\/+|\/+$/g, '')
       localStorage.setItem(accountParameter + '_config', JSON.stringify(config));
       Cookies.set(accountParameter + '_config', JSON.stringify(config), {

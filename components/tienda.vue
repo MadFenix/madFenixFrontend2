@@ -1,5 +1,5 @@
 <template>
-  <div v-if="storeDetails">
+  <div v-if="storeDetails && user.config?.config?.active_store">
     <!-- Case Study Hero -->
     <section :class="`px-4 py-12 md:py-16 sm:px-6 lg:px-8`">
       <div :class="`max-w-screen-xl mx-auto`">
@@ -7,8 +7,9 @@
         <div :class="`w-full max-w-3xl mx-auto text-center lg:max-w-5xl`">
           <h1
               :class="`mt-4 text-4xl font-extrabold text-[color:var(--naranja)] md:mt-5 sm:text-5xl md:text-6xl`"
-              v-html="'Pasa al siguiente nivel'"
-          />
+          >
+            <span v-html="user.config?.theme?.title_store_h1 ?? 'Pasa al siguiente nivel'" />
+          </h1>
         </div>
       </div>
     </section>
@@ -173,7 +174,10 @@ export default {
       this.imageItemsReveal = true;
     },
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     afterLogout(){
       Cookies.remove('token')

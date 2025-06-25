@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Título de la tarjeta -->
-    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Transferir Plumas Hedera - Paso 2/3</h2>
+    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Transferir <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> Hedera - Paso 2/3</h2>
 
     <div :class="`p-5 sm:p-20`" v-if="user.user">
       <div :class="`relative rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-1/2 border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
@@ -9,7 +9,7 @@
 
         <div :class="`p-6 py-[120px] relative z-50`">
           <div :class="`w-full text-center text-xl text-[color:var(--blanco)]`">
-            Las transferencias pueden tardar de 5 a 15 minutos. Si hay problemas en la red, tras 30 minutos no te llegan tus plumas o tienes cualquier problema contacta con iam@valentigamez.com o en X en la cuenta @MadFenixGames o @elfenixvalenti.
+            Las transferencias pueden tardar de 5 a 15 minutos. Si hay problemas en la red, tras 30 minutos no te llegan <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> o tienes cualquier problema contacta con iam@valentigamez.com o en X en la cuenta @MadFenixGames o @elfenixvalenti.
           </div>
 
           <div>
@@ -18,7 +18,7 @@
                 <input type="checkbox" v-model="tokenAdded" :class="`form-checkbox h-5 w-5 text-blue-500`" />
               </div>
               <div :class="`col-span-10 text-[color:var(--blanco)]`">
-                Estoy de acuerdo en enviar plumas de mi cuenta de Mad Fénix a Hedera
+                Estoy de acuerdo en enviar <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> de mi cuenta de Mad Fénix a Hedera
               </div>
             </div>
           </div>
@@ -57,8 +57,8 @@
           <div :class="`flex items-center mt-5 mb-5`">
             <div :class="`flex-1`"></div>
             <div :class="`w-1/2 text-center text-[color:var(--blanco)]`">
-              <b>Para transferir Plumas desde Hedera a tu cuenta de Mad Fénix</b><br>
-              Debes enviar las plumas que quieras ingresar a la cuenta 0.0.4970116 con el siguiente memo:<br>
+              <b>Para transferir <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> desde Hedera a tu cuenta de Mad Fénix</b><br>
+              Debes enviar <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /> que quieras ingresar a la cuenta 0.0.4970116 con el siguiente memo:<br>
               <span :class="`text-3xl`" v-html="'deposito:' + user.user.id"></span><br>
               Este proceso puede tardar de 10 a 20 minutos.<br>
               No envíes decimales ya que se perderán.
@@ -105,12 +105,12 @@ export default {
     this.setConfigCookies();
 
     useHead({
-      title: 'Transferir plumas a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
+      title: 'Transferir ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Transferir plumas a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
+          content: 'Transferir ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
         }
       ]
     });
@@ -121,14 +121,17 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
 
     nextStep(){
       if (this.tokenAdded) {
         this.$router.push( '/'+ this.accountParameterToUrl + 'transfiere-plumas-a-hedera')
       } else {
-        this.serverMessage.setServerMessage('Debes aceptar que quieres enviar plumas a tu cuenta de Hedera.')
+        this.serverMessage.setServerMessage('Debes aceptar que quieres enviar ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' a tu cuenta de Hedera.')
       }
     },
 

@@ -141,12 +141,12 @@ export default {
     this.setConfigCookies();
 
     useHead({
-      title: 'Canjear cupón de plumas - ' + this.user.config?.config?.name_ecosystem ?? '',
+      title: 'Canjear cupón de ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Canjear cupóon de plumas en ' + this.user.config?.config?.name_ecosystem ?? ''
+          content: 'Canjear cupóon de ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' en ' + this.user.config?.config?.name_ecosystem ?? ''
         }
       ]
     });
@@ -161,7 +161,10 @@ export default {
     },
 
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
 
     openNewItems(itemsPurchase) {

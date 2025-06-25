@@ -158,7 +158,7 @@
           </p>
         </div>
         <div :class="`mt-3 p-8 text-white bg-[color:var(--gris)] border-2 border-[color:var(--naranja)] container-movemos-comunidades-modulos`">
-          <h3 :class="`mb-3 w-full text-center text-[color:var(--naranja)]`">Plumas Fénix</h3>
+          <h3 :class="`mb-3 w-full text-center text-[color:var(--naranja)]`"><span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" /></h3>
           <p>
             Son un reclamo para nuestro ecosistema ya que pueden dar ventaja a equipos de la liga, participaciones en sorteos, etc.
           </p>
@@ -329,7 +329,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/home/feather-back-2.png') no-repeat top right";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/home/feather-back-2.png') no-repeat top right";
+
+      }
     },
 
      setConfigCookies() {

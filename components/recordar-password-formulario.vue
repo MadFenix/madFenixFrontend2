@@ -134,7 +134,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
     forgot(){
       (this.route.query.token) ? this.forgotData.token = this.route.query.token : this.$router.push( '/'+ this.accountParameterToUrl + 'login')

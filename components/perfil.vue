@@ -58,37 +58,43 @@
       </div>
 
       <div :class="`sm:flex space-x-5 justify-center items-center px-5 border-b-2 border-[color:var(--naranja)] bg-[color:var(--gris)]`">
-        <div v-if="perfil && perfil.hedera_wallet" :class="`py-4 text-white text-center text-sm`">
-          Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
-        </div>
-        <div v-else-if="perfil && perfil.hedera_wallet_check" :class="`py-4`">
-          <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-wallet-hedera-2'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-            Vincular hedera
-          </nuxt-link>
-        </div>
-        <div v-else :class="`py-4`">
-          <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-wallet-hedera'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-            Vincular hedera
-          </nuxt-link>
-        </div>
+        <template v-if="user.config?.config?.active_hedera">
+          <div v-if="perfil && perfil.hedera_wallet" :class="`py-4 text-white text-center text-sm`">
+            Tu cartera de hedera vinculada: <span v-html="perfil.hedera_wallet" />.&nbsp;
+          </div>
+          <div v-else-if="perfil && perfil.hedera_wallet_check" :class="`py-4`">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-wallet-hedera-2'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
+              Vincular hedera
+            </nuxt-link>
+          </div>
+          <div v-else :class="`py-4`">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-wallet-hedera'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
+              Vincular hedera
+            </nuxt-link>
+          </div>
+        </template>
 
-        <div v-if="perfil && perfil.referred_code_from" :class="`py-4 text-white text-center text-sm`">
-          Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
-        </div>
-        <div v-else :class="`py-4`">
-          <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-codigo-referido'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-            Vincular código de referido
-          </nuxt-link>
-        </div>
+        <template v-if="user.config?.config?.active_referrals">
+          <div v-if="perfil && perfil.referred_code_from" :class="`py-4 text-white text-center text-sm`">
+            Tu referido: <span v-html="perfil.referred_code_from" />.&nbsp;
+          </div>
+          <div v-else :class="`py-4`">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'vincular-codigo-referido'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
+              Vincular código de referido
+            </nuxt-link>
+          </div>
+        </template>
 
-        <div v-if="perfil && perfil.referred_code" :class="`py-4 text-white text-center text-sm`">
-          Tu código de referido: <span v-html="perfil.referred_code" /> (<span v-html="perfil.count_refered" />)&nbsp;
-        </div>
-        <div v-else :class="`py-4`">
-          <nuxt-link :to="'/' + accountParameterToUrl + 'crear-codigo-referido'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-            Crear código de referido
-          </nuxt-link>
-        </div>
+        <template v-if="user.config?.config?.active_referrals">
+          <div v-if="perfil && perfil.referred_code" :class="`py-4 text-white text-center text-sm`">
+            Tu código de referido: <span v-html="perfil.referred_code" /> (<span v-html="perfil.count_refered" />)&nbsp;
+          </div>
+          <div v-else :class="`py-4`">
+            <nuxt-link :to="'/' + accountParameterToUrl + 'crear-codigo-referido'"  :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
+              Crear código de referido
+            </nuxt-link>
+          </div>
+        </template>
 
         <div v-if="perfil && perfil.user_steam" :class="`py-4 w-full text-white text-center hidden text-sm`">
           Conectad@ con <span v-html="perfil.user_steam" />.&nbsp;
@@ -113,7 +119,7 @@
         </div>
       </div>
 
-      <div :class="`flex items-center justify-center px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8`">
+      <div v-if="user.config?.config?.active_coupons" :class="`flex items-center justify-center px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8`">
         <div>
           <nuxt-link :to="'/' + accountParameterToUrl + 'canjear-cupon'" :class="`flex items-center uppercase orbitron-medium w-full m-auto justify-center px-8 py-4 btn-madfenix text-2xl text-[color:var(--gris)] font-extrabold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-12 sm:h-16 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
             Canjea un cupón
@@ -121,13 +127,13 @@
         </div>
       </div>
 
-      <div :class="`max-w-screen-xl px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8`">
+      <div v-if="user.config?.config?.active_coin_free || user.config?.config?.active_coin_premium" :class="`max-w-screen-xl px-4 pt-12 mx-auto md:pt-16 sm:px-6 lg:px-8`">
         <h2 :class="`px-4 sm:px-16 text-[color:var(--blanco)] text-center lowercase`">
           <span :class="`uppercase`">M</span>onedas
         </h2>
       </div>
 
-      <section :class="`max-w-screen-xl px-4 py-7 pt-12 mx-auto md:py-7 md:pt-16 sm:px-6 lg:px-8`">
+      <section v-if="user.config?.config?.active_coin_premium" :class="`max-w-screen-xl px-4 py-7 pt-12 mx-auto md:py-7 md:pt-16 sm:px-6 lg:px-8`">
         <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
           <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-[color:var(--gris)]`">
             <h5 :class="`font-extrabold tracking-tight text-white text-size-token-number text-center w-full`">
@@ -136,25 +142,25 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/oro.png" alt="Oro" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img src="/img/perfil/oro.png" :alt="user.config?.theme?.title_coin_premium ?? 'Oro'" :class="`absolute z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
           </div>
           <div :class="`sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex space-x-3 items-center justify-center h-full bg-[color:var(--azul)] sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end`">
             <h5 :class="`grow font-extrabold tracking-tight text-white text-size-token`">
-              Oros
+              <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" />
             </h5>
-            <div :class="`botones-tokens`">
+            <div v-if="user.config?.config?.active_hedera" :class="`botones-tokens`">
               <nuxt-link :to="'/' + accountParameterToUrl + 'transfiere-oro-a-hedera-previo1'" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-                Transfiere Oro
+                Transfiere&nbsp;<span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" />
               </nuxt-link>
             </div>
           </div>
         </div>
       </section>
 
-      <section :class="`max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8`">
+      <section v-if="user.config?.config?.active_coin_free" :class="`max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8`">
         <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
           <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-[color:var(--gris)]`">
             <h5 :class="`font-extrabold tracking-tight text-white text-size-token-number text-center w-full`">
@@ -163,29 +169,29 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/pluma.png" alt="Plumas" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img src="/img/perfil/pluma.png" :alt="(user.config?.theme?.title_coin_free ?? 'Plata')" :class="`absolute z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
           </div>
           <div :class="`sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex items-center space-x-3 justify-center h-full bg-[color:var(--azul)] sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end`">
             <h5 :class="`grow font-extrabold tracking-tight text-white text-size-token`">
-              Plumas
+              <span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" />
             </h5>
-            <div :class="`botones-tokens`">
+            <div v-if="user.config?.config?.active_hedera" :class="`botones-tokens`">
               <nuxt-link :to="'/' + accountParameterToUrl + 'transfiere-plumas-a-hedera-previo1'" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-                Transfiere Plumas
+                Transfiere&nbsp;<span v-html="user.config?.theme?.title_coin_free ?? 'Plata'" />
               </nuxt-link>
             </div>
           </div>
         </div>
       </section>
 
-      <div :class="`max-w-screen-xl px-4 py-6 mx-auto md:py-8 sm:px-6 lg:px-8 w-full flex justify-center`">
+      <div v-if="user.config?.config?.active_polls" :class="`max-w-screen-xl px-4 py-6 mx-auto md:py-8 sm:px-6 lg:px-8 w-full flex justify-center`">
         <img :class="`px-4 sm:px-16 h-[55px]`" src="/img/perfil/separador_plumas.png" />
       </div>
 
-      <section :class="`max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8`">
+      <section v-if="user.config?.config?.active_polls" :class="`max-w-screen-xl px-4 py-7 mx-auto md:py-7 sm:px-6 lg:px-8`">
         <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
           <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-[color:var(--gris)]`">
             <h5 :class="`font-extrabold tracking-tight text-white text-size-token-number text-center w-full`">
@@ -200,22 +206,22 @@
           </div>
           <div :class="`sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex items-center space-x-3 justify-center h-full bg-[color:var(--azul)] sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end`">
             <h5 :class="`grow font-extrabold tracking-tight text-white text-size-token`">
-              Destino
+              <span v-html="user.config?.theme?.title_polls ?? 'Polls'" />
             </h5>
             <div :class="`botones-tokens`">
               <nuxt-link :to="'/' + accountParameterToUrl + 'influye'" :class="`flex items-center w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] text-sm font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
-                Influye en Névoran
+                Influye en&nbsp;<span v-html="user.config?.config?.name_ecosystem ?? 'Tribe'" />
               </nuxt-link>
             </div>
           </div>
         </div>
       </section>
 
-      <div :class="`max-w-screen-xl px-4 py-6 mx-auto md:py-8 sm:px-6 lg:px-8 w-full flex justify-center`">
+      <div v-if="user.config?.config?.active_items" :class="`max-w-screen-xl px-4 py-6 mx-auto md:py-8 sm:px-6 lg:px-8 w-full flex justify-center`">
         <img :class="`px-4 sm:px-16 h-[55px]`" src="/img/perfil/separador_plumas.png" />
       </div>
 
-      <section :class="`max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8`">
+      <section v-if="user.config?.config?.active_items" :class="`max-w-screen-xl px-4 py-7 pb-12 mx-auto md:py-7 md:pb-16 sm:px-6 lg:px-8`">
         <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
           <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-6 h-full text-2xl font-bold sm:text-4xl rounded-tr-3xl sm:rounded-tr-none rounded-tl-3xl sm:rounded-bl-3xl bg-[color:var(--gris)]`">
             <h5 :class="`font-extrabold tracking-tight text-white text-size-token-number text-center w-full`">
@@ -230,7 +236,7 @@
           </div>
           <div :class="`sm:col-span-7 px-3 sm:px-0 py-3 sm:py-0 flex items-center space-x-3 justify-center h-full bg-[color:var(--azul)] sm:rounded-tr-3xl rounded-bl-3xl sm:rounded-bl-none rounded-br-3xl sm:mr-12 lg:justify-end`">
             <h5 :class="`grow font-extrabold tracking-tight text-white text-size-token`">
-              Ítems
+              <span v-html="user.config?.theme?.title_items ?? 'Items'" />
             </h5>
             <div :class="`botones-tokens`">
               &nbsp;
@@ -239,13 +245,13 @@
         </div>
       </section>
 
-      <div :class="`max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8`">
-        <h2 :class="`px-4 sm:px-16 text-[color:var(--blanco)] text-center lowercase`">
-          <span :class="`uppercase`">C</span>olecciones
+      <div v-if="user.config?.config?.active_items" :class="`max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8`">
+        <h2 :class="`px-4 sm:px-16 text-[color:var(--blanco)] text-center capitalize lowercase`">
+          <span v-html="user.config?.theme?.title_collections ?? 'Collection'" />
         </h2>
       </div>
 
-      <div v-if="perfil && perfil.nft_categories" :class="`flex flex-wrap justify-center space-x-3 bg-[color:var(--naranja)] py-2`">
+      <div v-if="perfil && perfil.nft_categories && user.config?.config?.active_items" :class="`flex flex-wrap justify-center space-x-3 bg-[color:var(--naranja)] py-2`">
         <div :class="`py-2 md:py-2`" v-for="(nftCategory, indexNftCategory) in perfil.nft_categories" :key="indexNftCategory">
           <a
               @click="categorySelected = nftCategory; subcategorySelected = null"
@@ -270,7 +276,7 @@
         </div>
       </div>
 
-      <div v-if="perfil && categorySelected" :class="`flex flex-wrap justify-center space-x-3 mt-3 max-w-screen-xl mx-auto sm:w-3/4 background-subcategories`">
+      <div v-if="perfil && categorySelected && user.config?.config?.active_items" :class="`flex flex-wrap justify-center space-x-3 mt-3 max-w-screen-xl mx-auto sm:w-3/4 background-subcategories`">
         <div :class="`py-2 md:py-2`" v-for="(nftSubcategory, indexNftSubcategory) in categorySelected.subcategories" :key="indexNftSubcategory">
           <a @click="subcategorySelected = nftSubcategory"
              :class="{
@@ -284,7 +290,7 @@
         </div>
       </div>
 
-      <div :class="`max-w-screen-xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 px-6`">
+      <div v-if="user.config?.config?.active_items" :class="`max-w-screen-xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 px-6`">
         <div v-if="nftCollections" v-for="nftCollection in nftCollections" :key="nftCollection.nft_id">
           <div :class="`relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 mt-12 sm:mx-auto bg-[color:var(--gris)] border border-[color:var(--naranja)] overflow-hidden`">
             <img :src="nftCollection.featured_image" :class="`absolute`" style="min-width: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
@@ -301,7 +307,7 @@
                     v-html="nftCollection.name + ' (' + countNFTsByid(nftCollection.nft_id) + ')'"
                 />
                 <a
-                    v-if="nftCollection.token_number > 0"
+                    v-if="nftCollection.token_number > 0 && user.config?.config?.active_hedera"
                     :href="'https://market.kabila.app/es/collections/' + nftCollection.token_number + '/items'"
                     target="_blank"
                     :class="`flex justify-center col-span-4 space-x-3 items-center text-center m-auto justify-center px-2 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer group`"
@@ -326,7 +332,7 @@
             <!-- Modal header -->
             <div :class="`flex justify-between items-start p-4 rounded-t border-b border-[color:var(--blanco)]`">
               <h3 :class="`text-xl font-semibold`">
-                Avatares
+                <span v-html="user.config?.theme?.title_avatar ?? 'Avatar'" />
               </h3>
               <button type="button" @click="showAvatarsModal = false" :class="`text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white`">
                 <svg aria-hidden="true" :class="`w-5 h-5`" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -388,7 +394,7 @@
             <!-- Modal header -->
             <div :class="`flex justify-between items-start p-4 rounded-t border-b border-[color:var(--blanco)]`">
               <h3 :class="`text-xl font-semibold`">
-                Estados
+                <span v-html="user.config?.theme?.title_state ?? 'State'" />
               </h3>
               <button type="button" @click="showEstadosModal = false" :class="`text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white`">
                 <svg aria-hidden="true" :class="`w-5 h-5`" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -607,15 +613,6 @@ export default {
     },
 
     pollsNotAnswered () {
-      /*let pollsNotAnswered = 0;
-      if (this.polls.polls) {
-        for (let i = 0; i < this.polls.polls.length; i++) {
-          if (!this.polls.polls[i].userAnswer) {
-            pollsNotAnswered++;
-          }
-        }
-      }*/
-
       return this.polls.polls.length;
     },
 
@@ -636,7 +633,9 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      }
     },
 
     afterLogout(){

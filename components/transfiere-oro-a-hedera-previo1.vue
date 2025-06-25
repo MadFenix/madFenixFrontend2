@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Título de la tarjeta -->
-    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Transferir Oro Hedera - Paso 1/3</h2>
+    <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Transferir <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" /> Hedera - Paso 1/3</h2>
 
     <div :class="`p-5 sm:p-20`" v-if="user.user">
       <div :class="`relative rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-1/2 border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
@@ -54,11 +54,11 @@
 
         <div :class="`p-6 py-[40px] relative z-50`">
 
-          <!-- Información adicional para transferir oro desde Hedera a tu cuenta -->
+          <!-- Información adicional para transferir <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" /> desde Hedera a tu cuenta -->
           <div :class="`flex items-center mt-5 mb-5`">
             <div :class="`flex-1`"></div>
             <div :class="`w-1/2 text-center text-[color:var(--blanco)]`">
-              <b>Para transferir Oro desde Hedera a tu cuenta</b><br>
+              <b>Para transferir <span v-html="user.config?.theme?.title_coin_premium ?? 'Oro'" /> desde Hedera a tu cuenta</b><br>
               Debes enviar el oro que quieras ingresar a la cuenta 0.0.4970116 con el siguiente memo:<br>
               <span :class="`text-3xl`" v-html="'deposito:' + user.user.id"></span><br>
               Este proceso puede tardar de 10 a 20 minutos.<br>
@@ -106,12 +106,12 @@ export default {
     this.setConfigCookies();
 
     useHead({
-      title: 'Transferir oro a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
+      title: 'Transferir ' + (user.config?.theme?.title_coin_premium ?? 'Oro') + ' a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Transferir oro a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
+          content: 'Transferir ' + (user.config?.theme?.title_coin_premium ?? 'Oro') + ' a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
         }
       ]
     });
@@ -122,7 +122,10 @@ export default {
 
   methods: {
     setBackground () {
-      document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+      if (window.location.hostname == 'madfenix') {
+        document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
+
+      }
     },
 
     nextStep(){
