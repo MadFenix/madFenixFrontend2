@@ -99,7 +99,11 @@ export default {
     this.setUserCookies();
     this.setBackground();
 
-    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+    if (window.location.hostname == 'our.welore.io') {
+        this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+      } else {
+        this.accountParameterToUrl = window.location.hostname.split('.')[0] + '/';
+      }
 
     this.setConfigCookies();
 
@@ -120,7 +124,7 @@ export default {
 
   methods: {
     setBackground () {
-      if (window.location.hostname == 'madfenix') {
+      if (window.location.hostname == 'madfenix.com') {
         document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
 
       }

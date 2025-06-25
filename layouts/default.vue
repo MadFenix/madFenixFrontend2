@@ -579,7 +579,11 @@ export default {
     this.setUserCookies();
     this.result = ref('Esperando la interacción del usuario...');
 
-    this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+    if (window.location.hostname == 'our.welore.io') {
+      this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+    } else {
+      this.accountParameterToUrl = window.location.hostname.split('.')[0] + '/';
+    }
     this.accountParameterToUrlLoaded = true;
 
     this.setConfigCookies();
