@@ -48,10 +48,10 @@ export default {
 
     this.setUserCookies();
 
-    if (window.location.hostname == 'our.welore.io') {
+    if (window.location.hostname == 'our.welore.io' || window.location.hostname == 'localhost') {
         this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
       } else {
-        this.accountParameterToUrl = window.location.hostname.split('.')[0] + '/';
+        this.accountParameterToUrl = '';
       }
 
     this.setConfigCookies();
@@ -81,7 +81,7 @@ export default {
   methods: {
     removeItems() {
       this.items = null;
-      window.document.getElementById("audioNotification").stop()
+      //window.document.getElementById("audioNotification").stop()
     },
 
     fetch() {

@@ -122,21 +122,21 @@ export default {
     this.setUserCookies();
     this.setBackground();
 
-    if (window.location.hostname == 'our.welore.io') {
+    if (window.location.hostname == 'our.welore.io' || window.location.hostname == 'localhost') {
         this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
       } else {
-        this.accountParameterToUrl = window.location.hostname.split('.')[0] + '/';
+        this.accountParameterToUrl = '';
       }
 
     this.setConfigCookies();
 
     useHead({
-      title: 'Transferir ' + (user.config?.theme?.title_coin_premium ?? 'Oro') + ' a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
+      title: 'Transferir ' + (this.user.config?.theme?.title_coin_premium ?? 'Oro') + ' a Hedera - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Transferir ' + (user.config?.theme?.title_coin_premium ?? 'Oro') + ' a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
+          content: 'Transferir ' + (this.user.config?.theme?.title_coin_premium ?? 'Oro') + ' a Hedera en ' + this.user.config?.config?.name_ecosystem ?? ''
         }
       ]
     });

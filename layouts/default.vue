@@ -3,7 +3,7 @@
     <div v-if="accountParameterToUrlLoaded == false">
       Cargando...
     </div>
-    <div id="container-global" v-else-if="accountParameterToUrl">
+    <div id="container-global" v-else-if="accountParameterToUrl !== null">
       <template v-if="!user.config">
         Cargando...
       </template>
@@ -556,7 +556,7 @@ export default {
       imageItemsReveal: false,
       videoNewItems: '/video/MadFenixLogoReveal.mp4',
       itemsPurchaseToShow: null,
-      accountParameterToUrl: '',
+      accountParameterToUrl: null,
       accountParameterToUrlLoaded: false,
       signUpData: {
         account: '',
@@ -590,10 +590,10 @@ export default {
     this.setUserCookies();
     this.result = ref('Esperando la interacción del usuario...');
 
-    if (window.location.hostname == 'our.welore.io') {
-      this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
+    if (window.location.hostname == 'our.welore.io' || window.location.hostname == 'localhost') {
+      this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : null;
     } else {
-      this.accountParameterToUrl = window.location.hostname.split('.')[0] + '/';
+      this.accountParameterToUrl = '';
     }
     this.accountParameterToUrlLoaded = true;
 
@@ -672,6 +672,10 @@ export default {
     },
 
     setConfigCookies() {
+      if (this.accountParameterToUrl == null) {
+        return;
+      }
+
       let config = localStorage.getItem(this.accountParameterToUrl.replace(/^\/+|\/+$/g, '') + '_config')
       if (config) {
         config = JSON.parse(config)

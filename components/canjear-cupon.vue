@@ -136,21 +136,21 @@ export default {
     this.setUserCookies();
     this.setBackground();
 
-    if (window.location.hostname == 'our.welore.io') {
+    if (window.location.hostname == 'our.welore.io' || window.location.hostname == 'localhost') {
         this.accountParameterToUrl = (this.route.params.account) ? this.route.params.account + '/' : '';
       } else {
-        this.accountParameterToUrl = window.location.hostname.split('.')[0] + '/';
+        this.accountParameterToUrl = '';
       }
 
     this.setConfigCookies();
 
     useHead({
-      title: 'Canjear cupón de ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' - ' + this.user.config?.config?.name_ecosystem ?? '',
+      title: 'Canjear cupón de ' + (this.user.config?.theme?.title_coin_free ?? 'Plata') + ' - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Canjear cupóon de ' + (user.config?.theme?.title_coin_free ?? 'Plata') + ' en ' + this.user.config?.config?.name_ecosystem ?? ''
+          content: 'Canjear cupóon de ' + (this.user.config?.theme?.title_coin_free ?? 'Plata') + ' en ' + this.user.config?.config?.name_ecosystem ?? ''
         }
       ]
     });
