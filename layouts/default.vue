@@ -599,16 +599,18 @@ export default {
 
     this.setConfigCookies();
 
-    this.itemsToCheck[0].text = this.user.config?.theme?.title_profile ?? 'Perfil';
-    this.items.push(this.itemsToCheck[0]);
-    if (this.user.config?.config?.active_seasons) {
-      this.itemsToCheck[1].text = this.user.config?.theme?.title_season ?? 'Temporada';
-      this.items.push(this.itemsToCheck[1]);
-    }
-    if (this.user.config?.config?.active_store) {
-      this.itemsToCheck[2].text = this.user.config?.theme?.title_store ?? 'Tienda';
-      this.items.push(this.itemsToCheck[2]);
-    }
+    setTimeout(() => {
+      this.itemsToCheck[0].text = this.user.config?.theme?.title_profile ?? 'Perfil';
+      this.items.push(this.itemsToCheck[0]);
+      if (this.user.config?.config?.active_seasons) {
+        this.itemsToCheck[1].text = this.user.config?.theme?.title_season ?? 'Temporada';
+        this.items.push(this.itemsToCheck[1]);
+      }
+      if (this.user.config?.config?.active_store) {
+        this.itemsToCheck[2].text = this.user.config?.theme?.title_store ?? 'Tienda';
+        this.items.push(this.itemsToCheck[2]);
+      }
+    }, 2000)
 
 
     const { $api } = useNuxtApp();
