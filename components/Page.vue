@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Home v-if="pageParameter == '' && getHostname == 'madfenix.com'" />
+    <Home v-if="pageParameter == 'home' && getHostname == 'madfenix.com'" />
     <div v-else-if="page" v-html="page" />
     <div v-else>
       Cargando...
