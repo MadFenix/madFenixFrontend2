@@ -8,28 +8,16 @@ export const usePollsStore = defineStore('pollsStore', {
   actions: {
     setPolls(polls) {
       localStorage.setItem('polls', JSON.stringify(polls));
-      Cookies.set('polls', JSON.stringify(polls), {
-        expires: 365, //60 * 60 * 24 * 365, // 1 year
-        path: '/',
-      })
       this.polls = polls
     },
 
     updatePolls(polls) {
       localStorage.setItem('polls', JSON.stringify(polls));
-      Cookies.set('polls', JSON.stringify(polls), {
-        expires: 365, //60 * 60 * 24 * 365, // 1 year
-        path: '/',
-      })
       this.polls = polls
     },
 
     removePolls() {
       localStorage.setItem('polls', '');
-      Cookies.set('polls', '', {
-        expires: 365, //60 * 60 * 24 * 365, // 1 year
-        path: '/',
-      })
       this.polls = ''
     },
 
@@ -39,11 +27,6 @@ export const usePollsStore = defineStore('pollsStore', {
       $api('/api/host/poll/pollsDetailsLast30Days')
           .then((response) => {
             if (response) {
-              //window.document.cookie = 'user=' + JSON.stringify(response.data.data)
-              Cookies.set('polls', JSON.stringify(response), {
-                expires: 365, //60 * 60 * 24 * 365, // 1 year
-                path: '/',
-              })
               this.updatePolls(response)
             } else {
               this.removePolls()
