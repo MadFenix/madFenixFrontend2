@@ -57,11 +57,11 @@
                              v-html="item.text"
                   />
 
-                  <a href="https://universo.madfenix.com/shelves/nevoran" target="_blank"
+                  <a v-if="this.accountParameterToUrl === ''" href="https://universo.madfenix.com/shelves/nevoran" target="_blank"
                      :class="`block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700`">
                     Universo
                   </a>
-                  <a href="https://universo.madfenix.com/books/plataforma-web" target="_blank"
+                  <a v-if="this.accountParameterToUrl === ''" href="https://universo.madfenix.com/books/plataforma-web" target="_blank"
                      :class="`block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700`">
                     Academia
                   </a>
@@ -321,12 +321,12 @@
                   <li v-if="user.user" v-for="(item, key) in items" :key="key" :class="`font-medium text-white hover:text-white`">
                     <nuxt-link :to="'/' + this.accountParameterToUrl + item.path" v-html="item.text" />
                   </li>
-                  <li :class="`font-medium text-white hover:text-white`">
+                  <li v-if="this.accountParameterToUrl === ''" :class="`font-medium text-white hover:text-white`">
                     <a href="https://universo.madfenix.com/shelves/nevoran" target="_blank" :class="`cursor-pointer`" >
                       Universo
                     </a>
                   </li>
-                  <li :class="`font-medium text-white hover:text-white`">
+                  <li v-if="this.accountParameterToUrl === ''" :class="`font-medium text-white hover:text-white`">
                     <a href="https://universo.madfenix.com/books/plataforma-web" target="_blank" :class="`cursor-pointer`" >
                       Academia
                     </a>
