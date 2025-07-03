@@ -108,6 +108,53 @@
         </div>
       </div>
     </div>
+    <div class="hidden
+    /* Flex */
+    flex flex-row flex-col flex-wrap flex-nowrap flex-1
+    flex-auto flex-initial flex-none
+    items-start items-end items-center items-baseline items-stretch
+    justify-start justify-end justify-center justify-between justify-around justify-evenly
+
+    /* Gap */
+    gap-0 gap-1 gap-2 gap-3 gap-4 gap-5 gap-6 gap-8 gap-10 gap-12
+    gap-x-0 gap-x-1 gap-x-2 gap-x-3 gap-x-4 gap-x-5 gap-x-6 gap-x-8 gap-x-10 gap-x-12
+    gap-y-0 gap-y-1 gap-y-2 gap-y-3 gap-y-4 gap-y-5 gap-y-6 gap-y-8 gap-y-10 gap-y-12
+
+    /* Margin */
+    m-0 m-1 m-2 m-3 m-4 m-5 m-6 m-8 m-10 m-12
+    mx-0 mx-1 mx-2 mx-3 mx-4 mx-5 mx-6 mx-8 mx-10 mx-12
+    my-0 my-1 my-2 my-3 my-4 my-5 my-6 my-8 my-10 my-12
+    mt-0 mt-1 mt-2 mt-3 mt-4 mt-5 mt-6 mt-8 mt-10 mt-12
+    mr-0 mr-1 mr-2 mr-3 mr-4 mr-5 mr-6 mr-8 mr-10 mr-12
+    mb-0 mb-1 mb-2 mb-3 mb-4 mb-5 mb-6 mb-8 mb-10 mb-12
+    ml-0 ml-1 ml-2 ml-3 ml-4 ml-5 ml-6 ml-8 ml-10 ml-12
+    -m-0 -m-1 -m-2 -m-3 -m-4 -m-5 -m-6 -m-8 -m-10 -m-12
+    -mx-0 -mx-1 -mx-2 -mx-3 -mx-4 -mx-5 -mx-6 -mx-8 -mx-10 -mx-12
+    -my-0 -my-1 -my-2 -my-3 -my-4 -my-5 -my-6 -my-8 -my-10 -my-12
+    -mt-0 -mt-1 -mt-2 -mt-3 -mt-4 -mt-5 -mt-6 -mt-8 -mt-10 -mt-12
+    -mr-0 -mr-1 -mr-2 -mr-3 -mr-4 -mr-5 -mr-6 -mr-8 -mr-10 -mr-12
+    -mb-0 -mb-1 -mb-2 -mb-3 -mb-4 -mb-5 -mb-6 -mb-8 -mb-10 -mb-12
+    -ml-0 -ml-1 -ml-2 -ml-3 -ml-4 -ml-5 -ml-6 -ml-8 -ml-10 -ml-12
+
+    /* Márgenes con auto */
+    m-auto mx-auto my-auto mt-auto mr-auto mb-auto ml-auto
+
+    /* Flex order */
+    order-1 order-2 order-3 order-4 order-5 order-6 order-7 order-8 order-9 order-10 order-11 order-12
+    order-first order-last order-none
+
+    /* Flex grow & shrink */
+    flex-grow-0 flex-grow
+    flex-shrink-0 flex-shrink
+
+    /* Flex basis */
+    basis-0 basis-1 basis-2 basis-3 basis-4 basis-6 basis-8 basis-10 basis-12
+    basis-auto basis-full basis-1/2 basis-1/3 basis-2/3 basis-1/4 basis-2/4 basis-3/4
+
+    /* Self alignment */
+    self-auto self-start self-end self-center self-stretch self-baseline
+">&nbsp;</div>
+
   </div>
 </template>
 
