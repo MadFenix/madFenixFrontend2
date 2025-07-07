@@ -10,7 +10,7 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/pluma.png" :alt="(user.config?.theme?.title_coin_free ?? 'Plata')" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img :src="user.config?.theme?.icon_coin_free ?? 'https://reports.madfenix.com/welore/demo-assets/coins/coin-free.png'" :alt="(user.config?.theme?.title_coin_free ?? 'Plata')" :class="`absolute p-8 z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>

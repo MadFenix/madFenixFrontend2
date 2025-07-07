@@ -17,7 +17,7 @@
     <section :class="`max-w-screen-xl px-4 py-12 mx-auto md:py-16 sm:px-6 lg:px-8`" v-if="storeDetails.products" v-for="product in storeDetails.products" :key="product.id">
       <div :class="`relative z-30 grid grid-cols-1 sm:grid-cols-12 items-center justify-center mx-auto text-center px-4 sm:px-16 lg:flex-row lg:text-left`">
         <div :class="`sm:col-span-3 flex items-center py-6 sm:py-0 px-12 h-full text-2xl rounded-tl-3xl rounded-tr-3xl sm:rounded-tr-none bg-[color:var(--gris)] border border-[color:var(--naranja)] sm:border-r-0 font-bold sm:text-4xl`">
-          <img :src="product.image" :title="product.name" :alt="product.name" :class="`inset-y-0 z-40 h-full`" />
+          <img :src="product.image" :title="product.name" :alt="product.name" :class="`inset-y-0 z-40 w-full`" />
         </div>
         <div :class="`sm:col-span-9 px-3 sm:px-0 py-3 sm:py-0 sm:flex sm:items-center space-x-3 justify-center h-full rounded-br-3xl rounded-bl-3xl sm:rounded-bl-none bg-[color:var(--gris)] border border-[color:var(--naranja)] sm:border-l-0 sm:mr-12 lg:justify-end`">
           <div :class="`grow font-extrabold tracking-tight`">

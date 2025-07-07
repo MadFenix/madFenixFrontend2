@@ -266,14 +266,14 @@
                     </div>
                     <div v-if="itemsPurchaseToShow.plumas">
                       <div :class="`relative rounded-tr-3xl rounded-bl-3xl border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
-                        <img :src="'/img/perfil/pluma.png'" style="width: 100%;" :alt="itemsPurchaseToShow.plumas" :title="itemsPurchaseToShow.plumas" />
+                        <img :src="user.config?.theme?.icon_coin_free ?? 'https://reports.madfenix.com/welore/demo-assets/coins/coin-free.png'" style="width: 100%;" :alt="itemsPurchaseToShow.plumas" :title="itemsPurchaseToShow.plumas" />
 
                         <div :class="`px-6 mt-3 mb-10 relative z-50 w-full text-center text-[color:var(--blanco)]`" v-html="itemsPurchaseToShow.plumas" />
                       </div>
                     </div>
                     <div v-if="itemsPurchaseToShow.oro">
                       <div :class="`relative rounded-tr-3xl rounded-bl-3xl border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
-                        <img :src="'/img/perfil/oro.png'" style="width: 100%;" :alt="itemsPurchaseToShow.oro" :title="itemsPurchaseToShow.oro" />
+                        <img :src="user.config?.theme?.icon_coin_premium ?? 'https://reports.madfenix.com/welore/demo-assets/coins/coin-premium.png'" style="width: 100%;" :alt="itemsPurchaseToShow.oro" :title="itemsPurchaseToShow.oro" />
 
                         <div :class="`px-6 mt-3 mb-10 relative z-50 w-full text-center text-[color:var(--blanco)]`" v-html="itemsPurchaseToShow.oro" />
                       </div>

@@ -2,7 +2,7 @@
     <div v-if="seasonDetails && user">
       <h1 :class="`text-[color:var(--naranja)] w-full text-center py-12`"><span v-html="user.config?.theme?.title_season ?? 'Season'" /></h1>
       <div :class="`relative rounded-tl-3xl rounded-br-3xl min-h-[300px] mx-3 sm:m-auto sm:w-2/3 border border-[color:var(--blanco)] bg-[color:var(--gris)] overflow-hidden`">
-        <img src="/img/el-luchador/portada.jpg" :class="`absolute`" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
+        <img :src="user.config?.theme?.icon_rewards_pass ?? 'https://reports.madfenix.com/welore/demo-assets/rewards-pass/header2.png'" :class="`absolute`" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -40%);" />
         <div :class="`relative min-h-[300px] mb-0 p-6 z-50`">
           <div :class="`absolute w-full bottom-0 px-12 py-3`">
             <div :class="`flex items-end justify-end`">

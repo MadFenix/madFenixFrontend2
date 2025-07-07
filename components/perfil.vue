@@ -40,7 +40,7 @@
                   <img src="/img/perfil/twitch_account.svg" alt="Desconectar Twitch" title="Desconectar Twitch" :class="`w-[50px] lg:w-[50px]`">
                 </a>
               </div>
-              <div v-else :class="`flex items-center space-x-3 text-white text-center`">
+              <div v-else :class="`flex items-center hidden space-x-3 text-white text-center`">
                 <span v-html="'Vincular Twitch'" />
                 <a :href="'https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=2wbjjwkzyy9t68a8ex5b4fsz7kfc37&redirect_uri=https%3A%2F%2Fapi.madfenix.com%2Fapi%2Ftwitch%2FconnectAccount&scope=user%3Aread%3Aemail&state=user' + user.user.id" :class="`cursor-pointer`">
                   <img src="/img/perfil/twitch_account.svg" alt="Conectar Twitch" title="Conectar Twitch" :class="`w-[50px] lg:w-[50px]`">
@@ -142,7 +142,7 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/oro.png" :alt="user.config?.theme?.title_coin_premium ?? 'Oro'" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img :src="user.config?.theme?.icon_coin_premium ?? 'https://reports.madfenix.com/welore/demo-assets/coins/coin-premium.png'" :alt="user.config?.theme?.title_coin_premium ?? 'Oro'" :class="`absolute p-8 z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
@@ -169,7 +169,7 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/pluma.png" :alt="(user.config?.theme?.title_coin_free ?? 'Plata')" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img :src="user.config?.theme?.icon_coin_free ?? 'https://reports.madfenix.com/welore/demo-assets/coins/coin-free.png'" :alt="(user.config?.theme?.title_coin_free ?? 'Plata')" :class="`absolute p-8 z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
@@ -199,7 +199,7 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/adivinacion.png" alt="Influye" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img :src="user.config?.theme?.icon_polls ?? 'https://reports.madfenix.com/welore/demo-assets/polls/polls.png'" :alt="user.config?.theme?.title_polls ?? 'Polls'" :class="`absolute p-8 z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
@@ -229,7 +229,7 @@
             </h5>
           </div>
           <div :class="`sm:col-span-2 flex items-center justify-center bg-[color:var(--azul)]`">
-            <img src="/img/perfil/mochila.png" alt="Ítems" :class="`absolute z-50 h-1/2 sm:h-full`" />
+            <img :src="user.config?.theme?.icon_items ?? 'https://reports.madfenix.com/welore/demo-assets/items/items.png'" :alt="user.config?.theme?.title_items ?? 'Items'" :class="`absolute p-8 z-50 h-1/2 sm:h-full`" />
             <svg :class="`inset-y-0 z-40 h-full text-[color:var(--gris)]`" preserveAspectRatio="none" viewBox="0 0 100 100" fill="currentcolor">
               <polygon points="0,0 100,0 0,100"></polygon>
             </svg>
