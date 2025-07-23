@@ -637,7 +637,7 @@ export default {
 
   methods: {
     setBackground () {
-      if (window.location.hostname == 'madfenix.com') {
+      if (window.location.hostname == 'madfenix.com' || window.location.hostname == 'www.madfenix.com') {
         document.getElementById("container-global").style.background = "transparent url('/img/perfil/back_temp.jpg') no-repeat top center";
       }
     },
