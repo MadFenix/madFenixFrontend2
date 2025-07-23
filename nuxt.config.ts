@@ -22,11 +22,12 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: '/css/main.css' },
       ],
       script: [
+        { type: 'application/javascript', src: '/js/tailwind.js' },
         { type: 'application/javascript', src: '/js/flowbite.js' }
       ]
     },
   },
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'nuxt-gtag', 'nuxt-meta-pixel'],
+  modules: ['@pinia/nuxt', 'nuxt-gtag', 'nuxt-meta-pixel'],
 
   gtag: {
     id: 'G-8RYGGHXWFG'
