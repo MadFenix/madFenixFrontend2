@@ -27,44 +27,8 @@
             <p :class="`text-[color:var(--blanco)] text-xl`" v-if="product.short_description" v-html="product.short_description" />
           </div>
           <div :class="`botones-tokens`">
-            <stripe-buy-button v-if="product.price_fiat > 0 && product.price_fiat == 5"
-                                                         buy-button-id="buy_btn_1PAYYpHruUfPE2wuw5Mhazx8"
-                                                         publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                                                         :customer-email="user.email"
-            >
-            </stripe-buy-button>
-            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 10"
-                               buy-button-id="buy_btn_1PAaDhHruUfPE2wuOkz0bx5C"
-                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                               :customer-email="user.email"
-            >
-            </stripe-buy-button>
-            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 20"
-                               buy-button-id="buy_btn_1PAaEuHruUfPE2wu6DXK5KYT"
-                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                               :customer-email="user.email"
-            >
-            </stripe-buy-button>
-            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 40"
-                               buy-button-id="buy_btn_1PAaI3HruUfPE2wu9m6H5vGp"
-                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                               :customer-email="user.email"
-            >
-            </stripe-buy-button>
-            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 80"
-                               buy-button-id="buy_btn_1PAaHCHruUfPE2wua82AVGzY"
-                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                               :customer-email="user.email"
-            >
-            </stripe-buy-button>
-            <stripe-buy-button v-else-if="product.price_fiat > 0 && product.price_fiat == 160"
-                               buy-button-id="buy_btn_1PAaJKHruUfPE2wuU9Jq0Nu9"
-                               publishable-key="pk_live_51PAXsOHruUfPE2wuT1MTCc3LMcanaF77ZykWh93fUu8whnI6GLIFVfPcBSJVNTzGSiQtchKVsRu2kiziQlOD44XH006ERR5INg"
-                               :customer-email="user.email"
-            >
-            </stripe-buy-button>
-            <a v-else-if="product.price_fiat > 0" :class="`flex cursor-pointer items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900`">
-              Próximamente
+            <a v-if="product.price_fiat > 0" @click="buyProductFiat(product.id)" :class="`w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
+              Comprar por <span v-html="product.price_fiat" />€
             </a>
             <a v-else @click="buyProduct(product.id, product.price_oro, product.price_plumas)" :class="`w-full m-auto justify-center px-8 py-4 btn-madfenix text-[color:var(--gris)] font-semibold bg-[color:var(--naranja)] leading-snug transition ease-in-out h-10 lg:h-14 duration-250 hover:text-[color:var(--naranja)] hover:bg-[color:var(--gris)] border-[color:var(--naranja)] border-2 cursor-pointer`">
               Comprar por <span v-html="getPrice(product)" />
@@ -149,18 +113,12 @@ export default {
     this.setConfigCookies();
 
     useHead({
-      title: 'Tienda - Mad Fénix',
+      title: 'Tienda - ' + this.user.config?.config?.name_ecosystem ?? '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Tienda en Mad Fénix.'
-        }
-      ],
-      script: [
-        {
-          async: true,
-          src: "https://js.stripe.com/v3/buy-button.js",
+          content: 'Tienda en ' + this.user.config?.config?.name_ecosystem ?? '' + '.'
         }
       ]
     });
@@ -253,6 +211,36 @@ export default {
         .then((response) => {
           if (price_oro > 0 || price_plumas > 0) {
             this.validateProduct(response);
+          }
+        })
+        .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
+    },
+
+    getAccountByDomainName() {
+      const url = window.location.origin;
+      const hostname = new URL(url).hostname;
+
+      // Elimina subdominios tipo www, blog, etc.
+      const domainParts = hostname
+          .split('.')
+          .filter(part => part !== 'www');
+
+      if (domainParts.length >= 3) {
+        // Maneja casos como "miweb.co.uk" → "miweb"
+        return domainParts[domainParts.length - 3];
+      }
+
+      // Casos normales como "miweb.com"
+      return domainParts[domainParts.length - 2];
+    },
+
+    buyProductFiat(product_id) {
+      this.api('/api/host/store/generateStripeLink?user_id=' + this.user.user.id + '&product_id=' + product_id + '&account=' + ((this.accountParameterToUrl)? this.accountParameterToUrl.replaceAll('/', '') : this.getAccountByDomainName()) + '&host_to_return=' + encodeURIComponent('https://' + window.location.hostname), {
+        method: 'GET'
+      })
+        .then((response) => {
+          if (response) {
+            window.location.href = response;
           }
         })
         .catch((error) => (error.message) ? (error.message === 'The given data was invalid.') ? this.serverMessage.setServerMessage('Datos inválidos.') : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error.message) : (error.response && error.response._data && error.response._data.message)? this.serverMessage.setServerMessage(error.response._data.message) : (error.response && error.response._data)? this.serverMessage.setServerMessage(error.response._data) : this.serverMessage.setServerMessage(error))
