@@ -1,3 +1,0 @@
-<template>
-  <dragones-custodio />
-</template>

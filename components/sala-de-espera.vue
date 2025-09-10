@@ -3,7 +3,7 @@
     <!-- Título de la tarjeta -->
     <h2 :class="`leading-10 text-xl font-bold text-center mb-4 bg-[color:var(--naranja)] py-6 h-[100px] flex items-center justify-center`">Sala de Espera</h2>
 
-    <div :class="`p-5 sm:p-20`" v-if="user.user">
+    <div :class="`p-5 sm:p-20`">
       <div :class="`relative rounded-tr-3xl rounded-bl-3xl sm:m-auto sm:w-1/2 border-2 border-[color:var(--naranja)] bg-[color:var(--gris)] overflow-hidden`">
         <img src="/img/formularios/madfenix7.png" :class="`absolute`" style="min-width: 1100px; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
 
@@ -14,14 +14,14 @@
           </p>
 
           <!-- Subtítulo centrado con "spacers" simulados -->
-          <div :class="`flex items-center mt-5`">
+          <div :class="`flex items-center mt-5`" v-if="user.user">
             <div :class="`flex-1`"></div>
             <p :class="`text-sm text-gray-600`">¿Ha pasado más de 5 segundos?</p>
             <div :class="`flex-1`"></div>
           </div>
         </div>
       </div>
-      <div :class="`relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios`">
+      <div :class="`relative sm:mx-auto sm:w-1/2 z-50 contenedor-botones-formularios`" v-if="user.user">
         <div :class="`flex justify-center`">
           <!-- Botón: Perfil -->
           <div :class="`contenedor-boton-left-formularios`"></div>

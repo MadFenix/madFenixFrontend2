@@ -1,3 +1,0 @@
-<template>
-  <sellos-fenix />
-</template>
