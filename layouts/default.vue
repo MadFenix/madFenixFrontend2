@@ -57,11 +57,11 @@
                              v-html="item.text"
                   />
 
-                  <a v-if="this.accountParameterToUrl === ''" href="https://universo.madfenix.com/shelves/nevoran" target="_blank"
+                  <a v-if="this.accountParameterToUrl === '' && isMadFenix" href="https://universo.madfenix.com/shelves/nevoran" target="_blank"
                      :class="`block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700`">
                     Universo
                   </a>
-                  <a v-if="this.accountParameterToUrl === ''" href="https://universo.madfenix.com/books/plataforma-web" target="_blank"
+                  <a v-if="this.accountParameterToUrl === '' && isMadFenix" href="https://universo.madfenix.com/books/plataforma-web" target="_blank"
                      :class="`block px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700`">
                     Academia
                   </a>
@@ -146,7 +146,7 @@
                         </svg>
                       </nuxt-link>
 
-                      <a href="https://universo.madfenix.com/shelves/nevoran" target="_blank"
+                      <a v-if="this.accountParameterToUrl === '' && isMadFenix" href="https://universo.madfenix.com/shelves/nevoran" target="_blank"
                          :class="`block border-l-2 border-dark-600 p-4 font-medium text-white hover:text-white hover:bg-dark-700 sm:inline-block`"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
@@ -154,7 +154,7 @@
                         </svg>
                       </a>
 
-                      <a href="https://universo.madfenix.com/books/plataforma-web" target="_blank"
+                      <a v-if="this.accountParameterToUrl === '' && isMadFenix" href="https://universo.madfenix.com/books/plataforma-web" target="_blank"
                          :class="`block border-l-2 border-dark-600 p-4 font-medium text-white hover:text-white hover:bg-dark-700 sm:inline-block`"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="`w-6 h-6 m-auto`">
@@ -321,12 +321,12 @@
                   <li v-if="user.user" v-for="(item, key) in items" :key="key" :class="`font-medium text-white hover:text-white`">
                     <nuxt-link :to="'/' + this.accountParameterToUrl + item.path" v-html="item.text" />
                   </li>
-                  <li v-if="this.accountParameterToUrl === ''" :class="`font-medium text-white hover:text-white`">
+                  <li v-if="this.accountParameterToUrl === '' && isMadFenix" :class="`font-medium text-white hover:text-white`">
                     <a href="https://universo.madfenix.com/shelves/nevoran" target="_blank" :class="`cursor-pointer`" >
                       Universo
                     </a>
                   </li>
-                  <li v-if="this.accountParameterToUrl === ''" :class="`font-medium text-white hover:text-white`">
+                  <li v-if="this.accountParameterToUrl === '' && isMadFenix" :class="`font-medium text-white hover:text-white`">
                     <a href="https://universo.madfenix.com/books/plataforma-web" target="_blank" :class="`cursor-pointer`" >
                       Academia
                     </a>
@@ -487,6 +487,7 @@ export default {
 
   data(){
     return {
+      isMadFenix: false,
       mobileNavOpen: false,
       user: useUserStore(),
       settings: useSettingsStore(),
@@ -587,6 +588,9 @@ export default {
   },
 
   mounted() {
+    if (window.location.hostname == 'madfenix.com' || window.location.hostname == 'www.madfenix.com') {
+      this.isMadFenix = true;
+    }
     this.setUserCookies();
     this.result = ref('Esperando la interacción del usuario...');
 
